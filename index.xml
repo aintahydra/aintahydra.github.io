@@ -6,7 +6,17 @@
     <description>Recent content on Aint a creature shitting out of mouth</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Feb 2023 04:16:25 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Feb 2023 08:21:21 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create Github Pages With Hugo</title>
+      <link>https://aintahydra.github.io/post/etc/create-github-pages-with-hugo/</link>
+      <pubDate>Sun, 12 Feb 2023 08:21:21 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/create-github-pages-with-hugo/</guid>
+      <description>Create a static github page with Hugo Install Hugo on Ubuntu 22.04 apt install hugo  Create github repositories Login to github.com; Create two repositories:
+ [PAGE_SRC_REPO] contains sources; a regular github repo. [GITHUB_IO_REPO] contains rendered pages  Tts name should be_USER_NAME_.github.io, and needs to be public Move to the newly created repository -&amp;gt; &amp;lsquo;Settings&amp;rsquo; -&amp;gt; &amp;lsquo;Pages&amp;rsquo;, then set  Source: Deploy from a branch Branch: master / root       Create a hugo site mkdir ~/webpages; cd ~/webpages hugo new site hugo_pages  Install a theme (as a submodule) Visit https://themes.</description>
+    </item>
+    
     <item>
       <title>Firstposting</title>
       <link>https://aintahydra.github.io/post/etc/firstposting/</link>

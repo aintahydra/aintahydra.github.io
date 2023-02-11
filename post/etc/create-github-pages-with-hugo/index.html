@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Create Github Pages With Hugo | Aint a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-green.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Aint a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">homeText comes here</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Create Github Pages With Hugo</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	<time class="entry__meta-published meta-published" datetime="2023-02-12T08:21:21&#43;09:00">February 02, 12000</time>
+	</div>
+				<h1 class="entry__title">Create Github Pages With Hugo</h1>
+<details class="entry__toc toc" open>
+	<summary class="toc__title">Table of Contents</summary>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#install-hugo-on-ubuntu-2204">Install Hugo on Ubuntu 22.04</a></li>
+    <li><a href="#create-github-repositories">Create github repositories</a></li>
+    <li><a href="#create-a-hugo-site">Create a hugo site</a></li>
+    <li><a href="#install-a-theme-as-a-submodule">Install a theme (as a submodule)</a></li>
+    <li><a href="#check-if-the-theme-works">Check if the theme works</a></li>
+    <li><a href="#create-a-new-post">Create a new post</a></li>
+    <li><a href="#create-static-files">Create static files</a></li>
+    <li><a href="#link-to-page_src_repo">Link to [PAGE_SRC_REPO]</a></li>
+    <li><a href="#link-to-github_io_repo">Link to [GITHUB_IO_REPO]</a></li>
+    <li><a href="#github-auth-token">github auth token</a></li>
+  </ul>
+</nav>
+</details>
+				<div class="entry__content"><h1 id="create-a-static-github-page-with-hugo">Create a static github page with Hugo</h1>
+<h2 id="install-hugo-on-ubuntu-2204">Install Hugo on Ubuntu 22.04</h2>
+<pre tabindex="0"><code>apt install hugo
+</code></pre><hr>
+<h2 id="create-github-repositories">Create github repositories</h2>
+<p>Login to github.com; Create two repositories:</p>
+<ul>
+<li>[PAGE_SRC_REPO] contains sources; a regular github repo.</li>
+<li>[GITHUB_IO_REPO] contains rendered pages
+<ul>
+<li>Tts name should be<code>_USER_NAME_.github.io</code>, and needs to be <code>public</code></li>
+<li>Move to the newly created repository -&gt; &lsquo;Settings&rsquo; -&gt; &lsquo;Pages&rsquo;, then set
+<ul>
+<li>Source: Deploy from a branch</li>
+<li>Branch: master / root</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="create-a-hugo-site">Create a hugo site</h2>
+<pre tabindex="0"><code>mkdir ~/webpages; cd ~/webpages
+hugo new site hugo_pages
+</code></pre><hr>
+<h2 id="install-a-theme-as-a-submodule">Install a theme (as a submodule)</h2>
+<p>Visit <a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a> and pick a theme. Normally, theme authors provide how-to-install.</p>
+<pre tabindex="0"><code>cd ~/webpages/hugo_pages
+git init
+git submodule add https://github.com/_THEME_REPO_ themes/_THEME_NAME_
+</code></pre><p>Set <code>config.toml</code> up as the theme authors guide. Some themes provide a sample <code>config.toml</code> file <code>theme/XXXX/exampleSite/</code>. So, in that case, copy the sample file.</p>
+<pre tabindex="0"><code>cd ~/webpages/hugo_pages
+cp themes/_THEME_NAME_/exampleSite/config.toml .
+</code></pre><p>Now, edit the copied <code>config.toml</code>, most importantly:</p>
+<pre tabindex="0"><code>baseURL = &quot;https://_USERNAME_.github.io/&quot;
+theme = _THEME_NAME_ 
+</code></pre><hr>
+<h2 id="check-if-the-theme-works">Check if the theme works</h2>
+<p>Execute the hugo server:</p>
+<pre tabindex="0"><code>hugo server
+</code></pre><p>Now, try access http://localhost:1313/</p>
+<hr>
+<h2 id="create-a-new-post">Create a new post</h2>
+<pre tabindex="0"><code>hugo new _PATH_/_CATETORY_/_FILE_NAME_
+</code></pre><p>It creates a page under <code>content/</code>, for example, <code>hugo new post/etc/firstposting.md</code> creates <code>~/webpages/hugo_pages/content/post/etc/firstposting.md</code>. This directory structure needs to accord with the <code>config.toml</code> as the theme refer the file. In case of the theme(Binario) that I use, <code>config.toml</code> has to the following line:</p>
+<pre tabindex="0"><code>[Params]
+...
+  mainSections = [&quot;post&quot;]
+</code></pre><p>As the new post is created, the hugo server(localhost:1313) will display the post(If not, make sure the property, <code>draft: false</code> in the .md file.)</p>
+<hr>
+<h2 id="create-static-files">Create static files</h2>
+<pre tabindex="0"><code>hugo -t _THEME_NAME_
+</code></pre><p>then the static pages will be created under <code>public</code>.</p>
+<hr>
+<h2 id="link-to-page_src_repo">Link to [PAGE_SRC_REPO]</h2>
+<pre tabindex="0"><code>cd ~/webpages/hugo_pages
+git remote add origin https://github.com/_USER_NAME_/hugo_pages.git
+</code></pre><p>When need to add newly created pages:</p>
+<pre tabindex="0"><code>git add .
+git commit -m &quot;COMMIT_MSG&quot;
+git push origin master
+</code></pre><hr>
+<h2 id="link-to-github_io_repo">Link to [GITHUB_IO_REPO]</h2>
+<pre tabindex="0"><code>git submodule add -b master https://github.com/_USER_NAME_/_USER_NAME_.github.io.git public
+</code></pre><p>When need to update the redered page via <code>_USER_NAME_.github.io</code>:</p>
+<pre tabindex="0"><code>git add .
+git commit -m &quot;COMMIT MSG&quot;
+git push origin master
+</code></pre><p><code>*</code> if there&rsquo;s a &ldquo;refspec&rdquo; error caused by that we haven&rsquo;t had master branch, Solution:</p>
+<pre tabindex="0"><code>$ git checkout -b 'master'
+Switched to a new branch 'master'
+$ git push -u origin master
+</code></pre><hr>
+<h2 id="github-auth-token">github auth token</h2>
+<pre tabindex="0"><code>    remote: Support for password authentication was removed on August 13, 2021.
+    remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+    fatal: Authentication failed for 'https://github.com/_USER_NAME_/hugo_pages.git/'
+</code></pre><ol>
+<li>Login to the github account</li>
+<li>&ldquo;Settings&rdquo; &gt; &ldquo;&lt;&gt; Developer settings&rdquo; &gt; &ldquo;Personal access tokens&rdquo; &gt; &ldquo;Tokens(Classic)&rdquo; &gt; &ldquo;Generate new token&rdquo;</li>
+<li>Set and Fill up: &ldquo;Note&rdquo;, &ldquo;Expiration&rdquo;</li>
+<li>Set scopes: repo, admin, delete, etc.</li>
+<li>Save the generated token and use it as a password when committing codes</li>
+</ol>
+<hr>
+<h1 id="basic-git-commands">Basic Git commands</h1>
+<p><img src="https://user-images.githubusercontent.com/14274827/91470661-9d5a8780-e8b2-11ea-9ccb-0d813d2e35d1.png" alt="git_commands"></p>
+</div>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Aint a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>
