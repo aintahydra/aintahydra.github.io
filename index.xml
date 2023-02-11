@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aint a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/</link>
+    <description>Recent content on Aint a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Feb 2023 04:16:25 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Firstposting</title>
+      <link>https://aintahydra.github.io/post/etc/firstposting/</link>
+      <pubDate>Sun, 12 Feb 2023 04:16:25 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/firstposting/</guid>
+      <description>A new blog is about to launch.</description>
+    </item>
+    
+  </channel>
+</rss>
