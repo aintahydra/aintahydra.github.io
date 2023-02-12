@@ -38,26 +38,8 @@
 		<div class="single block">
 			<article class="entry">
 	<div class="entry__meta meta mb">
-	<time class="entry__meta-published meta-published" datetime="2023-02-12T08:21:21&#43;09:00">February 02, 12000</time>
 	</div>
 				<h1 class="entry__title">Create Github Pages With Hugo</h1>
-<details class="entry__toc toc" open>
-	<summary class="toc__title">Table of Contents</summary>
-	<nav id="TableOfContents">
-  <ul>
-    <li><a href="#install-hugo-on-ubuntu-2204">Install Hugo on Ubuntu 22.04</a></li>
-    <li><a href="#create-github-repositories">Create github repositories</a></li>
-    <li><a href="#create-a-hugo-site">Create a hugo site</a></li>
-    <li><a href="#install-a-theme-as-a-submodule">Install a theme (as a submodule)</a></li>
-    <li><a href="#check-if-the-theme-works">Check if the theme works</a></li>
-    <li><a href="#create-a-new-post">Create a new post</a></li>
-    <li><a href="#create-static-files">Create static files</a></li>
-    <li><a href="#link-to-page_src_repo">Link to [PAGE_SRC_REPO]</a></li>
-    <li><a href="#link-to-github_io_repo">Link to [GITHUB_IO_REPO]</a></li>
-    <li><a href="#github-auth-token">github auth token</a></li>
-  </ul>
-</nav>
-</details>
 				<div class="entry__content"><h1 id="create-a-static-github-page-with-hugo">Create a static github page with Hugo</h1>
 <h2 id="install-hugo-on-ubuntu-2204">Install Hugo on Ubuntu 22.04</h2>
 <pre tabindex="0"><code>apt install hugo
@@ -101,7 +83,7 @@ theme = _THEME_NAME_
 </code></pre><p>Now, try access http://localhost:1313/</p>
 <hr>
 <h2 id="create-a-new-post">Create a new post</h2>
-<pre tabindex="0"><code>hugo new _PATH_/_CATETORY_/_FILE_NAME_
+<pre tabindex="0"><code>    $ hugo new _PATH_/_FILE_NAME_
 </code></pre><p>It creates a page under <code>content/</code>, for example, <code>hugo new post/etc/firstposting.md</code> creates <code>~/webpages/hugo_pages/content/post/etc/firstposting.md</code>. This directory structure needs to accord with the <code>config.toml</code> as the theme refer the file. In case of the theme(Binario) that I use, <code>config.toml</code> has to the following line:</p>
 <pre tabindex="0"><code>[Params]
 ...
@@ -113,35 +95,36 @@ theme = _THEME_NAME_
 </code></pre><p>then the static pages will be created under <code>public</code>.</p>
 <hr>
 <h2 id="link-to-page_src_repo">Link to [PAGE_SRC_REPO]</h2>
-<pre tabindex="0"><code>cd ~/webpages/hugo_pages
-git remote add origin https://github.com/_USER_NAME_/hugo_pages.git
+<pre tabindex="0"><code>    $ cd ~/webpages/hugo_pages
+    $ git remote add origin https://github.com/_USER_NAME_/hugo_pages.git
 </code></pre><p>When need to add newly created pages:</p>
 <pre tabindex="0"><code>git add .
 git commit -m &quot;COMMIT_MSG&quot;
 git push origin master
 </code></pre><hr>
 <h2 id="link-to-github_io_repo">Link to [GITHUB_IO_REPO]</h2>
-<pre tabindex="0"><code>git submodule add -b master https://github.com/_USER_NAME_/_USER_NAME_.github.io.git public
-</code></pre><p>When need to update the redered page via <code>_USER_NAME_.github.io</code>:</p>
+<pre tabindex="0"><code>    $ git submodule add -b master https://github.com/_USER_NAME_/_USER_NAME_.github.io.git public
+</code></pre><p>When need to update the redered page via <em>USER_NAME</em>.github.io:</p>
 <pre tabindex="0"><code>git add .
 git commit -m &quot;COMMIT MSG&quot;
 git push origin master
-</code></pre><p><code>*</code> if there&rsquo;s a &ldquo;refspec&rdquo; error caused by that we haven&rsquo;t had master branch, Solution:</p>
+</code></pre><p><code>*</code> if there’s a “refspec” error caused by that we haven’t had master branch, Solution:</p>
 <pre tabindex="0"><code>$ git checkout -b 'master'
 Switched to a new branch 'master'
 $ git push -u origin master
 </code></pre><hr>
 <h2 id="github-auth-token">github auth token</h2>
-<pre tabindex="0"><code>    remote: Support for password authentication was removed on August 13, 2021.
+<pre tabindex="0"><code>remote: Support for password authentication was removed on August 13, 2021.
     remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
     fatal: Authentication failed for 'https://github.com/_USER_NAME_/hugo_pages.git/'
 </code></pre><ol>
 <li>Login to the github account</li>
-<li>&ldquo;Settings&rdquo; &gt; &ldquo;&lt;&gt; Developer settings&rdquo; &gt; &ldquo;Personal access tokens&rdquo; &gt; &ldquo;Tokens(Classic)&rdquo; &gt; &ldquo;Generate new token&rdquo;</li>
-<li>Set and Fill up: &ldquo;Note&rdquo;, &ldquo;Expiration&rdquo;</li>
+<li>“Settings” &gt; “&lt;&gt; Developer settings” &gt; “Personal access tokens” &gt; “Tokens(Classic)” &gt; “Generate new token”</li>
+<li>Set and Fill up: “Note”, “Expiration”</li>
 <li>Set scopes: repo, admin, delete, etc.</li>
 <li>Save the generated token and use it as a password when committing codes</li>
 </ol>
+<hr>
 <hr>
 <h1 id="basic-git-commands">Basic Git commands</h1>
 <p><img src="https://user-images.githubusercontent.com/14274827/91470661-9d5a8780-e8b2-11ea-9ccb-0d813d2e35d1.png" alt="git_commands"></p>

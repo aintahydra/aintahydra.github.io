@@ -6,11 +6,11 @@
     <description>Recent content in Posts on Aint a creature shitting out of mouth</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Feb 2023 08:21:21 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Feb 2023 05:37:53 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Create Github Pages With Hugo</title>
       <link>https://aintahydra.github.io/post/etc/create-github-pages-with-hugo/</link>
-      <pubDate>Sun, 12 Feb 2023 08:21:21 +0900</pubDate>
+      <pubDate>Mon, 13 Feb 2023 05:37:53 +0900</pubDate>
       
       <guid>https://aintahydra.github.io/post/etc/create-github-pages-with-hugo/</guid>
       <description>Create a static github page with Hugo Install Hugo on Ubuntu 22.04 apt install hugo  Create github repositories Login to github.com; Create two repositories:
@@ -18,12 +18,12 @@
     </item>
     
     <item>
-      <title>Firstposting</title>
-      <link>https://aintahydra.github.io/post/etc/firstposting/</link>
-      <pubDate>Sun, 12 Feb 2023 04:16:25 +0900</pubDate>
+      <title>Install Ghidra</title>
+      <link>https://aintahydra.github.io/post/reversing/install-ghidra/</link>
+      <pubDate>Mon, 13 Feb 2023 03:13:34 +0900</pubDate>
       
-      <guid>https://aintahydra.github.io/post/etc/firstposting/</guid>
-      <description>A new blog is about to launch.</description>
+      <guid>https://aintahydra.github.io/post/reversing/install-ghidra/</guid>
+      <description>Install Java  Visit the Oracle page (https://www.oracle.com/java/technologies/downloads/ ) Download an installation .deb package Install JDK Set alternatives  sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-19/bin/java 1 sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-19/bin/javac 1 sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk-19/bin/jar 1 set JAVA_HOME properly  Install Ghidra  Download the ghidra: https://github.com/NationalSecurityAgency/ghidra/releases Place the ghidra properly (e.g., under /usr/local) Create a symbolic links at your conveniences  sudo ln -s DOWNLOADED_GHIDRA /usr/local/ghidra sudo ln -s /usr/local/ghidra/ghidraRun /usr/local/bin/ghidraRun Create a Ghidra.</description>
     </item>
     
   </channel>

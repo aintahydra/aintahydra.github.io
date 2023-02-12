@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Install Ghidra | Aint a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-green.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Aint a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">homeText comes here</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Install Ghidra</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	</div>
+				<h1 class="entry__title">Install Ghidra</h1>
+				<div class="entry__content"><h1 id="install-java">Install Java</h1>
+<ol>
+<li>Visit the Oracle page (<a href="https://www.oracle.com/java/technologies/downloads/">https://www.oracle.com/java/technologies/downloads/</a> )</li>
+<li>Download an installation .deb package</li>
+<li>Install JDK</li>
+<li>Set alternatives</li>
+</ol>
+<pre tabindex="0"><code>sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-19/bin/java 1
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-19/bin/javac 1
+sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk-19/bin/jar 1
+</code></pre><ol start="5">
+<li>set JAVA_HOME properly</li>
+</ol>
+<h1 id="install-ghidra">Install Ghidra</h1>
+<ol>
+<li>Download the ghidra: <a href="https://github.com/NationalSecurityAgency/ghidra/releases">https://github.com/NationalSecurityAgency/ghidra/releases</a></li>
+<li>Place the ghidra properly (e.g., under /usr/local)</li>
+<li>Create a symbolic links at your conveniences</li>
+</ol>
+<pre tabindex="0"><code>sudo ln -s DOWNLOADED_GHIDRA /usr/local/ghidra
+sudo ln -s /usr/local/ghidra/ghidraRun /usr/local/bin/ghidraRun
+</code></pre><ol start="4">
+<li>Create a Ghidra.desktop file as follows, and place it /usr/share/applications</li>
+</ol>
+<pre tabindex="0"><code>[Desktop Entry]
+Exec=/usr/local/bin/ghidraRun
+Encoding=UTF-8
+Icon=/usr/local/ghidra/ghidra.ico
+Name=Ghidra
+Path=/usr/local/ghidra
+Type=Application
+Terminal=false
+</code></pre><p>NOTE: If the icon does not properly show up, download a new image and use it as the icon image(a good icon image is at <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/issues/1705">https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/issues/1705</a> ).</p>
+</div>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Aint a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>
