@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Simple XOR Decoding With Ghidra | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Simple XOR Decoding With Ghidra</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/ghidra/" rel="tag">ghidra</a>, 
+		<a class="meta-tags__link" href="/tags/reversing/" rel="tag">reversing</a>, 
+		<a class="meta-tags__link" href="/tags/xor/" rel="tag">XOR</a>, 
+		<a class="meta-tags__link" href="/tags/obfuscation/" rel="tag">obfuscation</a>, 
+		<a class="meta-tags__link" href="/tags/encoding/" rel="tag">encoding</a>, 
+		<a class="meta-tags__link" href="/tags/decoding/" rel="tag">decoding</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Simple XOR Decoding With Ghidra</h1>
+				<div class="entry__content"><h2 id="references">References</h2>
+<ul>
+<li>Talks by Dr. Josh Stroschein, &ldquo;Using Ghidra to Statically XOR Obfuscated Shellcode&rdquo; (<a href="https://www.youtube.com/watch?v=DgaPPixn9k4">https://www.youtube.com/watch?v=DgaPPixn9k4</a>)</li>
+<li>The author&rsquo;s blog: <a href="https://0xevilc0de.com/">https://0xevilc0de.com/</a></li>
+<li>&ldquo;Repository that provides sample codes mimicking real malware&rdquo; (<a href="https://github.com/jstrosch/learning-malware-analysis">https://github.com/jstrosch/learning-malware-analysis</a> )</li>
+</ul>
+<h2 id="steps">Steps</h2>
+<ul>
+<li>Create a new project</li>
+<li>Import a shellcode (shellcode.bin provided by the author)
+<ul>
+<li>Tell Language: x86 (visual studio)
+<img src="/home/user/Work-ghidra/DrJoshStroschein/drjoshstroschein-01.png" alt="image"></li>
+</ul>
+</li>
+<li>The analyzed result shows up
+<ul>
+<li>Go to the first offset (00000000)</li>
+<li>(at this moment, the codes seem to be a series of random bytes)</li>
+<li>&lsquo;D&rsquo; or &lsquo;Disassemble&rsquo;</li>
+<li>(now, the unpacking codes will show up)</li>
+</ul>
+</li>
+</ul>
+<h2 id="codes">Codes</h2>
+<ul>
+<li>The first jump (at 00000000) goes to 00000016 <code>CALL FUN_00000002</code></li>
+<li>Looking at the codes from 00000002, there is function that works as a XOR decoder:
+<ul>
+<li>0x186 and 0x97 seem to be the size of the packed code and the encoding key
+<img src="/home/user/Work-ghidra/DrJoshStroschein/drjoshstroschein-02.png" alt="image"></li>
+</ul>
+</li>
+<li>from the code above,
+<pre tabindex="0"><code>00000009 XOR byte ptr DS:[EAX + ECX*1],0x97
+0000000e TEST ECX,ECX
+00000010 JNZ LAB_00000008
+</code></pre><ul>
+<li>EAX is a location (of the encoded shell codes). This value was popped from the stack at <code>00000002 POP EAX</code>, and again it was pushed when the function was called at <code>00000016 CALL FUN_00000002</code> as a return address. So, the value must directs to the offset, <code>00000001b</code> (the next opcode).</li>
+<li>ECX is a counter, if ECX is non-zero, it jumps to 00000008(loops back and continue the process). Otherwise(if it reached to the end), it calls EAX (again, EAX has the base address of the shellcodes)</li>
+<li>At this moment, the encoded codes have been all XOR decoded.</li>
+</ul>
+</li>
+</ul>
+<h2 id="insights">Insights?</h2>
+<ul>
+<li>Before decoded, they (the codes below 0000001b) look like weird operations that doesn&rsquo;t make sense at all, or look just random data.
+<img src="/home/user/Work-ghidra/DrJoshStroschein/drjoshstroschein-03.png" alt="image"></li>
+<li>Also, withinin the encoded data section, 0x97 appears a lot. We can say that the NULL bytes in the original codes are encoded as the same value with the XOR key (since <code>0 XOR key == key</code>)</li>
+</ul>
+<h2 id="how-we-can-obtain-the-encoded-codes">How we can obtain the encoded codes?</h2>
+<p>Two options</p>
+<ol>
+<li>Run the codes from the debugger placing a break point.
+<ul>
+<li>The breakpoint can be set at 0000001b (where the shellcode begins), HOWEVER software breakpoints can be overwritten.</li>
+<li>The better position to place the breakpoint is at 00000012, which is just a moment before the shell code is called, while the codes are decoded and can be <em>extracted</em>.</li>
+</ul>
+</li>
+<li>A static way
+<ul>
+<li>the shell codes are located from
+<ul>
+<li>the start of the shellcode (00000001b offset)</li>
+<li>and the offset 000001a1 (0000001b + loop size(0x186))</li>
+</ul>
+</li>
+<li>set block over the ecoded codes, then Right-click,  and choose &ldquo;Clear Code Bytes&rdquo; from the encoded shellcodes</li>
+<li>press the &ldquo;play&rdquo; menu icon (Display Script Manager)</li>
+<li>if the &ldquo;Script Manager&rdquo; window pops up, filter with &ldquo;xor&rdquo;, then &ldquo;XorMemoryScript.java&rdquo; appers
+<img src="/home/user/Work-ghidra/DrJoshStroschein/drjoshstroschein-04.png" alt="image"></li>
+<li>Choose &ldquo;the Play&rdquo; icon, again</li>
+<li>Then ghidra asks which the XorValue is used; enter 0x97</li>
+<li>Then the decoded codes are displayed on the screen</li>
+</ul>
+</li>
+</ol>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/ghidra/">ghidra</a>
+			<a class="entry__tag btn" href="/tags/reversing/">reversing</a>
+			<a class="entry__tag btn" href="/tags/xor/">XOR</a>
+			<a class="entry__tag btn" href="/tags/obfuscation/">obfuscation</a>
+			<a class="entry__tag btn" href="/tags/encoding/">encoding</a>
+			<a class="entry__tag btn" href="/tags/decoding/">decoding</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>virtualbox on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/virtualbox/</link>
+    <description>Recent content in virtualbox on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Feb 2023 05:58:55 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Virtualbox Networking Modes</title>
+      <link>https://aintahydra.github.io/post/etc/virtualbox-networking-modes/</link>
+      <pubDate>Sat, 18 Feb 2023 05:58:55 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/virtualbox-networking-modes/</guid>
+      <description>References  https://www.virtualbox.org/manual/ch06.html https://www.nakivo.com/blog/virtualbox-network-setting-guide/   ViratualBox Network Modes  Not attached (No connection) NAT NAT Network Bridged Adapter Internal networking Host-only Generic (shared with the host)  NAT  Sufficient in most cases Internet-enabled: from Internal network to Internet access is possible Guests on internel network CANNOT talk each other (from www.nakivo.com) Enabling NAT for a VM with VBoxManage: VBoxManage modifyvm VM_name --nic1 nat  VM_name: name of a virtual machine nic1: number of virtual machine adapter    NAT Network  Similar to NAT, but guest CAN talk each other basically,, CANNOT access guest machines either from the host or from external network  However, &amp;ldquo;Port forwarding&amp;rdquo; enables the host or the machines of the host network to access guests   A built-in VBox NAT router uses Network address and name can be changed: (Global preference) File &amp;gt; Preferences &amp;gt; Network &amp;gt; Edit the settings(icon): Default address 10.</description>
+    </item>
+    
+  </channel>
+</rss>

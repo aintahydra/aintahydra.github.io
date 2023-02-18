@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Virtualbox Networking Modes | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Virtualbox Networking Modes</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/virtualbox/" rel="tag">virtualbox</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Virtualbox Networking Modes</h1>
+				<div class="entry__content"><h1 id="references">References</h1>
+<ul>
+<li><a href="https://www.virtualbox.org/manual/ch06.html">https://www.virtualbox.org/manual/ch06.html</a></li>
+<li><a href="https://www.nakivo.com/blog/virtualbox-network-setting-guide/">https://www.nakivo.com/blog/virtualbox-network-setting-guide/</a></li>
+</ul>
+<hr>
+<h1 id="viratualbox-network-modes">ViratualBox Network Modes</h1>
+<ul>
+<li>Not attached (No connection)</li>
+<li>NAT</li>
+<li>NAT Network</li>
+<li>Bridged Adapter</li>
+<li>Internal networking</li>
+<li>Host-only</li>
+<li>Generic (shared with the host)</li>
+</ul>
+<h2 id="nat">NAT</h2>
+<ul>
+<li>Sufficient in most cases</li>
+<li>Internet-enabled: from Internal network to Internet access is possible</li>
+<li>Guests on internel network CANNOT talk each other</li>
+<li><img src="./images/VirtualBox-network-modes-%E2%80%93-how-the-NAT-mode-works.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+<li>Enabling NAT for a VM with VBoxManage: <code>VBoxManage modifyvm VM_name --nic1 nat</code>
+<ul>
+<li>VM_name: name of a virtual machine</li>
+<li>nic1: number of virtual machine adapter</li>
+</ul>
+</li>
+</ul>
+<h2 id="nat-network">NAT Network</h2>
+<ul>
+<li>Similar to NAT, but guest CAN talk each other</li>
+<li>basically,, CANNOT access guest machines either from the host or from external network
+<ul>
+<li>However, &ldquo;Port forwarding&rdquo; enables the host or the machines of the host network to access guests</li>
+</ul>
+</li>
+<li>A built-in VBox NAT router uses</li>
+<li>Network address and name can be changed: (Global preference) File &gt; Preferences &gt; Network &gt; Edit the settings(icon): Default address 10.0.2.0/24(GW 10.0.2.1, DHCP 10.0.2.3) can be changed to 192.168.xx.0/24(GW x.x.x.1, DHCP x.x.x.3)</li>
+<li><img src="./images/VirtualBox-network-settings-%E2%80%93-the-NAT-Network-mode.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+<li>Adding a new NAT Network with VBoxManage: <code>VBoxManage natnetwork add --netname mynatnet1 --network &quot;192.168.15.0/24&quot; --enable</code></li>
+<li>Configuring a VM to use NAT Network with VBoxManage: <code>VBoxManage modifyvm VM_name --nic1 natnetwork</code>
+<ul>
+<li>nic1: the first virtual network adapter(network interface controller)</li>
+</ul>
+</li>
+</ul>
+<h2 id="bridged-adapter">Bridged Adapter</h2>
+<ul>
+<li>The host and guest share the physical NIC (thanks to net filter)</li>
+<li>Guests can access the Internet as the host does</li>
+<li>&ldquo;Promiscuous mode&rdquo; can be enabled with this mode</li>
+<li><img src="./images/VirtualBox-network-settings-%E2%80%93-bridged-networking.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+</ul>
+<h2 id="internal">Internal</h2>
+<ul>
+<li>Guests can talk each other, but CANNOT communicate with the host nor access to the external network</li>
+<li>models real networks</li>
+<li><img src="./images/VirtualBox-network-settings-%E2%80%93-using-the-Internal-network-mode-in-a-combination-with-the-NAT-mode.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+</ul>
+<h2 id="host-only">Host-only</h2>
+<ul>
+<li>Geusts and the host can talk each other</li>
+<li>A Host-only network adapter can be set by File &gt; Host Network Manager &gt; (Adapter tab)
+<ul>
+<li>Default network address can be changed</li>
+<li>DHCP can be set on/off</li>
+<li>No Gateway presented (since outer world do not access into the host-only network)</li>
+</ul>
+</li>
+<li><img src="./images/VirtualBox-network-settings-%E2%80%93-VMs-use-the-host-only-network.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+</ul>
+<hr>
+<h1 id="create-a-subnet-using-the-host-only-networking-mode">Create a subnet using the host-only networking mode</h1>
+<h2 id="review-a-virtual-switch">Review a virtual switch</h2>
+<ul>
+<li>File &gt; Host Network Manager</li>
+<li>on &ldquo;Host Network Manager&rdquo; window, click the &ldquo;Properties&rdquo;(of &ldquo;vboxnet0&rdquo;) button
+<ul>
+<li>Default IP: 192.168.56.1/24</li>
+<li>Default DHCP: Enabled, 192.168.56.100/24 (192.168.56.101~192.168.56.254)</li>
+</ul>
+</li>
+</ul>
+<h2 id="create-another-virtual-switch-for-host-only-networking">Create another virtual switch for host-only networking</h2>
+<ul>
+<li>[Trial1] We might want to create vboxnet1 and give the following properties:
+<ul>
+<li>Default IP: 10.20.30.1/24</li>
+<li>Default DHCP: Disabled</li>
+</ul>
+</li>
+<li>That cannot be done simply (<a href="https://forums.virtualbox.org/viewtopic.php?t=104357">https://forums.virtualbox.org/viewtopic.php?t=104357</a>)</li>
+<li>[Trial2] create /etc/vbox/networks.conf that has the following line:
+<pre tabindex="0"><code>* 10.20.30.0/24
+</code></pre><ul>
+<li>In that file, &ldquo;#&rdquo; is used for comments</li>
+<li>Examples in the above thread
+<pre tabindex="0"><code>* 10.0.0.0/8 192.168.0.0/16
+* 2001::/64
+</code></pre></li>
+<li><code>* 0.0.0.0/0 ::/0</code> allows any addresses (range control is disabled)</li>
+<li>if <code>/etc/vbox/networks.conf</code> file exists with no ranges are specified, then no addresses will be assigned to host-only adapters</li>
+<li>now, vboxnet1 can be set as follows:
+<img src="./images/VirtualBox-host-only-network-setup.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/virtualbox/">virtualbox</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

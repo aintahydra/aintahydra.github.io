@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>reversing | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+	<link rel="alternate" type="application/rss+xml" href="/tags/reversing/index.xml" title="Ain't a creature shitting out of mouth">
+		
+</head>
+<body class="body kind-term">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/tags/">Tags</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">reversing</li>
+	</ol>
+</nav>
+		<div class="page block">
+			<h1 class="page__title">reversing</h1>
+			
+		</div>
+		<div class="cards">
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/reversing/simple-xor-decoding-with-ghidra/">Simple XOR Decoding With Ghidra</a></h1>
+	<div class="entry__content">References  Talks by Dr. Josh Stroschein, &ldquo;Using Ghidra to Statically XOR Obfuscated Shellcode&rdquo; (https://www.youtube.com/watch?v=DgaPPixn9k4) The author&rsquo;s blog: https://0xevilc0de.com/ &ldquo;Repository that provides sample codes mimicking real malware&rdquo; (https://github.com/jstrosch/learning-malware-analysis )  Steps  Create a new project Import a shellcode (shellcode.bin provided by the author)  Tell Language: x86 (visual studio)    The analyzed result shows up  Go to the first offset (00000000) (at this moment, the codes seem to be a series of random bytes) &lsquo;D&rsquo; or &lsquo;Disassemble&rsquo; (now, the unpacking codes will show up)    Codes  The first jump (at 00000000) goes to 00000016 CALL FUN_00000002 Looking at the codes from 00000002, there is function that works as a XOR decoder:  0x186 and 0x97 seem to be the size of the packed code and the encoding key    from the code above, 00000009 XOR byte ptr DS:[EAX + ECX*1],0x97 0000000e TEST ECX,ECX 00000010 JNZ LAB_00000008  EAX is a location (of the encoded shell codes).</div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/ghidra/" rel="tag">ghidra</a>, 
+		<a class="meta-tags__link" href="/tags/reversing/" rel="tag">reversing</a>, 
+		<a class="meta-tags__link" href="/tags/xor/" rel="tag">XOR</a>, 
+		<a class="meta-tags__link" href="/tags/obfuscation/" rel="tag">obfuscation</a>, 
+		<a class="meta-tags__link" href="/tags/encoding/" rel="tag">encoding</a>, 
+		<a class="meta-tags__link" href="/tags/decoding/" rel="tag">decoding</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/reversing/crackmes-with-ghidra/">Crackmes With Ghidra</a></h1>
+	<div class="entry__content">Crackme with Ghidra  Crackme
+ Crackmes.one: https://crackmes.one/   Sample 1: Get the passcode (Diff 1, Qual 5, C/C++, Multiplatform, x86-64)  Link: https://crackmes.one/crackme/5fca1e7933c5d424269a1a68 so simple   </div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/ghidra/" rel="tag">ghidra</a>, 
+		<a class="meta-tags__link" href="/tags/reversing/" rel="tag">reversing</a>, 
+		<a class="meta-tags__link" href="/tags/crackme/" rel="tag">crackme</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+		</div>
+	</main>
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

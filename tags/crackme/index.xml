@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>crackme on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/crackme/</link>
+    <description>Recent content in crackme on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Feb 2023 05:30:09 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/crackme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Crackmes With Ghidra</title>
+      <link>https://aintahydra.github.io/post/reversing/crackmes-with-ghidra/</link>
+      <pubDate>Wed, 15 Feb 2023 05:30:09 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/reversing/crackmes-with-ghidra/</guid>
+      <description>Crackme with Ghidra  Crackme
+ Crackmes.one: https://crackmes.one/   Sample 1: Get the passcode (Diff 1, Qual 5, C/C++, Multiplatform, x86-64)  Link: https://crackmes.one/crackme/5fca1e7933c5d424269a1a68 so simple   </description>
+    </item>
+    
+  </channel>
+</rss>

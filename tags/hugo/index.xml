@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/hugo/</link>
+    <description>Recent content in hugo on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Feb 2023 05:37:53 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create Github Pages With Hugo</title>
+      <link>https://aintahydra.github.io/post/etc/create-github-pages-with-hugo/</link>
+      <pubDate>Mon, 13 Feb 2023 05:37:53 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/create-github-pages-with-hugo/</guid>
+      <description>Create a static github page with Hugo Install Hugo on Ubuntu 22.04 apt install hugo  Create github repositories Login to github.com; Create two repositories:
+ [PAGE_SRC_REPO] contains sources; a regular github repo. [GITHUB_IO_REPO] contains rendered pages  Tts name should be_USER_NAME_.github.io, and needs to be public Move to the newly created repository -&amp;gt; &amp;lsquo;Settings&amp;rsquo; -&amp;gt; &amp;lsquo;Pages&amp;rsquo;, then set  Source: Deploy from a branch Branch: master / root       Create a hugo site mkdir ~/webpages; cd ~/webpages hugo new site hugo_pages  Install a theme (as a submodule) Visit https://themes.</description>
+    </item>
+    
+  </channel>
+</rss>
