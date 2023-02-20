@@ -62,7 +62,7 @@
 <li>Import a shellcode (shellcode.bin provided by the author)
 <ul>
 <li>Tell Language: x86 (visual studio)
-<img src="/home/user/Work-ghidra/DrJoshStroschein/drjoshstroschein-01.png" alt="image"></li>
+<img src="drjoshstroschein-01.png" alt="image"></li>
 </ul>
 </li>
 <li>The analyzed result shows up
@@ -80,7 +80,7 @@
 <li>Looking at the codes from 00000002, there is function that works as a XOR decoder:
 <ul>
 <li>0x186 and 0x97 seem to be the size of the packed code and the encoding key
-<img src="/home/user/Work-ghidra/DrJoshStroschein/drjoshstroschein-02.png" alt="image"></li>
+<img src="drjoshstroschein-02.png" alt="image"></li>
 </ul>
 </li>
 <li>from the code above,
@@ -97,7 +97,7 @@
 <h2 id="insights">Insights?</h2>
 <ul>
 <li>Before decoded, they (the codes below 0000001b) look like weird operations that doesn&rsquo;t make sense at all, or look just random data.
-<img src="/home/user/Work-ghidra/DrJoshStroschein/drjoshstroschein-03.png" alt="image"></li>
+<img src="drjoshstroschein-03.png" alt="image"></li>
 <li>Also, withinin the encoded data section, 0x97 appears a lot. We can say that the NULL bytes in the original codes are encoded as the same value with the XOR key (since <code>0 XOR key == key</code>)</li>
 </ul>
 <h2 id="how-we-can-obtain-the-encoded-codes">How we can obtain the encoded codes?</h2>
@@ -120,7 +120,7 @@
 <li>set block over the ecoded codes, then Right-click,  and choose &ldquo;Clear Code Bytes&rdquo; from the encoded shellcodes</li>
 <li>press the &ldquo;play&rdquo; menu icon (Display Script Manager)</li>
 <li>if the &ldquo;Script Manager&rdquo; window pops up, filter with &ldquo;xor&rdquo;, then &ldquo;XorMemoryScript.java&rdquo; appers
-<img src="/home/user/Work-ghidra/DrJoshStroschein/drjoshstroschein-04.png" alt="image"></li>
+<img src="drjoshstroschein-04.png" alt="image"></li>
 <li>Choose &ldquo;the Play&rdquo; icon, again</li>
 <li>Then ghidra asks which the XorValue is used; enter 0x97</li>
 <li>Then the decoded codes are displayed on the screen</li>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Installing Cobalt Strike | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Installing Cobalt Strike</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/red-team/" rel="tag">red team</a>, 
+		<a class="meta-tags__link" href="/tags/cobalt-strike/" rel="tag">cobalt strike</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Installing Cobalt Strike</h1>
+				<div class="entry__content"><h1 id="cobalt-strike">Cobalt strike</h1>
+<h2 id="references">References</h2>
+<ul>
+<li>Cobalt Strike&rsquo;s profile: <a href="https://blog.zsec.uk/cobalt-strike-profiles/">https://blog.zsec.uk/cobalt-strike-profiles/</a></li>
+<li>Hashs of various Coblat Strike versions: <a href="https://verify.cobaltstrike.com/">https://verify.cobaltstrike.com/</a></li>
+<li>Craked versions (Chinese)
+<ul>
+<li><a href="https://www.cnblogs.com/ssooking/p/12535998.html?from=timeline">https://www.cnblogs.com/ssooking/p/12535998.html?from=timeline</a></li>
+<li><a href="https://www.ddosi.org/cobaltstrike-4-5-cracked/">https://www.ddosi.org/cobaltstrike-4-5-cracked/</a></li>
+<li><a href="https://github.com/Snowming04/CobaltStrike4.0_related">https://github.com/Snowming04/CobaltStrike4.0_related</a></li>
+<li><a href="https://breached.vc/Thread-Cobalt-Strike-4-4-Crack-Tool">https://breached.vc/Thread-Cobalt-Strike-4-4-Crack-Tool</a></li>
+<li><a href="https://breached.vc/Thread-Cobalt-Strike-4-7">https://breached.vc/Thread-Cobalt-Strike-4-7</a></li>
+<li><a href="https://breached.vc/Thread-Cobalt-Strike-4-6-1-7-Brute-Ratel">https://breached.vc/Thread-Cobalt-Strike-4-6-1-7-Brute-Ratel</a></li>
+</ul>
+</li>
+<li>Raphael Mudge(the creator of Cobalt Strike)&rsquo;s channel: <a href="https://www.youtube.com/@DashnineMedia">https://www.youtube.com/@DashnineMedia</a></li>
+<li>&ldquo;Cobalt Strike User Guide&rdquo; by FORTRA, <a href="https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/welcome_main.htm#">https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/welcome_main.htm#</a></li>
+</ul>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Well-known groups that use Cobalt Strike (<a href="https://attack.mitre.org/software/S0154/)">https://attack.mitre.org/software/S0154/)</a>: FIN6, Iranian{CopyKittens}, NorthKorean{APT37}, Russian{Wizard Spider, Indrik Spider, APT29}, Vietnamese{APT32}, Chinese{Aquatic Panda, Chimera, Leviathan, Threat Group-3390, APT19, meenuPass, APT41, Mustang Panda, Earth Lusca}, DarkHydrus, FIN7, Cobalt Group</li>
+</ul>
+<h2 id="preparing-vms">Preparing VMs</h2>
+<ul>
+<li>Team Server @ Xubuntu 22.04
+<ul>
+<li>Network: Host-Only Adapter(vboxnet1), 10.20.30.5/24, GW 10.20.30.1</li>
+<li>default-jre (ver. 11) installed</li>
+</ul>
+</li>
+<li>Client#1 @ Windows 10
+<ul>
+<li>Network: Host-Only Adapter(vboxnet1), 10.20.30.4/24, GW 10.20.30.1</li>
+<li>Java 11.0.2 Installed (<a href="https://jdk.java.net/archive/">https://jdk.java.net/archive/</a>)</li>
+</ul>
+</li>
+<li>(optionally,) Client#2 @ Windows 10
+<ul>
+<li>Network: Host-Only Adapter(vboxnet1), 10.20.30.6/24, GW 10.20.30.1</li>
+<li>it&rsquo;s a clone of the Client#1</li>
+</ul>
+</li>
+<li>Now guest can ping each other
+<ul>
+<li>FYI, Window 10 opted out the ping service by default =&gt; For pinging each other, Windows Defender Firewall Off (or set the &ldquo;ICMP Echo Request(ICMPv4-in)&rdquo; rule applied for when the remote host is &ldquo;local subnet&rdquo;)</li>
+</ul>
+</li>
+</ul>
+<h2 id="starting-the-team-server--xubuntu">Starting the Team Server @ Xubuntu</h2>
+<ul>
+<li>
+<p>if necessary, give +x for files</p>
+</li>
+<li>
+<p><code>./teamserver _SERVERIP_ _PW_</code></p>
+<p><img src="cobalt-strike-teamserver-executed.png" alt="image"></p>
+</li>
+<li>
+<p>(c.f.)</p>
+<pre tabindex="0"><code>teamserver &lt;host&gt; &lt;password&gt; [path/to/C2.profile] [YYYY-MM-DD]
+</code></pre><ul>
+<li>host: IP of the TS</li>
+<li>password: shared password to connect to the TS</li>
+<li>profile: Malleable C2 profile</li>
+<li>date: kill date for Beacon payloads run from the TS</li>
+<li>it may use existing X509 certificate and keystore for SSL</li>
+<li>then the server will be up on 0.0.0.0:50050 and start listening http_beacon</li>
+</ul>
+</li>
+</ul>
+<h2 id="staring-the-client1--win10">Staring the client#1 @ Win10</h2>
+<ul>
+<li>
+<p>Run</p>
+<pre tabindex="0"><code>java -XX:ParallelGCThreads=4 -XX:+AggressiveHeap -XX:+UseParallelGC -jar _CLIENT_.jar $*
+</code></pre></li>
+<li>
+<p>A dialog pops up</p>
+<p><img src="cobalt-strike-client-dialog-box.png" alt="image"></p>
+</li>
+<li>
+<p>As a connection established, a &ldquo;joined&rdquo; message is displayed on the CS main window</p>
+</li>
+</ul>
+<h2 id="starting-the-client2--win10">Starting the client#2 @ Win10</h2>
+<ul>
+<li>Run as the above</li>
+<li>Users connected to the teamserver shows up on the screen:
+<img src="cobalt-strike-newuser-joined.png" alt="image"></li>
+</ul>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/red-team/">red team</a>
+			<a class="entry__tag btn" href="/tags/cobalt-strike/">cobalt strike</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

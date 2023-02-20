@@ -3,13 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://aintahydra.github.io/</loc>
-    <lastmod>2023-02-18T05:58:55+09:00</lastmod>
+    <lastmod>2023-02-21T06:45:51+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/tags/cobalt-strike/</loc>
+    <lastmod>2023-02-21T06:45:51+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/post/redteamtools/installing-cobalt-strike/</loc>
+    <lastmod>2023-02-21T06:45:51+09:00</lastmod>
   </url><url>
     <loc>https://aintahydra.github.io/post/</loc>
-    <lastmod>2023-02-18T05:58:55+09:00</lastmod>
+    <lastmod>2023-02-21T06:45:51+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/tags/red-team/</loc>
+    <lastmod>2023-02-21T06:45:51+09:00</lastmod>
   </url><url>
     <loc>https://aintahydra.github.io/tags/</loc>
-    <lastmod>2023-02-18T05:58:55+09:00</lastmod>
+    <lastmod>2023-02-21T06:45:51+09:00</lastmod>
   </url><url>
     <loc>https://aintahydra.github.io/tags/virtualbox/</loc>
     <lastmod>2023-02-18T05:58:55+09:00</lastmod>
@@ -58,7 +67,7 @@
   </url><url>
     <loc>https://aintahydra.github.io/post/etc/websockets/</loc>
   </url><url>
-    <loc>https://aintahydra.github.io/post/golang/programming-golang-prelude/</loc>
+    <loc>https://aintahydra.github.io/post/lang/programming-golang-prelude/</loc>
   </url><url>
     <loc>https://aintahydra.github.io/categories/</loc>
   </url>

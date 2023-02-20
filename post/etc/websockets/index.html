@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title> | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">...</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	</div>
+				<h1 class="entry__title"></h1>
+				<div class="entry__content"><h2 id="intro">Intro</h2>
+<ul>
+<li>Websocket enables a browser to be capable of synchronous communication using TCP</li>
+<li>Python/Java: Websocket / C#: signalR / nodejs: socket.io(long polling)</li>
+<li>[Traditional] Only when a browser sends a request -&gt; A web server responses back to the request &lt;- (asynchronous, unidirectional)</li>
+<li>[Websocket] After a connection is established between a browser and a webserver, whichever part can send messages any time via the connection (connection-oriented, bidirectional)</li>
+<li>included in HTML5 standards, supported by most browsers</li>
+</ul>
+<hr>
+<h1 id="a-java-way">a JAVA way</h1>
+<p>￼</p>
+<h2 id="a-jsp-servlet">A JSP servlet</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> javax.websocket.OnClose<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.websocket.OnError<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.websocket.OnMessage<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.websocket.OnOpen<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.websocket.server.ServerEndpoint<span style="color:#f92672">;</span>
+
+<span style="color:#75715e">// Following 4 annotations are sufficient to deal with communication events
+</span><span style="color:#75715e">//  @OnOpen: when a browser accesses and connected
+</span><span style="color:#75715e">//  @OnMessage: a message arrives
+</span><span style="color:#75715e">//  @OnClose: when the connection with a browser is lost
+</span><span style="color:#75715e">//  @OnError: when an error occurs
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">@ServerEndpoint</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/wsTake1&#34;</span><span style="color:#f92672">)</span> <span style="color:#75715e">// the name of service host
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Websocket</span> <span style="color:#f92672">{</span>
+
+  <span style="color:#a6e22e">@OnOpen</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handleOpen</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Connected!&#34;</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+
+  <span style="color:#a6e22e">@OnMessage</span>
+  <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">handleMessage</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Message received: &#34;</span> <span style="color:#f92672">+</span> msg<span style="color:#f92672">);</span>
+    String reply <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;[RE]: &#34;</span> <span style="color:#f92672">+</span> msg<span style="color:#f92672">;</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Message sent: &#34;</span><span style="color:#f92672">+</span> reply<span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">return</span> reply<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+
+  <span style="color:#a6e22e">@OnClose</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handleClose</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;... Disconnected&#34;</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+
+  <span style="color:#a6e22e">@OnError</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handleError</span><span style="color:#f92672">(</span>Throwable t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    t<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="a-jsp-page-to-access-the-servlet">A JSP page to access the servlet</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#960050;background-color:#1e0010">&lt;</span>%@ page language=&#34;java&#34; contentType=&#34;text/html; charset=UTF-8&#34; pageEncoding=&#34;UTF-8&#34;%&gt;
+<span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+  &lt;<span style="color:#f92672">head</span>&gt;&lt;<span style="color:#f92672">title</span>&gt;Take #1&lt;/<span style="color:#f92672">title</span>&gt;&lt;/<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">form</span>&gt;
+      <span style="color:#75715e">&lt;!-- a text field for sending a msg --&gt;</span>
+      &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;txtMsg&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;
+      <span style="color:#75715e">&lt;!-- the SEND button --&gt;</span>
+      &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sendMessage()&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SEND&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>&gt;
+      <span style="color:#75715e">&lt;!-- the DISCONNECT button --&gt;</span>
+      &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;disconnect()&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;DISCONNECT&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>&gt;
+    &lt;/<span style="color:#f92672">form</span>&gt;
+    &lt;<span style="color:#f92672">br</span> /&gt;
+    <span style="color:#75715e">&lt;!--  a text area that lists sent and received messages --&gt;</span>
+    &lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;taMessages&#34;</span> <span style="color:#a6e22e">rows</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;30&#34;</span> <span style="color:#a6e22e">cols</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;80&#34;</span>&gt;&lt;/<span style="color:#f92672">textarea</span>&gt;
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
+
+      <span style="color:#75715e">// Construct a WebSocket
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">// - the name of service host: wsTake1
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">// the websocket will start the connection, so @OnOpen will be called
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">webSocket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#34;ws://localhost:8080/wsProject/wsTake1&#34;</span>);
+
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">msgTextArea</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;taMessages&#34;</span>);
+
+      <span style="color:#75715e">// Client listeners 
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">// when connected to a websocket server
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>) {
+        <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Connected\n&#34;</span>;
+      };
+      <span style="color:#75715e">// when the connction to the websocket server is lost
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>) {
+        <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Disconnected\\n&#34;</span>;
+      };
+      <span style="color:#75715e">// when an error occurs
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onerror</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>) {
+        <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Error!\n&#34;</span>;
+      };
+      <span style="color:#75715e">// when a message arrives
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>) {
+        <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Recieve From Server =&gt; &#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">data</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;\n&#34;</span>;
+      };
+
+    <span style="color:#75715e">// when the SEND button is pressed
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sendMessage</span>() {
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;txtMsg&#34;</span>);
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;The message sent: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">value</span>);
+      <span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    }
+    <span style="color:#75715e">// when the DISCONNECT button is pressed
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">disconnect</span>() {
+      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">close</span>();
+    }
+  &lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><hr>
+<h2 id="tomcat-docker-container">Tomcat Docker Container</h2>
+<ul>
+<li>download and run a tomcat docker container:
+<pre tabindex="0"><code>docker run --name tomcat -p 8080:8080 tomcat:latest
+(or)
+docker run -d -it --name tomcat -p 8080:8080 tomcat:latest
+</code></pre></li>
+<li>access to the container
+<pre tabindex="0"><code>docker exec -it tomcat /bin/bash
+</code></pre></li>
+<li>copy files to the container
+<pre tabindex="0"><code>docker cp ROOT.war tomcat:/usr/local/tomcat/webapps
+</code></pre></li>
+</ul>
+<hr>
+<h1 id="a-python-way">a Python way</h1>
+<h2 id="prep">Prep</h2>
+<ul>
+<li>download a library <code>pip install websockets</code></li>
+</ul>
+<h2 id="a-server">A Server</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> asyncio;
+<span style="color:#f92672">import</span> websockets;
+ 
+<span style="color:#75715e">## create a native coroutine that will be called when websocket peer is connected</span>
+<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">accept</span>(websocket, path):
+  print(<span style="color:#e6db74">&#34;Connected&#34;</span>);
+  <span style="color:#75715e">## repeat: waiting - handling - replying</span>
+  <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+    <span style="color:#75715e"># waiting until a message arrives</span>
+    msg <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> websocket<span style="color:#f92672">.</span>recv();
+    <span style="color:#75715e"># handling the message</span>
+    print(<span style="color:#e6db74">&#34;Message received : &#34;</span> <span style="color:#f92672">+</span> msg);
+    <span style="color:#75715e"># replying back to the message</span>
+    <span style="color:#66d9ef">await</span> websocket<span style="color:#f92672">.</span>send(<span style="color:#e6db74">&#34;[RE]: &#34;</span> <span style="color:#f92672">+</span> msg);
+ 
+<span style="color:#75715e"># Create a websocket server at localhost:7777 </span>
+ws_server <span style="color:#f92672">=</span> websockets<span style="color:#f92672">.</span>serve(accept, <span style="color:#e6db74">&#34;localhost&#34;</span>, <span style="color:#ae81ff">7777</span>);
+asyncio<span style="color:#f92672">.</span>get_event_loop()<span style="color:#f92672">.</span>run_until_complete(ws_server);
+asyncio<span style="color:#f92672">.</span>get_event_loop()<span style="color:#f92672">.</span>run_forever();
+</code></pre></div><hr>
+<hr>
+<hr>
+<hr>
+<h2 id="a-webpage">A Webpage</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">http-equiv</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Content-Type&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/html; charset=UTF-8&#34;</span>&gt;
+  &lt;<span style="color:#f92672">title</span>&gt;Insert title here&lt;/<span style="color:#f92672">title</span>&gt;
+  &lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">form</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;textMessage&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sendMessage()&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Send&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;disconnect()&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Disconnect&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>&gt;
+  &lt;/<span style="color:#f92672">form</span>&gt;
+  &lt;<span style="color:#f92672">br</span> /&gt;
+  &lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;messageTextArea&#34;</span> <span style="color:#a6e22e">rows</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;10&#34;</span> <span style="color:#a6e22e">cols</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;50&#34;</span>&gt;&lt;/<span style="color:#f92672">textarea</span>&gt;
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">webSocket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#34;ws://localhost:9998&#34;</span>);
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">messageTextArea</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;messageTextArea&#34;</span>);
+    <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>){
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Server connect...\n&#34;</span>;
+    };
+    <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>){
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Server Disconnect...\n&#34;</span>;
+    };
+    <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onerror</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>){
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;error...\n&#34;</span>;
+    };
+    <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>){
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Recieve From Server =&gt; &#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">data</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;\n&#34;</span>;
+    };
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sendMessage</span>(){
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;textMessage&#34;</span>);
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Send to Server =&gt; &#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">value</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;\n&#34;</span>;
+      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">value</span>);
+      <span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    }
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">disconnect</span>(){
+      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">close</span>();
+    }
+  &lt;/<span style="color:#f92672">script</span>&gt;	
+&lt;/<span style="color:#f92672">body</span>&gt;	
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><h2 id="run-ws_server-using-an-nginx-docker-container">Run ws_server using an Nginx Docker container</h2>
+<ol>
+<li>pull nginx: <code>docker pull nginx</code></li>
+<li>create a service directory and put the above script(ws_server.py) into the created directory: <code>mkdir a_ws_service; cp SOMEWHERE/ws_service.py a_ws_service</code></li>
+<li>run nginx container <code>docker run --name ws_nginx -v ./a_ws_service:/usr/share/nginx/html -d -p 80:80 nginx</code></li>
+</ol>
+<h2 id="an-indexhtml-file">An index.html file</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">!</span>DOCTYPE html<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>html<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>head<span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span>meta http<span style="color:#f92672">-</span>equiv<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Content-Type&#34;</span> content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/html; charset=UTF-8&#34;</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span>title<span style="color:#f92672">&gt;</span>Insert title here<span style="color:#f92672">&lt;/</span>title<span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;/</span>head<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>body<span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span>form<span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span>input id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;textMessage&#34;</span> type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span>input onclick<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sendMessage()&#34;</span> value<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Send&#34;</span> type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span>input onclick<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;disconnect()&#34;</span> value<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Disconnect&#34;</span> type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;/</span>form<span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span>br <span style="color:#f92672">/&gt;</span>
+  <span style="color:#f92672">&lt;</span>textarea id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;messageTextArea&#34;</span> rows<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;10&#34;</span> cols<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;50&#34;</span><span style="color:#f92672">&gt;&lt;/</span>textarea<span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span>script type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span><span style="color:#f92672">&gt;</span>
+    var webSocket <span style="color:#f92672">=</span> new WebSocket(<span style="color:#e6db74">&#34;ws://localhost:9998&#34;</span>);
+    var messageTextArea <span style="color:#f92672">=</span> document<span style="color:#f92672">.</span>getElementById(<span style="color:#e6db74">&#34;messageTextArea&#34;</span>);
+    webSocket<span style="color:#f92672">.</span>onopen <span style="color:#f92672">=</span> function(message){
+      messageTextArea<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Server connect...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+    };
+    webSocket<span style="color:#f92672">.</span>onclose <span style="color:#f92672">=</span> function(message){
+      messageTextArea<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Server Disconnect...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+    };
+    webSocket<span style="color:#f92672">.</span>onerror <span style="color:#f92672">=</span> function(message){
+      messageTextArea<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;error...</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+    };
+    webSocket<span style="color:#f92672">.</span>onmessage <span style="color:#f92672">=</span> function(message){
+      messageTextArea<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Recieve From Server =&gt; &#34;</span><span style="color:#f92672">+</span>message<span style="color:#f92672">.</span>data<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+    };
+    function sendMessage(){
+      var message <span style="color:#f92672">=</span> document<span style="color:#f92672">.</span>getElementById(<span style="color:#e6db74">&#34;textMessage&#34;</span>);
+      messageTextArea<span style="color:#f92672">.</span>value <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Send to Server =&gt; &#34;</span><span style="color:#f92672">+</span>message<span style="color:#f92672">.</span>value<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+      webSocket<span style="color:#f92672">.</span>send(message<span style="color:#f92672">.</span>value);
+      message<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    }
+    function disconnect(){
+      webSocket<span style="color:#f92672">.</span>close();
+    }
+  <span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>	
+<span style="color:#f92672">&lt;/</span>body<span style="color:#f92672">&gt;</span>	
+<span style="color:#f92672">&lt;/</span>html<span style="color:#f92672">&gt;</span>
+</code></pre></div></div>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>
