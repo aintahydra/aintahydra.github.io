@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Testing Websockets 1 | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Testing Websockets 1</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/websocket/" rel="tag">websocket</a>, 
+		<a class="meta-tags__link" href="/tags/socket/" rel="tag">socket</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Testing Websockets 1</h1>
+				<div class="entry__content"><h2 id="intro">Intro</h2>
+<ul>
+<li>Websocket enables a browser to be capable of synchronous communication using TCP</li>
+<li>Python/Java: Websocket / C#: signalR / nodejs: socket.io(long polling)</li>
+<li>[Traditional] Only when a browser sends a request -&gt; A web server responses back to the request &lt;- (asynchronous, unidirectional)</li>
+<li>[Websocket] After a connection is established between a browser and a webserver, whichever part can send messages any time via the connection (connection-oriented, bidirectional)</li>
+<li>included in HTML5 standards, supported by most browsers</li>
+</ul>
+<h1 id="a-simple-websocket-echo-a-python-server-and-an-html-client">A simple websocket echo: a python server and an HTML client</h1>
+<h2 id="a-server-in-python">A Server in Python</h2>
+<p>Prep.:</p>
+<ul>
+<li>download a library <code>pip install websockets</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> asyncio;
+<span style="color:#f92672">import</span> websockets;
+ 
+<span style="color:#75715e">## create a native coroutine that will be called when websocket peer is connected</span>
+<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">accept</span>(websocket, path):
+  print(<span style="color:#e6db74">&#34;Connected!&#34;</span>);
+  <span style="color:#75715e">## repeat: waiting - handling messages - replying</span>
+  <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+    <span style="color:#75715e"># waiting until a message arrives</span>
+    msg <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> websocket<span style="color:#f92672">.</span>recv();
+    <span style="color:#75715e"># handling the message</span>
+    print(<span style="color:#e6db74">&#34;Message received : &#34;</span> <span style="color:#f92672">+</span> msg);
+    <span style="color:#75715e"># replying back to the message</span>
+    <span style="color:#66d9ef">await</span> websocket<span style="color:#f92672">.</span>send(<span style="color:#e6db74">&#34;[RE]: &#34;</span> <span style="color:#f92672">+</span> msg);
+    print(<span style="color:#e6db74">&#34;Just replied&#34;</span>);
+ 
+<span style="color:#75715e"># Create a websocket server at localhost:7777 </span>
+ws_server <span style="color:#f92672">=</span> websockets<span style="color:#f92672">.</span>serve(accept, <span style="color:#e6db74">&#34;localhost&#34;</span>, <span style="color:#ae81ff">7777</span>);
+<span style="color:#75715e"># get an event loop</span>
+loop <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>get_even t_loop()
+<span style="color:#75715e"># wait until ws_server finishes</span>
+loop<span style="color:#f92672">.</span>run_until_complete(ws_server);
+<span style="color:#75715e"># run forever</span>
+loop<span style="color:#f92672">.</span>run_forever();
+</code></pre></div><h2 id="an-html-client">An HTML client</h2>
+<p>Prep:</p>
+<ul>
+<li>create a directory, called <code>a_ws_client</code> that will be mounted to an NGINX docker instance.</li>
+<li>then create a websocket client page, <code>a_ws_client.html</code> file which has the following codes:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">html</span>&gt;&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">title</span>&gt;Testing websockets 1&lt;/<span style="color:#f92672">title</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;&lt;<span style="color:#f92672">body</span>&gt;
+
+  &lt;<span style="color:#f92672">form</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;txtMsg&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sendmsg()&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SEND&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">onclick</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;disconnect()&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;DISCONNECT&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>&gt;
+  &lt;/<span style="color:#f92672">form</span>&gt;
+  &lt;<span style="color:#f92672">br</span> /&gt;
+  &lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;taMsgs&#34;</span> <span style="color:#a6e22e">rows</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;30&#34;</span> <span style="color:#a6e22e">cols</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;50&#34;</span>&gt;&lt;/<span style="color:#f92672">textarea</span>&gt;
+
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">webSocket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#34;ws://localhost:7777&#34;</span>);
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">messageTextArea</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;taMsgs&#34;</span>);
+
+    <span style="color:#75715e">//event listeners
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>){
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Connected to the websocket server...\n&#34;</span>;
+    };
+
+    <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>){
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Server disconnected...\n&#34;</span>;
+    };
+
+    <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onerror</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>){
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Error...\n&#34;</span>;
+    };
+
+    <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">message</span>){
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> (<span style="color:#e6db74">&#34;Recieved from the server =&gt; &#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">data</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;\n&#34;</span>);
+    };
+
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sendmsg</span>(){
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;txtMsg&#34;</span>);
+      <span style="color:#a6e22e">messageTextArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Sending to the server =&gt; &#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">value</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;\n&#34;</span>;
+      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">value</span>);
+      <span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    }
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">disconnect</span>(){
+      <span style="color:#a6e22e">webSocket</span>.<span style="color:#a6e22e">close</span>();
+    }
+  &lt;/<span style="color:#f92672">script</span>&gt;	
+&lt;/<span style="color:#f92672">body</span>&gt;&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><h2 id="how-to-run">How to run</h2>
+<ol>
+<li>run a webserver (a NGINX docker container)</li>
+</ol>
+<ul>
+<li>in the following example,  <code>./a_ws_client</code> will be mounted as <code>/usr/share/nginx/html</code>, the basic web document directory that NGINX uses</li>
+</ul>
+<pre tabindex="0"><code>$ docker run --name ws_nginx -v ./a_ws_client:/usr/share/nginx/html -d -p 80:80 -p 7777:7777 nginx
+</code></pre><ol start="2">
+<li>run a websocket server</li>
+</ol>
+<pre tabindex="0"><code>$ /python3 ws_server.py &amp;
+</code></pre><ol start="3">
+<li>run the client  browser</li>
+</ol>
+<pre tabindex="0"><code>$ firefox a_ws_client/a_ws_client.html &amp;
+</code></pre></div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/websocket/">websocket</a>
+			<a class="entry__tag btn" href="/tags/socket/">socket</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

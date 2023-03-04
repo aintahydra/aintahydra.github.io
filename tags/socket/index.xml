@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>socket on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/socket/</link>
+    <description>Recent content in socket on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Mar 2023 20:16:46 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/socket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Testing Websockets 1</title>
+      <link>https://aintahydra.github.io/post/etc/testing-websockets-1/</link>
+      <pubDate>Sat, 04 Mar 2023 20:16:46 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/testing-websockets-1/</guid>
+      <description>Intro  Websocket enables a browser to be capable of synchronous communication using TCP Python/Java: Websocket / C#: signalR / nodejs: socket.io(long polling) [Traditional] Only when a browser sends a request -&amp;gt; A web server responses back to the request &amp;lt;- (asynchronous, unidirectional) [Websocket] After a connection is established between a browser and a webserver, whichever part can send messages any time via the connection (connection-oriented, bidirectional) included in HTML5 standards, supported by most browsers  A simple websocket echo: a python server and an HTML client A Server in Python Prep.</description>
+    </item>
+    
+  </channel>
+</rss>

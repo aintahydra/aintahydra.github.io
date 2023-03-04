@@ -6,7 +6,16 @@
     <description>Recent content on Ain&#39;t a creature shitting out of mouth</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Feb 2023 06:45:51 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Mar 2023 20:16:46 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Testing Websockets 1</title>
+      <link>https://aintahydra.github.io/post/etc/testing-websockets-1/</link>
+      <pubDate>Sat, 04 Mar 2023 20:16:46 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/testing-websockets-1/</guid>
+      <description>Intro  Websocket enables a browser to be capable of synchronous communication using TCP Python/Java: Websocket / C#: signalR / nodejs: socket.io(long polling) [Traditional] Only when a browser sends a request -&amp;gt; A web server responses back to the request &amp;lt;- (asynchronous, unidirectional) [Websocket] After a connection is established between a browser and a webserver, whichever part can send messages any time via the connection (connection-oriented, bidirectional) included in HTML5 standards, supported by most browsers  A simple websocket echo: a python server and an HTML client A Server in Python Prep.</description>
+    </item>
+    
     <item>
       <title>Installing Cobalt Strike</title>
       <link>https://aintahydra.github.io/post/redteamtools/installing-cobalt-strike/</link>
@@ -65,20 +74,21 @@
     
     <item>
       <title></title>
-      <link>https://aintahydra.github.io/post/etc/websockets/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://aintahydra.github.io/post/etc/websockets/</guid>
-      <description>Intro  Websocket enables a browser to be capable of synchronous communication using TCP Python/Java: Websocket / C#: signalR / nodejs: socket.io(long polling) [Traditional] Only when a browser sends a request -&amp;gt; A web server responses back to the request &amp;lt;- (asynchronous, unidirectional) [Websocket] After a connection is established between a browser and a webserver, whichever part can send messages any time via the connection (connection-oriented, bidirectional) included in HTML5 standards, supported by most browsers   a JAVA way ￼</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>https://aintahydra.github.io/post/lang/programming-golang-prelude/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://aintahydra.github.io/post/lang/programming-golang-prelude/</guid>
       <description>Prelude installation sudo apt install golang-go </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://aintahydra.github.io/post/reversing/shadowing-mas/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/reversing/shadowing-mas/</guid>
+      <description>Shadowing Malware Analysis Series(MAS) Ref.  &amp;ldquo;Malware Analysis Series (MAS) – Article 1&amp;rdquo;, https://exploitreversing.com/2021/12/03/malware-analysis-series-mas-article-1/   Article 1 Before putting in your head first Things to be considered before analyzing malware:
+ Is it packed? What&amp;rsquo;s the communication tech./APIs(Winsock2, Wininet, COM, WSK, etc.)? Does it inject codes, or hook calls? Any anti-forensic, anti-debugging, anti-disassemble techniques used? Is there any API/DLL encoding? Are strings encrypted? Which cryptography does it use? Does it use any synchronization primitives?</description>
     </item>
     
   </channel>
