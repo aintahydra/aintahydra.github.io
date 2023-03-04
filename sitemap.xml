@@ -56,12 +56,6 @@
     <loc>https://aintahydra.github.io/tags/xor/</loc>
     <lastmod>2023-02-16T16:46:10+09:00</lastmod>
   </url><url>
-    <loc>https://aintahydra.github.io/tags/crackme/</loc>
-    <lastmod>2023-02-15T05:30:09+09:00</lastmod>
-  </url><url>
-    <loc>https://aintahydra.github.io/post/reversing/crackmes-with-ghidra/</loc>
-    <lastmod>2023-02-15T05:30:09+09:00</lastmod>
-  </url><url>
     <loc>https://aintahydra.github.io/post/etc/create-github-pages-with-hugo/</loc>
     <lastmod>2023-02-13T05:37:53+09:00</lastmod>
   </url><url>
@@ -75,8 +69,6 @@
     <lastmod>2023-02-13T03:13:34+09:00</lastmod>
   </url><url>
     <loc>https://aintahydra.github.io/post/lang/programming-golang-prelude/</loc>
-  </url><url>
-    <loc>https://aintahydra.github.io/post/reversing/shadowing-mas/</loc>
   </url><url>
     <loc>https://aintahydra.github.io/categories/</loc>
   </url>

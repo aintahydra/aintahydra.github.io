@@ -17,16 +17,6 @@
     </item>
     
     <item>
-      <title>Crackmes With Ghidra</title>
-      <link>https://aintahydra.github.io/post/reversing/crackmes-with-ghidra/</link>
-      <pubDate>Wed, 15 Feb 2023 05:30:09 +0900</pubDate>
-      
-      <guid>https://aintahydra.github.io/post/reversing/crackmes-with-ghidra/</guid>
-      <description>Crackme with Ghidra  Crackme
- Crackmes.one: https://crackmes.one/   Sample 1: Get the passcode (Diff 1, Qual 5, C/C++, Multiplatform, x86-64)  Link: https://crackmes.one/crackme/5fca1e7933c5d424269a1a68 so simple   </description>
-    </item>
-    
-    <item>
       <title>Install Ghidra</title>
       <link>https://aintahydra.github.io/post/reversing/install-ghidra/</link>
       <pubDate>Mon, 13 Feb 2023 03:13:34 +0900</pubDate>

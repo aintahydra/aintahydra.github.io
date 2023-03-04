@@ -44,16 +44,6 @@
     </item>
     
     <item>
-      <title>Crackmes With Ghidra</title>
-      <link>https://aintahydra.github.io/post/reversing/crackmes-with-ghidra/</link>
-      <pubDate>Wed, 15 Feb 2023 05:30:09 +0900</pubDate>
-      
-      <guid>https://aintahydra.github.io/post/reversing/crackmes-with-ghidra/</guid>
-      <description>Crackme with Ghidra  Crackme
- Crackmes.one: https://crackmes.one/   Sample 1: Get the passcode (Diff 1, Qual 5, C/C++, Multiplatform, x86-64)  Link: https://crackmes.one/crackme/5fca1e7933c5d424269a1a68 so simple   </description>
-    </item>
-    
-    <item>
       <title>Create Github Pages With Hugo</title>
       <link>https://aintahydra.github.io/post/etc/create-github-pages-with-hugo/</link>
       <pubDate>Mon, 13 Feb 2023 05:37:53 +0900</pubDate>
@@ -79,16 +69,6 @@
       
       <guid>https://aintahydra.github.io/post/lang/programming-golang-prelude/</guid>
       <description>Prelude installation sudo apt install golang-go </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://aintahydra.github.io/post/reversing/shadowing-mas/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://aintahydra.github.io/post/reversing/shadowing-mas/</guid>
-      <description>Shadowing Malware Analysis Series(MAS) Ref.  &amp;ldquo;Malware Analysis Series (MAS) – Article 1&amp;rdquo;, https://exploitreversing.com/2021/12/03/malware-analysis-series-mas-article-1/   Article 1 Before putting in your head first Things to be considered before analyzing malware:
- Is it packed? What&amp;rsquo;s the communication tech./APIs(Winsock2, Wininet, COM, WSK, etc.)? Does it inject codes, or hook calls? Any anti-forensic, anti-debugging, anti-disassemble techniques used? Is there any API/DLL encoding? Are strings encrypted? Which cryptography does it use? Does it use any synchronization primitives?</description>
     </item>
     
   </channel>
