@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title> | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">...</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	</div>
+				<h1 class="entry__title"></h1>
+				<div class="entry__content"><h1 id="android-studio">Android Studio</h1>
+<h2 id="install-android-studio">Install Android Studio</h2>
+<ul>
+<li>Download the recent version of Android Studio (<a href="https://developer.android.com/">https://developer.android.com/</a>)</li>
+<li>Unpack the tarball and set paths
+<pre tabindex="0"><code>tar xvfz android-studio-2022.1.1.21-linux.tar.gz
+sudo mv android-studio /usr/local
+</code></pre>and add the below to the bash_profile
+<pre tabindex="0"><code>export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:/usr/local/android-studio/bin:$ANDROID_HOME/tools
+</code></pre></li>
+<li>install adb (<code>apt install adb</code>)</li>
+<li>Run <code>studio.sh</code></li>
+</ul>
+<h2 id="add-an-android-virtual-device-avd">Add an android virtual device (AVD)</h2>
+<ul>
+<li>
+<p>Tools &gt; Device Manager</p>
+</li>
+<li>
+<p>Create a Device (e.g., Pixel 2; Nougat; API Level 24; Target 7.0; NON-GoogleAPIs)</p>
+</li>
+<li>
+<p>Listing avds; installed devices are located at (~/.android/avd)</p>
+<pre tabindex="0"><code>$ emulator -list-avds
+Pixel_2_API_24_No_GPlay
+
+$ ls ~/.android/avd/
+Pixel_2_API_24_No_GPlay.avd  Pixel_2_API_24_No_GPlay.ini
+</code></pre></li>
+<li>
+<p>Starting avd</p>
+<pre tabindex="0"><code>$ cd ~/Android/Sdk/tools
+$ emulator -avd Pixel_2_API_24_No_GPlay
+</code></pre></li>
+</ul>
+<h2 id="adb-shell">ADB Shell</h2>
+<ul>
+<li><code>adb devices</code>: lists attached devices</li>
+<li><code>adb shell</code></li>
+</ul>
+<h2 id="keytool-repackaging-signing">keytool, repackaging, signing</h2>
+<p>$ sudo apt install default-jdk</p>
+<p>user@user-laptop:~$ keytool -genkey -alias tester -keyalg RSA -validity 2000 -keystore tester.keystore
+Enter keystore password:<br>
+Re-enter new password:
+What is your first and last name?
+[Unknown]:  tester
+What is the name of your organizational unit?
+[Unknown]:  testing unit
+What is the name of your organization?
+[Unknown]:  testing org
+What is the name of your City or Locality?
+[Unknown]:  city
+What is the name of your State or Province?
+[Unknown]:  state
+What is the two-letter country code for this unit?
+[Unknown]:  us
+Is CN=tester, OU=testing unit, O=testing org, L=city, ST=state, C=us correct?
+[no]:  yes</p>
+<p>$ jarsigner -verbose -keystore ~/tester.keystore K-ETA_1.0.3_Apkpure2.apk tester</p>
+</div>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

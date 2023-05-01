@@ -64,11 +64,53 @@
     
     <item>
       <title></title>
-      <link>https://aintahydra.github.io/post/lang/programming-golang-prelude/</link>
+      <link>https://aintahydra.github.io/post/android/activity-task-stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://aintahydra.github.io/post/lang/programming-golang-prelude/</guid>
-      <description>Prelude installation sudo apt install golang-go </description>
+      <guid>https://aintahydra.github.io/post/android/activity-task-stack/</guid>
+      <description>ef:
+TaskAffinity: Launch Modes:
+ https://medium.com/android-news/android-activity-launch-mode-e0df1aa72242 https://www.youtube.com/watch?v=Yfs4Pd4_5Tw Launch Mode Demo(1): https://youtu.be/p2VcRmZLbpA?t=93  Android Permissions: https://www.youtube.com/watch?v=0x4wahaxzs8
+Activity, Task, Stack An app may have multiple activities, and those activities are arranged in a stacked order. When an Activity A launches Activity B, and when the Activity B launches another Activity C, then these activities are arranged as: (Top) C - B - A(Bottom) On the screen, if the user press the &amp;ldquo;&amp;lt;-&amp;rdquo; butten, C will be gone first, and then B will pop up.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://aintahydra.github.io/post/android/android-stuido/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/android/android-stuido/</guid>
+      <description>Android Studio Install Android Studio  Download the recent version of Android Studio (https://developer.android.com/) Unpack the tarball and set paths tar xvfz android-studio-2022.1.1.21-linux.tar.gz sudo mv android-studio /usr/local and add the below to the bash_profile export ANDROID_HOME=$HOME/Android/Sdk export PATH=$PATH:/usr/local/android-studio/bin:$ANDROID_HOME/tools  install adb (apt install adb) Run studio.sh  Add an android virtual device (AVD)   Tools &amp;gt; Device Manager
+  Create a Device (e.g., Pixel 2; Nougat; API Level 24; Target 7.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://aintahydra.github.io/post/etc/gdb-peda/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/gdb-peda/</guid>
+      <description>install peda  Clone PEDA  git clone https://github.com/longld/peda.git ~/peda set gdbinit  $ vi ~/.gdbinit define init-peda source ~/peda/peda.py end document init-peda Init PEDA end Activate peda  $ gdb (gdb) init-peda gdb-peda$ </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://aintahydra.github.io/post/lang-go/programming-golang-prelude/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/lang-go/programming-golang-prelude/</guid>
+      <description>Prelude installation sudo apt install golang-go set GOROOT($HOME/go) and GOPATH($GOROOT/bin). GOPATH isn&amp;rsquo;t used anymore. Since Go 1.11, go to the project directory, and execute go mod init github.com/_USER_/_REPO__.
+Terms  Package (~= directory): compiled sources within a package can access each other. To access the other package, the package should be imported. Module: inter-related packages. go.mod declares packages that are included a module.  module: an example Ref: https://stackoverflow.com/questions/61845013/package-xxx-is-not-in-goroot-when-building-a-go-project
+Say a project that has following directories:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://aintahydra.github.io/post/redteamtools/installing-sliver/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/redteamtools/installing-sliver/</guid>
+      <description></description>
     </item>
     
   </channel>

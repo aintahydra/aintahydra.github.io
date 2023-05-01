@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title> | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">...</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	</div>
+				<h1 class="entry__title"></h1>
+				<div class="entry__content"><p>ef:</p>
+<p>TaskAffinity:
+Launch Modes:</p>
+<ul>
+<li><a href="https://medium.com/android-news/android-activity-launch-mode-e0df1aa72242">https://medium.com/android-news/android-activity-launch-mode-e0df1aa72242</a></li>
+<li><a href="https://www.youtube.com/watch?v=Yfs4Pd4_5Tw">https://www.youtube.com/watch?v=Yfs4Pd4_5Tw</a>
+Launch Mode Demo(1): <a href="https://youtu.be/p2VcRmZLbpA?t=93">https://youtu.be/p2VcRmZLbpA?t=93</a></li>
+</ul>
+<p>Android Permissions: <a href="https://www.youtube.com/watch?v=0x4wahaxzs8">https://www.youtube.com/watch?v=0x4wahaxzs8</a></p>
+<h1 id="activity-task-stack">Activity, Task, Stack</h1>
+<p>An app may have multiple activities, and those activities are arranged in a stacked order.
+When an Activity A launches Activity B, and when the Activity B launches another Activity C,
+then these activities are arranged as:
+(Top) C - B - A(Bottom)
+On the screen, if the user press the &ldquo;&lt;-&rdquo; butten, C will be gone first, and then B will pop up.</p>
+<p>Task is a stack of activities.</p>
+<p>Then, the following questions will come up to mind:</p>
+<ul>
+<li>If an activity is launched, will it be pushed on an existing stack?</li>
+<li>Can I create a new stack and push a new activity on the new one?</li>
+<li>When an activity is pushed on an exisiting stack, can I reuse an old one if there is the same activity already pushed on the stack?</li>
+<li>Or, can I always create a new instance of one?</li>
+</ul>
+<p>Again, there are following possibilities of manipulating an Activity that launches:</p>
+<ul>
+<li>Always New Activity in new stack</li>
+<li>Only Single instance of an Activity is guaranteed</li>
+<li>Reuse Activity only if it is on top of task</li>
+<li>When Activity launches Task gets cleared</li>
+</ul>
+<p>TaskAffinity basically decides where a particular activity will get pushed into, when multiple number of tasks.</p>
+<h1 id="android-launch-modes">Android Launch Modes</h1>
+<ul>
+<li>Standard (default)</li>
+<li>SingleTop</li>
+<li>Single</li>
+<li>..</li>
+</ul>
+<h2 id="standard">Standard</h2>
+<p>Suppose we have 3 activities: A, B, and C
+When we do (1) Start Activity A, (2) Start Activity B, (3) C, (4) C, (5) B,
+then task stack of the Task1, will look like
+(Top) B - C - C - B - A(Bottom)</p>
+<pre tabindex="0"><code>&lt;activity android:name=&quot;.Activity_A&quot; android:launchMode=&quot;standard&quot;&gt;
+  &lt;intent-filter&gt;
+    &lt;action android:name=&quot;android.intent.action.MAIN&quot;/&gt;
+    &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;
+  &lt;/intent-filter&gt;
+&lt;/activity&gt;
+&lt;activity android:name=&quot;.Activity_B&quot; android:launchMode=&quot;standard&quot;/&gt;
+&lt;activity android:name=&quot;.Activity_C&quot; android:launchMode=&quot;standard&quot;/&gt;
+&lt;activity android:name=&quot;.Activity_D&quot; android:launchMode=&quot;standard&quot;/&gt;
+</code></pre><h2 id="singletop">SingleTop</h2>
+<p>When we do (1) Start Activity A, (2) Start Activity B, (3) C, (4) C,&hellip;
+at this moment,
+There will be only one C on the top. (3) C will be gone, and (4) C will be created with nNewIntent()
+then, when (5) B starts,
+It will be gone to the top of the (4) C.</p>
+<h2 id="singletask">SingleTask</h2>
+<p>When we do (1) Start Activity A, (2) Start Activity B, (3) C, (4) C,&hellip;
+at this moment,
+it&rsquo;s same to the SingleTop&rsquo;s case
+but when (5) B,
+The B, the second from the bottom will be gone, and new B will be placed there with onNewIntent().
+C Activities had exist on B have gone.</p>
+<h2 id="singleinstance">SingleInstance</h2>
+<p>Different Activities are placed in separate stacks.</p>
+<p>Then, Why? there are those modes and why do we care about it?</p>
+<h1 id="taskaffinity">TaskAffinity</h1>
+<h1 id="task-hijacking">Task Hijacking</h1>
+<ul>
+<li>
+<p>[USENIX 2015] Pennstate U. Usenix Paper: <a href="https://www.usenix.org/sites/default/files/conference/protected-files/sec15_slides_ren.pdf">https://www.usenix.org/sites/default/files/conference/protected-files/sec15_slides_ren.pdf</a></p>
+</li>
+<li>
+<p>[StrangHogg] The StrandHogg vulnerability by Promon(2020): <a href="https://promon.co/security-news/the-strandhogg-vulnerability/">https://promon.co/security-news/the-strandhogg-vulnerability/</a></p>
+</li>
+<li>
+<p>Android Task Hijacking by TakeMyHand: <a href="https://blog.takemyhand.xyz/2021/02/android-task-hijacking-with.html">https://blog.takemyhand.xyz/2021/02/android-task-hijacking-with.html</a></p>
+</li>
+<li>
+<p><a href="https://blog.dixitaditya.com/android-task-hijacking">https://blog.dixitaditya.com/android-task-hijacking</a></p>
+</li>
+<li>
+<p>StrandHogg 2.0 by Promon: <a href="https://promon.co/resources/downloads/strandhogg-2-0-new-serious-android-vulnerability/">https://promon.co/resources/downloads/strandhogg-2-0-new-serious-android-vulnerability/</a></p>
+</li>
+<li>
+<p>StrandHogg 2.0 Explained: <a href="https://www.xda-developers.com/strandhogg-2-0-android-vulnerability-explained-developer-mitigation/">https://www.xda-developers.com/strandhogg-2-0-android-vulnerability-explained-developer-mitigation/</a></p>
+</li>
+<li>
+<p>Pentest results of ExpressVPN Android app: <a href="https://cure53.de/pentest-report_expressvpn-android.pdf">https://cure53.de/pentest-report_expressvpn-android.pdf</a></p>
+</li>
+<li>
+<p>[USENIX 2015] summarized &ldquo;task control knobs&rdquo; and found several hijacking scenarios by experimenting with HST(Hijacking State Transitions). Also, proposed that task affinity should enforced with some name space restrictions as well as reviewing app developemtns with certain guidelines.</p>
+</li>
+<li>
+<p>[StrandHogg] when a legitimate app is clicked, malware is displayed. It affects Android versions 10 and below.
+When StrandHogg came out []
+, a mitigation by setting the launchMode singleTop was suggested, but
+it is vulnerable to StrandHogg 2.0.[by Pentest results of ExpressVPN]
+StrandHogg 2.0 affects Android versions 3-9.x [by trandHogg 2.0 Explained]</p>
+</li>
+</ul>
+<h1 id="task-hijacking-1----usenix-2015">Task Hijacking (1)  - Usenix 2015</h1>
+<h2 id="condition">Condition</h2>
+<p>For the Malicious Activity M2,</p>
+<ul>
+<li>M2 taskAffinity: com.paypal.android
+<ul>
+<li>Task affinity can be intentionally set to popular apps&rsquo;s package name to implement legitimate &ldquo;add-on&rdquo; feature</li>
+</ul>
+</li>
+<li>M2 &lt;allowTaskReparenting = &ldquo;true&rdquo;&gt; :
+<ul>
+<li>allowTaskReparenting = &ldquo;true&rdquo;: for Activity A, when a task (that has the same affinity as A) is brought to the front, the system would movve the &ldquo;relocatable&rdquo; activity A from its original hosting task to this new foreground task.</li>
+</ul>
+</li>
+</ul>
+<h2 id="related-task-control-knobs">Related task control knobs:</h2>
+<ul>
+<li>Intent Flag: NEW_TASK, SINGLE_TOP, REORDER_TO_FRONT, NO_HISTORY, CLEAR_TASK, NEW_DOCUMENT, MULTIPLE_TASKS</li>
+<li>Activity Attribute: launchMode, taskAffinity, allowTaskReparenting, documentLaunchMode, FinishOnTaskLaunch</li>
+<li>Call-back Function: onBackPressed()</li>
+<li>Framework API: TaskStackBuilder class, startActivity(), startActivities()</li>
+</ul>
+<h2 id="consequences">Consequences:</h2>
+<p>User spoofing, Phising attack is possible for all versions,
+DoS(Ransomeware by function disability) is possible for Android 5.0 above
+User monitoring(Spyware) is possible for Android 5.0 above</p>
+<h2 id="countermeasure">Countermeasure</h2>
+<ul>
+<li>Detection: reviewing</li>
+<li>Mitigating Mechanism: task affinity should comply with certain name space specitication, or introduce boolean attibute to control if the app allow other apps to specify the same task affinity?</li>
+</ul>
+<h1 id="strandhogg">StrandHogg</h1>
+<h2 id="condition-1">Condition</h2>
+<p>For a malicious app,</p>
+<ul>
+<li>set taskAffinity: package.name.legitimate</li>
+<li>either allowTaskReparenting=&ldquo;true&rdquo; or by launching the activity with intent-flag of Intent.FLAG_ACTIVITY_NEW_TASK
+then the malicious activity will be placed within and on top of the target&rsquo;s task
+The next time the target app is launched from Launcher, the hijacked task will be brought to the front.
+Moreover, if</li>
+<li>allowTaskReparenting
+is used, then the next time the target task is launched, malicious activity will be moved onto the target.</li>
+</ul>
+</div>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

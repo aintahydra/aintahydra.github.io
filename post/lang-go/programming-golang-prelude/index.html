@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title> | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">...</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	</div>
+				<h1 class="entry__title"></h1>
+				<div class="entry__content"><h1 id="prelude">Prelude</h1>
+<h2 id="installation">installation</h2>
+<pre tabindex="0"><code>sudo apt install golang-go
+</code></pre><p><del>set GOROOT($HOME/go) and GOPATH($GOROOT/bin).</del>
+GOPATH isn&rsquo;t used anymore. Since Go 1.11, go to the project directory, and execute <code>go mod init github.com/_USER_/_REPO__</code>.</p>
+<h2 id="terms">Terms</h2>
+<ul>
+<li>Package (~= directory): compiled sources within a package can access each other. To access the other package, the package should be <code>import</code>ed.</li>
+<li>Module: inter-related packages. go.mod declares packages that are included a module.</li>
+</ul>
+<h2 id="module-an-example">module: an example</h2>
+<p>Ref: <a href="https://stackoverflow.com/questions/61845013/package-xxx-is-not-in-goroot-when-building-a-go-project">https://stackoverflow.com/questions/61845013/package-xxx-is-not-in-goroot-when-building-a-go-project</a></p>
+<p>Say a project that has following directories:</p>
+<pre tabindex="0"><code>project001/
+ - src
+  - go.mod
+  - module001
+   - externmod.go
+    - externmod.g
+  - main.go
+  - module001
+</code></pre><p>How to create them?</p>
+<ol>
+<li>create directories: <code>mkdir -p project001/src/module001</code>.</li>
+<li>create <code>go.mod</code>, by (1))move to project001/src, and (2)do <code>go mod init module001</code>.</li>
+<li>check out the contents of go.mod:</li>
+</ol>
+<pre tabindex="0"><code>module module001
+go 1.18
+</code></pre><ol start="4">
+<li>create src/main.go:</li>
+</ol>
+<pre tabindex="0"><code>package main
+
+import (
+	&quot;exe/externmod&quot;
+)
+
+func main() {
+	externmod.func1()
+}
+5. create module001/externmod/externmod.go
+</code></pre><p>package module001</p>
+<p>import (
+&ldquo;fmt&rdquo;
+)</p>
+<p>func func1() {
+fmt.Printf(&ldquo;I am func1 @ externmod\n&rdquo;)
+}</p>
+<pre tabindex="0"><code>Currently, the directory structures look like:
+</code></pre><p>src$ tree .
+.
+├── go.mod
+├── main.go
+└── module001
+└── externmod.go</p>
+<pre tabindex="0"><code>
+Now, go to src/, do `go run main.go`.
+
+
+
+
+</code></pre></div>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>
