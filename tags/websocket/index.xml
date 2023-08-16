@@ -13,7 +13,7 @@
       <pubDate>Sat, 04 Mar 2023 20:16:46 +0900</pubDate>
       
       <guid>https://aintahydra.github.io/post/etc/testing-websockets-1/</guid>
-      <description>Intro  Websocket enables a browser to be capable of synchronous communication using TCP Python/Java: Websocket / C#: signalR / nodejs: socket.io(long polling) [Traditional] Only when a browser sends a request -&amp;gt; A web server responses back to the request &amp;lt;- (asynchronous, unidirectional) [Websocket] After a connection is established between a browser and a webserver, whichever part can send messages any time via the connection (connection-oriented, bidirectional) included in HTML5 standards, supported by most browsers  A simple websocket echo: a python server and an HTML client A Server in Python Prep.</description>
+      <description>Intro Websocket enables a browser to be capable of synchronous communication using TCP Python/Java: Websocket / C#: signalR / nodejs: socket.io(long polling) [Traditional] Only when a browser sends a request -&amp;gt; A web server responses back to the request &amp;lt;- (asynchronous, unidirectional) [Websocket] After a connection is established between a browser and a webserver, whichever part can send messages any time via the connection (connection-oriented, bidirectional) included in HTML5 standards, supported by most browsers A simple websocket echo: a python server and an HTML client A Server in Python Prep.</description>
     </item>
     
   </channel>

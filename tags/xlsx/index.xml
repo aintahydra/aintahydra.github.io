@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>xlsx on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/xlsx/</link>
+    <description>Recent content in xlsx on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Aug 2023 22:13:53 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/xlsx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Handling xlsx with python</title>
+      <link>https://aintahydra.github.io/post/lang/python-handling-xlsx/</link>
+      <pubDate>Tue, 15 Aug 2023 22:13:53 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/lang/python-handling-xlsx/</guid>
+      <description>install required files requirements.txt requirements.txt:
+openpyxl Install offline Download pip files beforehand: pip download -r requirements.txt -d ./pip_download
+Install downloaded files: pip install -r requirements.txt --no-index --find-links ./pip_download Install each .whl files: python -m pip install ./pip_download/XXX.whl
+create an xlsx file #!/bin/python3 import sys from openpyxl import Workbook # workbook write_wb = Workbook() # work sheet # write_ws = write_wb.create_sheet(&amp;#39;ANewSheet&amp;#39;) # pick and activate a sheet from the workbook write_ws = write_wb.</description>
+    </item>
+    
+  </channel>
+</rss>

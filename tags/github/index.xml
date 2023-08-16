@@ -13,8 +13,8 @@
       <pubDate>Mon, 13 Feb 2023 05:37:53 +0900</pubDate>
       
       <guid>https://aintahydra.github.io/post/etc/create-github-pages-with-hugo/</guid>
-      <description>Create a static github page with Hugo Install Hugo on Ubuntu 22.04 apt install hugo  Create github repositories Login to github.com; Create two repositories:
- [PAGE_SRC_REPO] contains sources; a regular github repo. [GITHUB_IO_REPO] contains rendered pages  Tts name should be_USER_NAME_.github.io, and needs to be public Move to the newly created repository -&amp;gt; &amp;lsquo;Settings&amp;rsquo; -&amp;gt; &amp;lsquo;Pages&amp;rsquo;, then set  Source: Deploy from a branch Branch: master / root       Create a hugo site mkdir ~/webpages; cd ~/webpages hugo new site hugo_pages  Install a theme (as a submodule) Visit https://themes.</description>
+      <description>Create a static github page with Hugo Install Hugo on Ubuntu 22.04 apt install hugo Create github repositories Login to github.com; Create two repositories:
+[PAGE_SRC_REPO] contains sources; a regular github repo. [GITHUB_IO_REPO] contains rendered pages Tts name should be_USER_NAME_.github.io, and needs to be public Move to the newly created repository -&amp;gt; &amp;lsquo;Settings&amp;rsquo; -&amp;gt; &amp;lsquo;Pages&amp;rsquo;, then set Source: Deploy from a branch Branch: master / root Create a hugo site mkdir ~/webpages; cd ~/webpages hugo new site hugo_pages Install a theme (as a submodule) Visit https://themes.</description>
     </item>
     
   </channel>
