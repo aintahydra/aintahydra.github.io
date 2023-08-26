@@ -6,17 +6,16 @@
     <description>Recent content on Ain&#39;t a creature shitting out of mouth</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Aug 2023 22:13:53 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Aug 2023 21:39:49 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Handling xlsx with python</title>
-      <link>https://aintahydra.github.io/post/lang/python-handling-xlsx/</link>
-      <pubDate>Tue, 15 Aug 2023 22:13:53 +0900</pubDate>
+      <title>Cheatsheet</title>
+      <link>https://aintahydra.github.io/post/forensics/cheatsheet/</link>
+      <pubDate>Sat, 26 Aug 2023 21:39:49 +0900</pubDate>
       
-      <guid>https://aintahydra.github.io/post/lang/python-handling-xlsx/</guid>
-      <description>install required files requirements.txt requirements.txt:
-openpyxl Install offline Download pip files beforehand: pip download -r requirements.txt -d ./pip_download
-Install downloaded files: pip install -r requirements.txt --no-index --find-links ./pip_download Install each .whl files: python -m pip install ./pip_download/XXX.whl
-create an xlsx file #!/bin/python3 import sys from openpyxl import Workbook # workbook write_wb = Workbook() # work sheet # write_ws = write_wb.create_sheet(&amp;#39;ANewSheet&amp;#39;) # pick and activate a sheet from the workbook write_ws = write_wb.</description>
+      <guid>https://aintahydra.github.io/post/forensics/cheatsheet/</guid>
+      <description>A forensic cheet sheet get hash from a file - Windows `PS&amp;gt; get-filehash -algorithm sha1 &amp;lt;filename&amp;gt;` - Linux `md5sum|sha256sum &amp;lt;filename&amp;gt;` - Malware hashes - https://virustotal.com/ - https://hash.cymru.com/ Search search a file name: find &amp;lt;DIR&amp;gt; -name &amp;lt;filename&amp;gt;
+search a string: grep -r &amp;lt;search_string&amp;gt; &amp;lt;targetFILES&amp;gt; ([--include &#39;*.conf&#39;]
+or find . -type f -print | xargs grep -i &amp;quot;search_string&amp;quot; /dev/null or find . -name &#39;*.ext&#39; | xargs grep -r --color=auto -n 2&amp;gt;dev/null &#39;search_string&#39; (search and color them) search a string from a binary: $ strings &amp;lt;binary_file&amp;gt; | grep &amp;lt;search_string&amp;gt;</description>
     </item>
     
     <item>

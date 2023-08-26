@@ -66,7 +66,7 @@
 <li>Sufficient in most cases</li>
 <li>Internet-enabled: from Internal network to Internet access is possible</li>
 <li>Guests on internel network CANNOT talk each other</li>
-<li><img src="VirtualBox-network-modes-%E2%80%93-how-the-NAT-mode-works.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+<li><img src="VirtualBox-network-modes-%E2%80%93-how-the-NAT-mode-works.webp" alt="image">(from <a href="https://www.nakivo.com">www.nakivo.com</a>)</li>
 <li>Enabling NAT for a VM with VBoxManage: <code>VBoxManage modifyvm VM_name --nic1 nat</code>
 <ul>
 <li>VM_name: name of a virtual machine</li>
@@ -84,7 +84,7 @@
 </li>
 <li>A built-in VBox NAT router uses</li>
 <li>Network address and name can be changed: (Global preference) File &gt; Preferences &gt; Network &gt; Edit the settings(icon): Default address 10.0.2.0/24(GW 10.0.2.1, DHCP 10.0.2.3) can be changed to 192.168.xx.0/24(GW x.x.x.1, DHCP x.x.x.3)</li>
-<li><img src="VirtualBox-network-settings-%E2%80%93-the-NAT-Network-mode.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+<li><img src="VirtualBox-network-settings-%E2%80%93-the-NAT-Network-mode.webp" alt="image">(from <a href="https://www.nakivo.com">www.nakivo.com</a>)</li>
 <li>Adding a new NAT Network with VBoxManage: <code>VBoxManage natnetwork add --netname mynatnet1 --network &quot;192.168.15.0/24&quot; --enable</code></li>
 <li>Configuring a VM to use NAT Network with VBoxManage: <code>VBoxManage modifyvm VM_name --nic1 natnetwork</code>
 <ul>
@@ -97,13 +97,13 @@
 <li>The host and guest share the physical NIC (thanks to net filter)</li>
 <li>Guests can access the Internet as the host does</li>
 <li>&ldquo;Promiscuous mode&rdquo; can be enabled with this mode</li>
-<li><img src="VirtualBox-network-settings-%E2%80%93-bridged-networking.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+<li><img src="VirtualBox-network-settings-%E2%80%93-bridged-networking.webp" alt="image">(from <a href="https://www.nakivo.com">www.nakivo.com</a>)</li>
 </ul>
 <h2 id="internal">Internal</h2>
 <ul>
 <li>Guests can talk each other, but CANNOT communicate with the host nor access to the external network</li>
 <li>models real networks</li>
-<li><img src="VirtualBox-network-settings-%E2%80%93-using-the-Internal-network-mode-in-a-combination-with-the-NAT-mode.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+<li><img src="VirtualBox-network-settings-%E2%80%93-using-the-Internal-network-mode-in-a-combination-with-the-NAT-mode.webp" alt="image">(from <a href="https://www.nakivo.com">www.nakivo.com</a>)</li>
 </ul>
 <h2 id="host-only">Host-only</h2>
 <ul>
@@ -115,7 +115,7 @@
 <li>No Gateway presented (since outer world do not access into the host-only network)</li>
 </ul>
 </li>
-<li><img src="VirtualBox-network-settings-%E2%80%93-VMs-use-the-host-only-network.webp" alt="image">(from <a href="http://www.nakivo.com">www.nakivo.com</a>)</li>
+<li><img src="VirtualBox-network-settings-%E2%80%93-VMs-use-the-host-only-network.webp" alt="image">(from <a href="https://www.nakivo.com">www.nakivo.com</a>)</li>
 </ul>
 <hr>
 <h1 id="create-a-subnet-using-the-host-only-networking-mode">Create a subnet using the host-only networking mode</h1>

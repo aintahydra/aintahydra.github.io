@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Cheatsheet | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Cheatsheet</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	</div>
+				<h1 class="entry__title">Cheatsheet</h1>
+				<div class="entry__content"><h1 id="a-forensic-cheet-sheet">A forensic cheet sheet</h1>
+<h3 id="get-hash-from-a-file">get hash from a file</h3>
+<pre><code>- Windows `PS&gt; get-filehash -algorithm sha1 &lt;filename&gt;`
+- Linux `md5sum|sha256sum &lt;filename&gt;`
+- Malware hashes
+    - https://virustotal.com/
+    - https://hash.cymru.com/
+</code></pre>
+<h3 id="search">Search</h3>
+<ul>
+<li>
+<p>search a file name: <code>find &lt;DIR&gt; -name &lt;filename&gt;</code></p>
+</li>
+<li>
+<p>search a string: <code>grep -r &lt;search_string&gt; &lt;targetFILES&gt; ([--include '*.conf']</code></p>
+<ul>
+<li>or <code>find . -type f -print | xargs grep -i &quot;search_string&quot; /dev/null</code></li>
+<li>or <code>find . -name '*.ext' | xargs grep -r --color=auto -n 2&gt;dev/null 'search_string'</code> (search and color them)</li>
+</ul>
+</li>
+<li>
+<p>search a string from a binary: <code>$ strings &lt;binary_file&gt; | grep &lt;search_string&gt;</code></p>
+</li>
+<li>
+<p>Carving</p>
+<ul>
+<li>tools: axiom, xways</li>
+<li>the carving does not recover the file/dir structure</li>
+</ul>
+</li>
+<li>
+<p>xfs_undelete (<a href="https://github.com/ianka/xfs_undelete">https://github.com/ianka/xfs_undelete</a> )</p>
+<ul>
+<li><code>xfs_undelete -o /mnt/external_harddisk /dev/sda3</code>: This stores the recovered files from /dev/sda3 in the directory /mnt/external_harddisk.</li>
+<li><code>xfs_undelete -t 2023-01-16 /dev/sda3</code>: This ignores files deleted before January 16th, 2023.</li>
+</ul>
+</li>
+<li>
+<p>covnert an encase image(.E01) to a raw (.001) file: ftk-imager</p>
+</li>
+<li>
+<p>mount a raw file (IMAGE.001) (<a href="https://blog.tinned-software.net/mount-raw-image-of-entire-disc/">https://blog.tinned-software.net/mount-raw-image-of-entire-disc/</a>)</p>
+<ul>
+<li>create a loop device: <code>losetup --partscan --find --show IMAGE.001</code></li>
+<li>find the loop device: <code>$ losetup -l</code></li>
+<li>mount the loop device: <code>mount -t FSYS_TYPE [-o offset=512] &lt;loop_device&gt; /media/MOUNT_TARGET_DIR</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="analyze-specific-files-here-in-the-example-html-fiels">Analyze specific files (here in the example, *.html fiels)</h2>
+<ol>
+<li>get HTML-file names: <code>$ find . -name &quot;*.html&quot; &gt; htmlfiles</code></li>
+<li>wrote a script
+<pre tabindex="0"><code>#!/usr/bin/python3
+
+import sys
+import subprocess
+
+if (len(sys.argv) != 2):
+        print(&#34;where is the input file, huh?&#34;);
+        sys.exit()
+
+f = open(sys.argv[1])
+line = f.readline()
+while line:
+    p = subprocess.run([&#39;/usr/bin/file&#39;, line.rstrip(&#39;\n&#39;)])
+    line = f.readline();
+f.close()
+</code></pre></li>
+<li>run the script
+<pre tabindex="0"><code>$ python3 ./__checkfiles.py htmlfiles | grep encrypted
+$ python3 ./__checkfiles.py htmlfiles | grep -v &#34;HTML document&#34; | grep -v &#34;ASCII&#34;
+</code></pre></li>
+<li>check the entropy of files : <code>$ ent &lt;file_name&gt; | awk '/Entropy =/ {print $3}'</code></li>
+</ol>
+<h2 id="run-anti-virus">Run Anti-virus</h2>
+<ol>
+<li>install Clam-AV</li>
+<li>Modify the above script (switch <code>/usr/bin/file</code> to <code>/usr/bin/clamscan</code>)</li>
+<li>Run the script <code>$ python3 __checkfiles.py htmlfiles &gt; __HTML_SCAN_RES.txt | grep &quot;Infected files: 1&quot;</code></li>
+</ol>
+<h2 id="clam-av">CLAM-AV</h2>
+<ul>
+<li>Clam-AV Update</li>
+</ul>
+<pre tabindex="0"><code>$ service clamav-freshclam stop 
+$ sudo freshclam
+$ service clamav-freshclam start
+</code></pre><ul>
+<li>Clam-AV Scan
+&rsquo;&rsquo;'
+$ clamscan -i -r .
+&rsquo;''</li>
+</ul>
+</div>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

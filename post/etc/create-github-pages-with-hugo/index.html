@@ -80,7 +80,7 @@ git submodule add https://github.com/_THEME_REPO_ themes/_THEME_NAME_
 <pre tabindex="0"><code>cd ~/webpages/hugo_pages
 cp themes/_THEME_NAME_/exampleSite/config.toml .
 </code></pre><p>Now, edit the copied <code>config.toml</code>, most importantly:</p>
-<pre tabindex="0"><code>baseURL = &quot;https://_USERNAME_.github.io/&quot;
+<pre tabindex="0"><code>baseURL = &#34;https://_USERNAME_.github.io/&#34;
 theme = _THEME_NAME_ 
 </code></pre><hr>
 <h2 id="check-if-the-theme-works">Check if the theme works</h2>
@@ -93,7 +93,7 @@ theme = _THEME_NAME_
 </code></pre><p>It creates a page under <code>content/</code>, for example, <code>hugo new post/etc/firstposting.md</code> creates <code>~/webpages/hugo_pages/content/post/etc/firstposting.md</code>. This directory structure needs to accord with the <code>config.toml</code> as the theme refer the file. In case of the theme(Binario) that I use, <code>config.toml</code> has to the following line:</p>
 <pre tabindex="0"><code>[Params]
 ...
-  mainSections = [&quot;post&quot;]
+  mainSections = [&#34;post&#34;]
 </code></pre><p>As the new post is created, the hugo server(localhost:1313) will display the post(If not, make sure the property, <code>draft: false</code> in the .md file.)</p>
 <hr>
 <h2 id="create-static-files">Create static files</h2>
@@ -105,24 +105,24 @@ theme = _THEME_NAME_
     $ git remote add origin https://github.com/_USER_NAME_/hugo_pages.git
 </code></pre><p>When need to add newly created pages:</p>
 <pre tabindex="0"><code>git add .
-git commit -m &quot;COMMIT_MSG&quot;
+git commit -m &#34;COMMIT_MSG&#34;
 git push origin master
 </code></pre><hr>
 <h2 id="link-to-github_io_repo">Link to [GITHUB_IO_REPO]</h2>
 <pre tabindex="0"><code>    $ git submodule add -b master https://github.com/_USER_NAME_/_USER_NAME_.github.io.git public
 </code></pre><p>When need to update the redered page via <em>USER_NAME</em>.github.io:</p>
 <pre tabindex="0"><code>git add .
-git commit -m &quot;COMMIT MSG&quot;
+git commit -m &#34;COMMIT MSG&#34;
 git push origin master
 </code></pre><p><code>*</code> if there’s a “refspec” error caused by that we haven’t had master branch, Solution:</p>
-<pre tabindex="0"><code>$ git checkout -b 'master'
-Switched to a new branch 'master'
+<pre tabindex="0"><code>$ git checkout -b &#39;master&#39;
+Switched to a new branch &#39;master&#39;
 $ git push -u origin master
 </code></pre><hr>
 <h2 id="github-auth-token">github auth token</h2>
 <pre tabindex="0"><code>remote: Support for password authentication was removed on August 13, 2021.
     remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
-    fatal: Authentication failed for 'https://github.com/_USER_NAME_/hugo_pages.git/'
+    fatal: Authentication failed for &#39;https://github.com/_USER_NAME_/hugo_pages.git/&#39;
 </code></pre><ol>
 <li>Login to the github account</li>
 <li>“Settings” &gt; “&lt;&gt; Developer settings” &gt; “Personal access tokens” &gt; “Tokens(Classic)” &gt; “Generate new token”</li>
