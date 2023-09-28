@@ -19,6 +19,27 @@ or find . -type f -print | xargs grep -i &amp;quot;search_string&amp;quot; /dev/
     </item>
     
     <item>
+      <title>Install OpenVAS(GVM) on Kali</title>
+      <link>https://aintahydra.github.io/post/etc/openvas_gvm/</link>
+      <pubDate>Sat, 04 Mar 2023 20:16:46 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/openvas_gvm/</guid>
+      <description>GVM? (or OpenVAS?) Greenbone Vulnerability Manager(GVM, a.k.a OpenVAS). OpenVAS is a fork of Nessus. Install GVM How to install OpenVAS on Kali: sudo apt install openvas
+tried gvm-setup, but Error occured:
+$ sudo gvm-setup [&amp;gt;] Starting PostgreSQL service [-] ERROR: The default PostgreSQL version (15) is not 16 that is required by libgvmd [-] ERROR: Use pg_upgradecluster to update your PostgreSQL cluster solve the problem
+$ psql --version psql (PostgreSQL) 16.</description>
+    </item>
+    
+    <item>
+      <title>peda and gdb</title>
+      <link>https://aintahydra.github.io/post/etc/gdb-peda/</link>
+      <pubDate>Sat, 04 Mar 2023 20:16:46 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/gdb-peda/</guid>
+      <description>install peda Clone PEDA git clone https://github.com/longld/peda.git ~/peda set gdbinit $ vi ~/.gdbinit define init-peda source ~/peda/peda.py end document init-peda Init PEDA end Activate peda $ gdb (gdb) init-peda gdb-peda$ </description>
+    </item>
+    
+    <item>
       <title>Testing Websockets 1</title>
       <link>https://aintahydra.github.io/post/etc/testing-websockets-1/</link>
       <pubDate>Sat, 04 Mar 2023 20:16:46 +0900</pubDate>
@@ -71,15 +92,6 @@ or find . -type f -print | xargs grep -i &amp;quot;search_string&amp;quot; /dev/
       
       <guid>https://aintahydra.github.io/post/reversing/install-ghidra/</guid>
       <description>Install Java Visit the Oracle page (https://www.oracle.com/java/technologies/downloads/ ) Download an installation .deb package Install JDK Set alternatives sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-19/bin/java 1 sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-19/bin/javac 1 sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk-19/bin/jar 1 set JAVA_HOME properly Install Ghidra Download the ghidra: https://github.com/NationalSecurityAgency/ghidra/releases Place the ghidra properly (e.g., under /usr/local) Create a symbolic links at your conveniences sudo ln -s DOWNLOADED_GHIDRA /usr/local/ghidra sudo ln -s /usr/local/ghidra/ghidraRun /usr/local/bin/ghidraRun Create a Ghidra.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://aintahydra.github.io/post/etc/gdb-peda/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://aintahydra.github.io/post/etc/gdb-peda/</guid>
-      <description>install peda Clone PEDA git clone https://github.com/longld/peda.git ~/peda set gdbinit $ vi ~/.gdbinit define init-peda source ~/peda/peda.py end document init-peda Init PEDA end Activate peda $ gdb (gdb) init-peda gdb-peda$ </description>
     </item>
     
     <item>

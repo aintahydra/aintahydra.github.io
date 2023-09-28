@@ -52,6 +52,39 @@ or find . -type f -print | xargs grep -i &quot;search_string&quot; /dev/null or 
 			
 				<div class="card card--2col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/openvas_gvm/">Install OpenVAS(GVM) on Kali</a></h1>
+	<div class="entry__content">GVM? (or OpenVAS?) Greenbone Vulnerability Manager(GVM, a.k.a OpenVAS). OpenVAS is a fork of Nessus. Install GVM How to install OpenVAS on Kali: sudo apt install openvas
+tried gvm-setup, but Error occured:
+$ sudo gvm-setup [&gt;] Starting PostgreSQL service [-] ERROR: The default PostgreSQL version (15) is not 16 that is required by libgvmd [-] ERROR: Use pg_upgradecluster to update your PostgreSQL cluster solve the problem
+$ psql --version psql (PostgreSQL) 16.</div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/openvas/" rel="tag">openvas</a>, 
+		<a class="meta-tags__link" href="/tags/gvm/" rel="tag">gvm</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/gdb-peda/">peda and gdb</a></h1>
+	<div class="entry__content">install peda Clone PEDA git clone https://github.com/longld/peda.git ~/peda set gdbinit $ vi ~/.gdbinit define init-peda source ~/peda/peda.py end document init-peda Init PEDA end Activate peda $ gdb (gdb) init-peda gdb-peda$ </div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/gdb/" rel="tag">gdb</a>, 
+		<a class="meta-tags__link" href="/tags/peda/" rel="tag">peda</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/testing-websockets-1/">Testing Websockets 1</a></h1>
 	<div class="entry__content">Intro Websocket enables a browser to be capable of synchronous communication using TCP Python/Java: Websocket / C#: signalR / nodejs: socket.io(long polling) [Traditional] Only when a browser sends a request -&gt; A web server responses back to the request &lt;- (asynchronous, unidirectional) [Websocket] After a connection is established between a browser and a webserver, whichever part can send messages any time via the connection (connection-oriented, bidirectional) included in HTML5 standards, supported by most browsers A simple websocket echo: a python server and an HTML client A Server in Python Prep.</div>
 	<div class="entry__meta meta mt tar">
@@ -139,15 +172,6 @@ or find . -type f -print | xargs grep -i &quot;search_string&quot; /dev/null or 
 		<a class="meta-tags__link" href="/tags/ghidra/" rel="tag">ghidra</a>
 	</span>
 </div>
-	</div>
-</article>
-				</div>
-			
-				<div class="card card--2col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/gdb-peda/"></a></h1>
-	<div class="entry__content">install peda Clone PEDA git clone https://github.com/longld/peda.git ~/peda set gdbinit $ vi ~/.gdbinit define init-peda source ~/peda/peda.py end document init-peda Init PEDA end Activate peda $ gdb (gdb) init-peda gdb-peda$ </div>
-	<div class="entry__meta meta mt tar">
 	</div>
 </article>
 				</div>

@@ -11,6 +11,24 @@
     <loc>https://aintahydra.github.io/post/</loc>
     <lastmod>2023-08-26T21:39:49+09:00</lastmod>
   </url><url>
+    <loc>https://aintahydra.github.io/tags/gdb/</loc>
+    <lastmod>2023-03-04T20:16:46+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/tags/gvm/</loc>
+    <lastmod>2023-03-04T20:16:46+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/post/etc/openvas_gvm/</loc>
+    <lastmod>2023-03-04T20:16:46+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/tags/openvas/</loc>
+    <lastmod>2023-03-04T20:16:46+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/tags/peda/</loc>
+    <lastmod>2023-03-04T20:16:46+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/post/etc/gdb-peda/</loc>
+    <lastmod>2023-03-04T20:16:46+09:00</lastmod>
+  </url><url>
     <loc>https://aintahydra.github.io/tags/socket/</loc>
     <lastmod>2023-03-04T20:16:46+09:00</lastmod>
   </url><url>
@@ -70,8 +88,6 @@
   </url><url>
     <loc>https://aintahydra.github.io/post/reversing/install-ghidra/</loc>
     <lastmod>2023-02-13T03:13:34+09:00</lastmod>
-  </url><url>
-    <loc>https://aintahydra.github.io/post/etc/gdb-peda/</loc>
   </url><url>
     <loc>https://aintahydra.github.io/post/lang/programming-golang-prelude/</loc>
   </url><url>

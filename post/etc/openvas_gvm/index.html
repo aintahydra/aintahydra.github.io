@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Install OpenVAS(GVM) on Kali | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Install OpenVAS(GVM) on Kali</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/openvas/" rel="tag">openvas</a>, 
+		<a class="meta-tags__link" href="/tags/gvm/" rel="tag">gvm</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Install OpenVAS(GVM) on Kali</h1>
+				<div class="entry__content"><h1 id="gvm-or-openvas">GVM? (or OpenVAS?)</h1>
+<ul>
+<li>Greenbone Vulnerability Manager(GVM, a.k.a OpenVAS). OpenVAS is a fork of Nessus.</li>
+</ul>
+<h1 id="install-gvm">Install GVM</h1>
+<ol>
+<li>
+<p>How to install OpenVAS on Kali: <code>sudo apt install openvas</code></p>
+</li>
+<li>
+<p>tried <code>gvm-setup</code>, but Error occured:</p>
+<pre tabindex="0"><code>$ sudo gvm-setup                
+
+[&gt;] Starting PostgreSQL service
+[-] ERROR: The default PostgreSQL version (15) is not 16 that is required by libgvmd
+[-] ERROR: Use pg_upgradecluster to update your PostgreSQL cluster
+</code></pre></li>
+<li>
+<p>solve the problem</p>
+<pre tabindex="0"><code>$ psql --version                                                   
+psql (PostgreSQL) 16.0 (Debian 16.0-2)
+</code></pre><pre tabindex="0"><code>$ sudo vi /etc/postgresql/15/main/postgresql.conf
+...
+port = 5433 # it was 5432
+...
+</code></pre><p>and then,</p>
+<pre tabindex="0"><code>$ sudo vi /etc/postgresql/16/main/postgresql.conf
+...
+port = 5432 # it was 5433
+...
+</code></pre><p>finally, restart postgresql</p>
+<pre tabindex="0"><code>$ sudo service postgresql restart
+$ sudo service postgresql status
+</code></pre></li>
+<li>
+<p>restart gvm-setup</p>
+<pre tabindex="0"><code>$ sudo gvm-setup
+$ sudo gvm-check-setup
+$ sudo gvm-start  
+</code></pre></li>
+<li>
+<p>Access the web interface</p>
+</li>
+</ol>
+<ul>
+<li>visit https://localhost:9392 (or https://localhost:9392/login)</li>
+</ul>
+<ol start="6">
+<li>etc.</li>
+</ol>
+<ul>
+<li>run <code>sudo gvm-stop</code> if you want to stop it</li>
+<li>run <code>$ sudo -E -u _gvm -g _gvm gvmd --user=admin --new-password=&lt;new passwd&gt;</code> to change the password. In this case, run <code>$ id _gym</code> first to check if there are a user and a group named <code>_gym</code> exist.</li>
+</ul>
+<h1 id="ref">ref</h1>
+<ul>
+<li><a href="https://www.linuxfordevices.com/tutorials/kali-linux/install-openvas">https://www.linuxfordevices.com/tutorials/kali-linux/install-openvas</a></li>
+<li><a href="https://stackoverflow.com/questions/67203580/installing-openvas-on-kali-debian-problem-with-postgresql-version">https://stackoverflow.com/questions/67203580/installing-openvas-on-kali-debian-problem-with-postgresql-version</a></li>
+<li><a href="https://forum.greenbone.net/t/reset-admin-password/4041/11">https://forum.greenbone.net/t/reset-admin-password/4041/11</a></li>
+</ul>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/openvas/">openvas</a>
+			<a class="entry__tag btn" href="/tags/gvm/">gvm</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

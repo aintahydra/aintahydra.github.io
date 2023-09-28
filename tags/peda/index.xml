@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>peda on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/peda/</link>
+    <description>Recent content in peda on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Mar 2023 20:16:46 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/peda/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>peda and gdb</title>
+      <link>https://aintahydra.github.io/post/etc/gdb-peda/</link>
+      <pubDate>Sat, 04 Mar 2023 20:16:46 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/gdb-peda/</guid>
+      <description>install peda Clone PEDA git clone https://github.com/longld/peda.git ~/peda set gdbinit $ vi ~/.gdbinit define init-peda source ~/peda/peda.py end document init-peda Init PEDA end Activate peda $ gdb (gdb) init-peda gdb-peda$ </description>
+    </item>
+    
+  </channel>
+</rss>
