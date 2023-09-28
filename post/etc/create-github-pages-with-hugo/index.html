@@ -132,6 +132,24 @@ $ git push -u origin master
 </ol>
 <hr>
 <hr>
+<h1 id="routines">Routines</h1>
+<h2 id="routine-1">routine 1</h2>
+<p>$ git add content/post/XXXX.md</p>
+<p>(if needed,
+$ git config user.email &ldquo;XXX&rdquo;
+$ git config user.name &ldquo;XXX&rdquo;
+)</p>
+<p>$ git commit -m &ldquo;XXX&rdquo;
+$ git push origin master</p>
+<h2 id="routine-2">routine 2</h2>
+<p>(at hugo root)
+$ hugo -t binario
+(&hellip; new pages will be created)
+$ cd public
+$ git add *
+$ git commit -m &ldquo;<!-- raw HTML omitted -->&rdquo;
+$ git push origin master</p>
+<hr>
 <h1 id="basic-git-commands">Basic Git commands</h1>
 <p><img src="https://user-images.githubusercontent.com/14274827/91470661-9d5a8780-e8b2-11ea-9ccb-0d813d2e35d1.png" alt="git_commands"></p>
 </div>

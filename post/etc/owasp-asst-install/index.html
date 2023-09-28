@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Install OWAS ASST | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Install OWAS ASST</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/owasp/" rel="tag">OWASP</a>, 
+		<a class="meta-tags__link" href="/tags/asst/" rel="tag">ASST</a>, 
+		<a class="meta-tags__link" href="/tags/static-analysis/" rel="tag">static-analysis</a>, 
+		<a class="meta-tags__link" href="/tags/source-scan/" rel="tag">source-scan</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Install OWAS ASST</h1>
+				<div class="entry__content"><h1 id="ref">ref</h1>
+<ul>
+<li><a href="https://owasp.org/ASST/">https://owasp.org/ASST/</a></li>
+</ul>
+<h1 id="install-xampp---fail">install XAMPP -&gt; FAIL</h1>
+<ul>
+<li><a href="https://sourceforge.net/projects/xampp/">https://sourceforge.net/projects/xampp/</a>
+-&gt; cannot install on LinuxVM on Apple silicon M2 (since XAMPP for Linux is only available for x64)</li>
+</ul>
+<h1 id="install-necessaries">Install Necessaries</h1>
+<h2 id="apache2">Apache2</h2>
+<pre tabindex="0"><code>$ sudo apt install apache2 mariadb-server
+</code></pre><h2 id="mariadb">MariaDB</h2>
+<pre tabindex="0"><code>$ sudo systemctl enable --now mariadb
+$ systemctl status mariadb
+</code></pre><h2 id="php">PHP</h2>
+<pre tabindex="0"><code>$ sudo apt install php
+</code></pre><h2 id="perl">Perl</h2>
+<pre tabindex="0"><code>$ sudo apt install perl
+</code></pre><h2 id="nodejs">Node.js</h2>
+<pre tabindex="0"><code>$ sudo apt install -y nodejs npm
+</code></pre><p>Set a specific version of Node.js to let ASST work</p>
+<pre tabindex="0"><code>$ sudo npm install n -g
+$ sudo n 12.13.0
+</code></pre><h1 id="install-asst">Install ASST</h1>
+<h3 id="clone-the-repository">Clone the repository</h3>
+<pre tabindex="0"><code>$ git clone https://github.com/OWASP/ASST.git
+</code></pre><h3 id="config-asst">Config ASST</h3>
+<p>set ASST</p>
+<pre tabindex="0"><code>$ sudo mkdir -p /opt/lamp/htdocs
+$ sudo mv ASST /opt/lamp/htdocs
+$ cd /opt/lamp/htdocs/ASST
+$ vi config.js
+...
+DEFAULT_PROJECT_PATH_TO_SCAN: &#34;../ProjectFolderToScan/&#34;,
+...
+$ which php
+/usr/bin/php
+$ vi config_php_lang
+...
+IS_DBMS_USED: false, // it was TRUE before.
+...
+PHP_EXE_BIN_PATH: &#34;/usr/bin/php&#34;, // Currently set for Windows // leave it empty &#34;&#34; if not set (if you don&#39;t have PHP binary) 
+//PHP_EXE_BIN_PATH: &#34;C:\\xampp\\php\\php.exe&#34;, // Currently set for Windows // leave it empty &#34;&#34; if not set (if you don&#39;t have PHP binary) 
+...
+</code></pre><h3 id="create-the-projectfolder">Create the ProjectFolder</h3>
+<pre tabindex="0"><code>$ sudo mkdir -p /opt/lamp/htdocs/ProjectFolderToScan
+</code></pre><p>put source codes into the directory.</p>
+<h3 id="run-asst">run ASST</h3>
+<p>default command:</p>
+<pre tabindex="0"><code>$ pwd
+/opt/lamp/htdocs/ASST
+
+$ sudo node /opt/lamp/htdocs/ASST/main.js
+</code></pre><h3 id="result">RESULT</h3>
+<p>with a sample, I got:</p>
+<pre tabindex="0"><code>└─$ sudo node /opt/lamp/htdocs/ASST/main.js
+
+------------------------------
+Scanning Web Site/App Security
+------------------------------
+
+&lt;-- Checking for Injection Vulnerabilities --&gt;
+Number of Injections Found in the project is: 0
+Well done!, No vulnerabilities found about Injection in your code, however there are some notices that you need to check them in the report.
+
+-----------------------------------------------------------
+
+&lt;-- Checking for Broken Authentication Vulnerabilities --&gt;
+Number of Broken Authentications Found in the project is: 28
+
+-----------------------------------------------------------
+
+&lt;-- Checking for Sensitive Data Exposure Vulnerabilities --&gt;
+Number of Sensitive Data Exposures Found in the project is: 401
+
+-----------------------------------------------------------
+
+&lt;-- Checking for XML External Entity Injection Vulnerabilities --&gt;
+Number of XML External Entity Injections Found in the project is: 0
+Well done!, No vulnerabilities found about XML External Entity Injection in your code, however there are some notices that you need to check them in the report.
+
+-----------------------------------------------------------
+
+&lt;-- Checking for Security Misconfiguration Vulnerabilities --&gt;
+Number of Security Misconfigurations Found in the project is: 2
+
+-----------------------------------------------------------
+
+&lt;-- Checking for Cross-Site Scripting Vulnerabilities --&gt;
+Number of Cross-Site Scriptings Found in the project is: 502
+
+-----------------------------------------------------------
+
+&lt;-- Checking for Using Components With Known Vulnerabilities --&gt;
+Number of Using Old Componentss Found in the project is: 0
+Well done!, No vulnerabilities found about Using Old Components in your code, however there are some notices that you need to check them in the report.                                                                                                 
+
+-----------------------------------------------------------
+
+&lt;-- Checking for Cross-Site Request Forgery Vulnerabilities --&gt;
+Number of Broken Authentications Found in the project is: 27
+
+-----------------------------------------------------------
+
+&lt;-- Checking for Server-Side Request Forgery Vulnerabilities --&gt;
+Number of Server-Side Request Forgery Problems Found in the project is: 0
+Well done!, No vulnerabilities found about Server-Side Request Forgery Problem in your code, however there are some notices that you need to check them in the report.                                                                                  
+
+-----------------------------------------------------------
+
+&lt;-- Checking for Extra Web Security Hardenings --&gt;
+Number of Extra Web Security Hardenings Found in the project is: 18
+
+-----------------------------------------------------------
+
+Total number of possible vulnerabilities found: 978
+Check the generated report.html file to see scan results in detailed
+
+-----------------------------------------------------------
+
+Total scan time: 32 Seconds
+</code></pre><p>and a report, <code>report.html</code> has been generated.</p>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/owasp/">OWASP</a>
+			<a class="entry__tag btn" href="/tags/asst/">ASST</a>
+			<a class="entry__tag btn" href="/tags/static-analysis/">static-analysis</a>
+			<a class="entry__tag btn" href="/tags/source-scan/">source-scan</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

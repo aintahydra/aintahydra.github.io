@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OWASP on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/owasp/</link>
+    <description>Recent content in OWASP on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Jun 2023 05:37:53 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/owasp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install OWAS ASST</title>
+      <link>https://aintahydra.github.io/post/etc/owasp-asst-install/</link>
+      <pubDate>Tue, 13 Jun 2023 05:37:53 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/owasp-asst-install/</guid>
+      <description>ref https://owasp.org/ASST/ install XAMPP -&amp;gt; FAIL https://sourceforge.net/projects/xampp/ -&amp;gt; cannot install on LinuxVM on Apple silicon M2 (since XAMPP for Linux is only available for x64) Install Necessaries Apache2 $ sudo apt install apache2 mariadb-server MariaDB $ sudo systemctl enable --now mariadb $ systemctl status mariadb PHP $ sudo apt install php Perl $ sudo apt install perl Node.js $ sudo apt install -y nodejs npm Set a specific version of Node.</description>
+    </item>
+    
+  </channel>
+</rss>
