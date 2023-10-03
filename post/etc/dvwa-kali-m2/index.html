@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Run DVWA on a Kali VM on the apple silicon(M2) | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Run DVWA on a Kali VM on the apple silicon(M2)</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/dvwa/" rel="tag">dvwa</a>, 
+		<a class="meta-tags__link" href="/tags/kali/" rel="tag">kali</a>, 
+		<a class="meta-tags__link" href="/tags/vmware/" rel="tag">vmware</a>, 
+		<a class="meta-tags__link" href="/tags/fusion/" rel="tag">fusion</a>, 
+		<a class="meta-tags__link" href="/tags/apple/" rel="tag">apple</a>, 
+		<a class="meta-tags__link" href="/tags/m2/" rel="tag">m2</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Run DVWA on a Kali VM on the apple silicon(M2)</h1>
+				<div class="entry__content"><h1 id="installing-vms">Installing VMs</h1>
+<h3 id="tip-vmware-tools-for-ubuntukali-vm-on-vmware-fusion">Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion</h3>
+<ul>
+<li>Installing VMWare-Tools
+<pre tabindex="0"><code>$ sudo apt install open-vm-tools
+</code></pre></li>
+<li>when shared folder doesn&rsquo;t work even after the vmware-tools are installed
+<pre tabindex="0"><code>$ sudo umount /mnt/hgfs
+$ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
+</code></pre></li>
+</ul>
+<h3 id="install-kali-iso-on-vmware-fusion-on-apple-siliconm2">Install Kali (.iso) on VMWare Fusion on Apple silicon(M2)</h3>
+<ul>
+<li>Download Kali .iso for Apple silicon: <a href="https://cdimage.kali.org/kali-2023.2/kali-linux-2023.2a-installer-arm64.iso">https://cdimage.kali.org/kali-2023.2/kali-linux-2023.2a-installer-arm64.iso</a></li>
+<li>Install how-to: <a href="https://geekflare.com/kali-linux-installation-guide-vmware/">https://geekflare.com/kali-linux-installation-guide-vmware/</a>
+<ul>
+<li>Installation method: &ldquo;Install from disc or image&rdquo;.</li>
+<li>Create a new VM with the downloaded <em>kali*.iso</em>.</li>
+<li>When the &ldquo;Finish&rdquo; window pops up, click &ldquo;Customized Settings&rdquo;.</li>
+<li>Click the &ldquo;Hard Disk&rdquo; icon, and increase the disk space to 15 ~ 20 GB.</li>
+</ul>
+</li>
+<li>Optional, Set Network &ldquo;Bridged&rdquo; (?)</li>
+</ul>
+<h3 id="install-dvwa-on-the-kali-vm-run-it">Install DVWA on the Kali VM; Run it.</h3>
+<ul>
+<li>Simple: <code>sudo apt install dvwa</code></li>
+<li>then just <code>$ dvwa start</code> or <code>$ dvwa stop</code></li>
+<li>The follwoings may not be needed:
+<ul>
+<li>If needed, <code>sudo apt -y install apache2 mariadb-server php php-mysqli php-gd libapache2-mod-php</code></li>
+<li>Check the <code>config.inc.php.dist</code> file
+<ul>
+<li>run <code>dpkg -L dvwa | grep config.inc.php.dist</code>, and find where the file is (in my case, it&rsquo;s under <code>/etc/dvwa/config</code>).</li>
+<li>check if the configurations are right as follows:</li>
+</ul>
+<pre tabindex="0"><code>$ cat /etc/dvwa/config/config.inc.php
+...
+$_DVWA = array();
+$_DVWA[ &#39;db_server&#39; ]   = &#39;127.0.0.1&#39;;
+$_DVWA[ &#39;db_database&#39; ] = &#39;dvwa&#39;;
+$_DVWA[ &#39;db_user&#39; ]     = &#39;dvwa&#39;;
+$_DVWA[ &#39;db_password&#39; ] = &#39;p@ssw0rd&#39;;
+$_DVWA[ &#39;db_port&#39;] = &#39;3306&#39;;
+...
+</code></pre></li>
+<li>Check if apache is running and run it if not.
+<pre tabindex="0"><code>$ sudo service apache2 status
+$ sudo service apache2 start 
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="install-docker-dvwa-on-the-kali-vm">Install (Docker) DVWA on the Kali VM</h3>
+<ul>
+<li>
+<p>Install and execute the Docker Desktop</p>
+<ul>
+<li>ref: <a href="https://hub.docker.com/r/vulnerables/web-dvwa">https://hub.docker.com/r/vulnerables/web-dvwa</a></li>
+<li>ref: <a href="https://docs.docker.com/desktop/install/mac-install/">https://docs.docker.com/desktop/install/mac-install/</a></li>
+</ul>
+</li>
+<li>
+<p>Double click <code>Docker.dmg</code> and Execute <code>Docker.app</code> from Applications</p>
+</li>
+<li>
+<p>Run a DVWA container.</p>
+<pre tabindex="0"><code>$ docker run --rm -it -p 80:80 vulnerables/web-dvwa
+</code></pre></li>
+<li>
+<p>then, visit http://127.0.0.1</p>
+<ul>
+<li>Login with admin/password</li>
+<li>Press the &lsquo;Create/Reset database&rsquo; button.</li>
+<li>Set the difficulty level.</li>
+</ul>
+</li>
+</ul>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/dvwa/">dvwa</a>
+			<a class="entry__tag btn" href="/tags/kali/">kali</a>
+			<a class="entry__tag btn" href="/tags/vmware/">vmware</a>
+			<a class="entry__tag btn" href="/tags/fusion/">fusion</a>
+			<a class="entry__tag btn" href="/tags/apple/">apple</a>
+			<a class="entry__tag btn" href="/tags/m2/">m2</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

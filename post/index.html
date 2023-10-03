@@ -132,6 +132,25 @@ $ psql --version psql (PostgreSQL) 16.</div>
 			
 				<div class="card card--2col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/dvwa-kali-m2/">Run DVWA on a Kali VM on the apple silicon(M2)</a></h1>
+	<div class="entry__content">Installing VMs Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion Installing VMWare-Tools $ sudo apt install open-vm-tools when shared folder doesn&rsquo;t work even after the vmware-tools are installed $ sudo umount /mnt/hgfs $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other Install Kali (.iso) on VMWare Fusion on Apple silicon(M2) Download Kali .iso for Apple silicon: https://cdimage.kali.org/kali-2023.2/kali-linux-2023.2a-installer-arm64.iso Install how-to: https://geekflare.com/kali-linux-installation-guide-vmware/ Installation method: &ldquo;Install from disc or image&rdquo;. Create a new VM with the downloaded kali*.</div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/dvwa/" rel="tag">dvwa</a>, 
+		<a class="meta-tags__link" href="/tags/kali/" rel="tag">kali</a>, 
+		<a class="meta-tags__link" href="/tags/vmware/" rel="tag">vmware</a>, 
+		<a class="meta-tags__link" href="/tags/fusion/" rel="tag">fusion</a>, 
+		<a class="meta-tags__link" href="/tags/apple/" rel="tag">apple</a>, 
+		<a class="meta-tags__link" href="/tags/m2/" rel="tag">m2</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/virtualbox-networking-modes/">Virtualbox Networking Modes</a></h1>
 	<div class="entry__content">References https://www.virtualbox.org/manual/ch06.html https://www.nakivo.com/blog/virtualbox-network-setting-guide/ ViratualBox Network Modes Not attached (No connection) NAT NAT Network Bridged Adapter Internal networking Host-only Generic (shared with the host) NAT Sufficient in most cases Internet-enabled: from Internal network to Internet access is possible Guests on internel network CANNOT talk each other (from www.nakivo.com) Enabling NAT for a VM with VBoxManage: VBoxManage modifyvm VM_name --nic1 nat VM_name: name of a virtual machine nic1: number of virtual machine adapter NAT Network Similar to NAT, but guest CAN talk each other basically,, CANNOT access guest machines either from the host or from external network However, &ldquo;Port forwarding&rdquo; enables the host or the machines of the host network to access guests A built-in VBox NAT router uses Network address and name can be changed: (Global preference) File &gt; Preferences &gt; Network &gt; Edit the settings(icon): Default address 10.</div>
 	<div class="entry__meta meta mt tar">
@@ -173,20 +192,6 @@ $ psql --version psql (PostgreSQL) 16.</div>
 	<span class="meta-tags__list">Tags:
 		<a class="meta-tags__link" href="/tags/hugo/" rel="tag">hugo</a>, 
 		<a class="meta-tags__link" href="/tags/github/" rel="tag">github</a>
-	</span>
-</div>
-	</div>
-</article>
-				</div>
-			
-				<div class="card card--2col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/reversing/install-ghidra/">Install Ghidra</a></h1>
-	<div class="entry__content">Install Java Visit the Oracle page (https://www.oracle.com/java/technologies/downloads/ ) Download an installation .deb package Install JDK Set alternatives sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-19/bin/java 1 sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-19/bin/javac 1 sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk-19/bin/jar 1 set JAVA_HOME properly Install Ghidra Download the ghidra: https://github.com/NationalSecurityAgency/ghidra/releases Place the ghidra properly (e.g., under /usr/local) Create a symbolic links at your conveniences sudo ln -s DOWNLOADED_GHIDRA /usr/local/ghidra sudo ln -s /usr/local/ghidra/ghidraRun /usr/local/bin/ghidraRun Create a Ghidra.</div>
-	<div class="entry__meta meta mt tar">
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/ghidra/" rel="tag">ghidra</a>
 	</span>
 </div>
 	</div>
