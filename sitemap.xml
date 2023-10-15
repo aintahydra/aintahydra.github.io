@@ -29,6 +29,18 @@
     <loc>https://aintahydra.github.io/tags/</loc>
     <lastmod>2023-06-13T05:37:53+09:00</lastmod>
   </url><url>
+    <loc>https://aintahydra.github.io/post/etc/proxy-mitmproxy/</loc>
+    <lastmod>2023-03-12T09:19:43+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/tags/proxy/</loc>
+    <lastmod>2023-03-12T09:19:43+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/tags/dvwa/</loc>
+    <lastmod>2023-03-11T08:15:23+09:00</lastmod>
+  </url><url>
+    <loc>https://aintahydra.github.io/post/etc/dvwa-walkthrough/</loc>
+    <lastmod>2023-03-11T08:15:23+09:00</lastmod>
+  </url><url>
     <loc>https://aintahydra.github.io/tags/gdb/</loc>
     <lastmod>2023-03-04T20:16:46+09:00</lastmod>
   </url><url>
@@ -60,9 +72,6 @@
     <lastmod>2023-02-21T06:45:51+09:00</lastmod>
   </url><url>
     <loc>https://aintahydra.github.io/tags/cobalt-strike/</loc>
-    <lastmod>2023-02-21T06:45:51+09:00</lastmod>
-  </url><url>
-    <loc>https://aintahydra.github.io/tags/dvwa/</loc>
     <lastmod>2023-02-21T06:45:51+09:00</lastmod>
   </url><url>
     <loc>https://aintahydra.github.io/tags/fusion/</loc>

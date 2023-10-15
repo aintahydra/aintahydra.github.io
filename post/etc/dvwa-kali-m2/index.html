@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#1b1b1b">
-	<title>Run DVWA on a Kali VM on the apple silicon(M2) | Ain&#39;t a creature shitting out of mouth</title>
+	<title>Run DVWA on a Kali VM | Ain&#39;t a creature shitting out of mouth</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="/css/bundle.css">
@@ -32,7 +32,7 @@
 		<li class="breadcrumb__item">
 			<a class="breadcrumbs__link" href="/post/">Posts</a>
 		</li>
-		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Run DVWA on a Kali VM on the apple silicon(M2)</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Run DVWA on a Kali VM</li>
 	</ol>
 </nav>
 		<div class="single block">
@@ -49,8 +49,11 @@
 	</span>
 </div>
 	</div>
-				<h1 class="entry__title">Run DVWA on a Kali VM on the apple silicon(M2)</h1>
-				<div class="entry__content"><h1 id="installing-vms">Installing VMs</h1>
+				<h1 class="entry__title">Run DVWA on a Kali VM</h1>
+				<div class="entry__content"><p>===========</p>
+<h2 id="caution---do-not-be-bothered-by-manually-installing-dvwa-hightly-possibly-it-will-fail">CAUTION - DO NOT be bothered by manually installing DVWA (Hightly possibly, it will fail).</h2>
+<p>===========</p>
+<h1 id="installing-vms">Installing VMs</h1>
 <h3 id="tip-vmware-tools-for-ubuntukali-vm-on-vmware-fusion">Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion</h3>
 <ul>
 <li>Installing VMWare-Tools
@@ -76,9 +79,14 @@ $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
 </ul>
 <h3 id="install-dvwa-on-the-kali-vm-run-it">Install DVWA on the Kali VM; Run it.</h3>
 <ul>
-<li>Simple: <code>sudo apt install dvwa</code></li>
-<li>then just <code>$ dvwa start</code> or <code>$ dvwa stop</code></li>
-<li>The follwoings may not be needed:
+<li>
+<p>Simple: <code>sudo apt install dvwa</code></p>
+</li>
+<li>
+<p>then just <code>$ dvwa start</code> or <code>$ dvwa stop</code></p>
+</li>
+<li>
+<p>The follwoings may not be needed:</p>
 <ul>
 <li>If needed, <code>sudo apt -y install apache2 mariadb-server php php-mysqli php-gd libapache2-mod-php</code></li>
 <li>Check the <code>config.inc.php.dist</code> file
@@ -90,9 +98,11 @@ $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
 ...
 $_DVWA = array();
 $_DVWA[ &#39;db_server&#39; ]   = &#39;127.0.0.1&#39;;
-$_DVWA[ &#39;db_database&#39; ] = &#39;dvwa&#39;;
+#$_DVWA[ &#39;db_database&#39; ] = &#39;dvwa&#39;;
+$_DVWA[ &#39;db_database&#39; ] = &#39;userDVWA&#39;;
 $_DVWA[ &#39;db_user&#39; ]     = &#39;dvwa&#39;;
-$_DVWA[ &#39;db_password&#39; ] = &#39;p@ssw0rd&#39;;
+#$_DVWA[ &#39;db_password&#39; ] = &#39;p@ssw0rd&#39;;
+$_DVWA[ &#39;db_password&#39; ] = &#39;dvwa&#39;;
 $_DVWA[ &#39;db_port&#39;] = &#39;3306&#39;;
 ...
 </code></pre></li>
@@ -102,8 +112,37 @@ $ sudo service apache2 start
 </code></pre></li>
 </ul>
 </li>
+<li>
+<p>Setup MySQL (<a href="https://nooblinux.com/how-to-install-dvwa/">https://nooblinux.com/how-to-install-dvwa/</a>))</p>
+<ul>
+<li>check MySQL status and run it if needed: <code>sudo systemctl start mysql</code></li>
+<li>set up the root passwd: <code>sudo mysql -u root -p</code> (I use &rsquo;toor&rsquo; as the root password)</li>
+<li>create a user: <code>MariaDB [(none)]&gt; create user 'userDVWA'@'127.0.0.1' identified by &quot;dvwa&quot;;</code></li>
+<li>grant permissions: <code>grant all privileges on dvwa.* to 'userDVWA'@'127.0.0.1' identified by 'dvwa';</code></li>
 </ul>
-<h3 id="install-docker-dvwa-on-the-kali-vm">Install (Docker) DVWA on the Kali VM</h3>
+</li>
+<li>
+<p>Setup Apache</p>
+<ul>
+<li>sudo vi /etc/php/8.2/apache2/php.ini</li>
+</ul>
+<pre tabindex="0"><code>allow_url_fopen = On
+...
+#allow_url_include = Off
+allow_url_include = On
+</code></pre><ul>
+<li>sudo systemctl restart apache2</li>
+</ul>
+</li>
+<li>
+<p>Check up configuration</p>
+<ul>
+<li>visit: http://127.0.0.1:42001/setup.php</li>
+<li>if everything looks good, press &ldquo;Create / Reset Database&rdquo;</li>
+</ul>
+</li>
+</ul>
+<h3 id="strike-install-docker-ized-dvwa-on-the-kali-vm-strike-not-working-for-apple-silicons"><!-- raw HTML omitted --> Install (Docker-ized) DVWA on the Kali VM <!-- raw HTML omitted --> (not working for Apple silicons)</h3>
 <ul>
 <li>
 <p>Install and execute the Docker Desktop</p>
@@ -116,11 +155,20 @@ $ sudo service apache2 start
 <p>Double click <code>Docker.dmg</code> and Execute <code>Docker.app</code> from Applications</p>
 </li>
 <li>
-<p>Run a DVWA container.</p>
-<pre tabindex="0"><code>$ docker run --rm -it -p 80:80 vulnerables/web-dvwa
+<p>Get dockerized DVWA: <code>docker pull vulnerables/web-dvwa</code></p>
+</li>
+<li>
+<p>Run a DVWA container (with 42001 port)</p>
+<pre tabindex="0"><code>$ docker images                   
+REPOSITORY             TAG       IMAGE ID       CREATED       SIZE
+vulnerables/web-dvwa   latest    ab0d83586b6e   4 years ago   712MB
+
+$ docker run --rm -it -p 42001:80 ab0d   
+# or 
+$ docker run --rm -it -p 42001:80 vulnerables/web-dvwa
 </code></pre></li>
 <li>
-<p>then, visit http://127.0.0.1</p>
+<p>then, visit http://127.0.0.1:42001</p>
 <ul>
 <li>Login with admin/password</li>
 <li>Press the &lsquo;Create/Reset database&rsquo; button.</li>

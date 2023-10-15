@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>dvwa on Ain&#39;t a creature shitting out of mouth</title>
-    <link>https://aintahydra.github.io/tags/dvwa/</link>
-    <description>Recent content in dvwa on Ain&#39;t a creature shitting out of mouth</description>
+    <title>proxy on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/proxy/</link>
+    <description>Recent content in proxy on Ain&#39;t a creature shitting out of mouth</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Mar 2023 08:15:23 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/dvwa/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Mar 2023 09:19:43 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/proxy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DVWA Walkthrough</title>
+      <link>https://aintahydra.github.io/post/etc/proxy-mitmproxy/</link>
+      <pubDate>Sun, 12 Mar 2023 09:19:43 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/proxy-mitmproxy/</guid>
+      <description>===========
+Tip: common to burp suite, mitmproxy, and proxify When a DVWM instance is running on a local machine and accessed by 127.0.0.1:PORT, local proxy cannot intercept HTTP request correctly. After a series of trial and error, the solution found was accessing the instance using a name, like:
+add a line to the hosts file: 127.0.0.1 DVWA visit DVWA:PORT instead of 127.0.0.1:PORT =================
+mitmproxy install KALI: mitmproxy is already installed on Kali.</description>
+    </item>
+    
     <item>
       <title>DVWA Walkthrough</title>
       <link>https://aintahydra.github.io/post/etc/dvwa-walkthrough/</link>
@@ -17,17 +29,6 @@
 How to test: https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/11-Client_Side_Testing/01-Testing_for_DOM-based_Cross_Site_Scripting.html
 Observation 1
 Pick any language from the dropdown list, then press the Select button. If the selected language is &amp;ldquo;English&amp;rdquo; then, the address will be changed to http://127.0.0.1:42001/vulnerabilities/xss_d/?default=English Modify the address to http://127.0.0.1:42001/vulnerabilities/xss_d/?default=Assyrian , then Assyrian will be appeared in the dropdown list. page source &amp;lt;div class=&amp;#34;vulnerable_code_area&amp;#34;&amp;gt; &amp;lt;p&amp;gt;Please choose a language:&amp;lt;/p&amp;gt; &amp;lt;form name=&amp;#34;XSS&amp;#34; method=&amp;#34;GET&amp;#34;&amp;gt; &amp;lt;select name=&amp;#34;default&amp;#34;&amp;gt; &amp;lt;script&amp;gt; if (document.</description>
-    </item>
-    
-    <item>
-      <title>Run DVWA on a Kali VM</title>
-      <link>https://aintahydra.github.io/post/etc/dvwa-kali-m2/</link>
-      <pubDate>Tue, 21 Feb 2023 06:45:51 +0900</pubDate>
-      
-      <guid>https://aintahydra.github.io/post/etc/dvwa-kali-m2/</guid>
-      <description>===========
-CAUTION - DO NOT be bothered by manually installing DVWA (Hightly possibly, it will fail). ===========
-Installing VMs Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion Installing VMWare-Tools $ sudo apt install open-vm-tools when shared folder doesn&amp;rsquo;t work even after the vmware-tools are installed $ sudo umount /mnt/hgfs $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other Install Kali (.iso) on VMWare Fusion on Apple silicon(M2) Download Kali .iso for Apple silicon: https://cdimage.</description>
     </item>
     
   </channel>

@@ -8,12 +8,14 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 21 Feb 2023 06:45:51 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/vmware/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Run DVWA on a Kali VM on the apple silicon(M2)</title>
+      <title>Run DVWA on a Kali VM</title>
       <link>https://aintahydra.github.io/post/etc/dvwa-kali-m2/</link>
       <pubDate>Tue, 21 Feb 2023 06:45:51 +0900</pubDate>
       
       <guid>https://aintahydra.github.io/post/etc/dvwa-kali-m2/</guid>
-      <description>Installing VMs Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion Installing VMWare-Tools $ sudo apt install open-vm-tools when shared folder doesn&amp;rsquo;t work even after the vmware-tools are installed $ sudo umount /mnt/hgfs $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other Install Kali (.iso) on VMWare Fusion on Apple silicon(M2) Download Kali .iso for Apple silicon: https://cdimage.kali.org/kali-2023.2/kali-linux-2023.2a-installer-arm64.iso Install how-to: https://geekflare.com/kali-linux-installation-guide-vmware/ Installation method: &amp;ldquo;Install from disc or image&amp;rdquo;. Create a new VM with the downloaded kali*.</description>
+      <description>===========
+CAUTION - DO NOT be bothered by manually installing DVWA (Hightly possibly, it will fail). ===========
+Installing VMs Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion Installing VMWare-Tools $ sudo apt install open-vm-tools when shared folder doesn&amp;rsquo;t work even after the vmware-tools are installed $ sudo umount /mnt/hgfs $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other Install Kali (.iso) on VMWare Fusion on Apple silicon(M2) Download Kali .iso for Apple silicon: https://cdimage.</description>
     </item>
     
   </channel>

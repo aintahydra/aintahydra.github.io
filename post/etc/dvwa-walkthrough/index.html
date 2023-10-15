@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>DVWA Walkthrough | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">DVWA Walkthrough</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/dvwa/" rel="tag">dvwa</a>, 
+		<a class="meta-tags__link" href="/tags/proxy/" rel="tag">proxy</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">DVWA Walkthrough</h1>
+				<div class="entry__content"><h1 id="dvwa-walkthrough-low-level">DVWA Walkthrough (Low level)</h1>
+<h3 id="low-xss-dom">Low: XSS (DOM)</h3>
+<ul>
+<li>
+<p>Vulnerablility URL: http://127.0.0.1:42001/vulnerabilities/xss_d/</p>
+</li>
+<li>
+<p>How to test: <a href="https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/11-Client_Side_Testing/01-Testing_for_DOM-based_Cross_Site_Scripting.html">https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/11-Client_Side_Testing/01-Testing_for_DOM-based_Cross_Site_Scripting.html</a></p>
+</li>
+<li>
+<p>Observation 1</p>
+</li>
+</ul>
+<ol>
+<li>Pick any language from the dropdown list, then press the Select button.</li>
+<li>If the selected language is &ldquo;English&rdquo; then, the address will be changed to  http://127.0.0.1:42001/vulnerabilities/xss_d/?default=English</li>
+<li>Modify the address to http://127.0.0.1:42001/vulnerabilities/xss_d/?default=Assyrian , then Assyrian will be appeared in the dropdown list.</li>
+</ol>
+<ul>
+<li>page source</li>
+</ul>
+<pre tabindex="0"><code>&lt;div class=&#34;vulnerable_code_area&#34;&gt;
+ 		&lt;p&gt;Please choose a language:&lt;/p&gt;
+		&lt;form name=&#34;XSS&#34; method=&#34;GET&#34;&gt;
+			&lt;select name=&#34;default&#34;&gt;
+				&lt;script&gt;
+					if (document.location.href.indexOf(&#34;default=&#34;) &gt;= 0) {
+						var lang = document.location.href.substring(document.location.href.indexOf(&#34;default=&#34;)+8);
+						document.write(&#34;&lt;option value=&#39;&#34; + lang + &#34;&#39;&gt;&#34; + decodeURI(lang) + &#34;&lt;/option&gt;&#34;);
+						document.write(&#34;&lt;option value=&#39;&#39; disabled=&#39;disabled&#39;&gt;----&lt;/option&gt;&#34;);
+					}
+
+					document.write(&#34;&lt;option value=&#39;English&#39;&gt;English&lt;/option&gt;&#34;);
+					document.write(&#34;&lt;option value=&#39;French&#39;&gt;French&lt;/option&gt;&#34;);
+					document.write(&#34;&lt;option value=&#39;Spanish&#39;&gt;Spanish&lt;/option&gt;&#34;);
+					document.write(&#34;&lt;option value=&#39;German&#39;&gt;German&lt;/option&gt;&#34;);
+				&lt;/script&gt;
+			&lt;/select&gt;
+			&lt;input type=&#34;submit&#34; value=&#34;Select&#34; /&gt;
+		&lt;/form&gt;
+	&lt;/div&gt;
+</code></pre><pre><code>- The problem is at `var lang = document.location.href.substring(document.location.href.indexOf(&quot;default=&quot;)+8);`, where what's going to be displayed is programmatically obtained from 8 bytes after where &quot;default=&quot; is, that is user-input. 
+- Thus, user can control what's going to be displayed, giving a URI string
+</code></pre>
+<ul>
+<li>how to break
+<ul>
+<li>add <code>&lt;script&gt; blah blah &lt;/script&gt;</code> at the end of the URI</li>
+<li>Example(pops up a simple hello message):
+<code>http://127.0.0.1:42001/vulnerabilities/xss_d/?default=%3Cscript%3Ealert(%27hello%27)%3C/script%3E</code></li>
+</ul>
+</li>
+</ul>
+<p>===========</p>
+<h3 id="low-xss-reflected">Low: XSS (Reflected)</h3>
+<ul>
+<li>Observation 1</li>
+</ul>
+<ol>
+<li>A string can be entered in to the textbox</li>
+<li>When the submit button is pressed, the entered string is displayed</li>
+</ol>
+<ul>
+<li>page source
+<pre tabindex="0"><code>&lt;div class=&#34;vulnerable_code_area&#34;&gt;
+	&lt;form name=&#34;XSS&#34; action=&#34;#&#34; method=&#34;GET&#34;&gt;
+		&lt;p&gt;
+			What&#39;s your name?
+			&lt;input type=&#34;text&#34; name=&#34;name&#34;&gt;
+			&lt;input type=&#34;submit&#34; value=&#34;Submit&#34;&gt;
+		&lt;/p&gt;
+
+	&lt;/form&gt;
+
+&lt;/div&gt;
+</code></pre></li>
+<li>how to break
+<ul>
+<li>add <code>&lt;script&gt;alert('world')&lt;/script&gt;</code> into the textbox</li>
+<li>URL at this time, <code>http://127.0.0.1:42001/vulnerabilities/xss_r/?name=%3Cscript%3Ealert%28%27world%27%29%3C%2Fscript%3E#</code></li>
+</ul>
+</li>
+</ul>
+<p>===========</p>
+<h3 id="low-xss-stored">Low: XSS (Stored)</h3>
+<ul>
+<li>Observation</li>
+</ul>
+<ol>
+<li>There are two text boxes; one for Name, one for Message</li>
+<li>Entered Name and Message appear accumulated below the text boxes.</li>
+</ol>
+<ul>
+<li>how to break
+<ul>
+<li>add <code>&lt;script&gt;alert('world')&lt;/script&gt;</code> into the messages textbox</li>
+<li>Since the message is stored and viewed, it pops up a windows everytime the menu is accessed.</li>
+</ul>
+</li>
+</ul>
+<p>===========</p>
+<h3 id="low-javascript">Low: JavaScript</h3>
+<ul>
+<li>Observation</li>
+</ul>
+<ol>
+<li>There&rsquo;s a textbox with a default input text &ldquo;ChangeMe&rdquo;</li>
+<li>Source code
+<ul>
+<li>Looking at the source code, a hidden parameter, token is calculated based on the passed &ldquo;phrase&rdquo;</li>
+</ul>
+<pre tabindex="0"><code>&lt;form name=&#34;low_js&#34; method=&#34;post&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;token&#34; value=&#34;&#34; id=&#34;token&#34; /&gt;
+    &lt;label for=&#34;phrase&#34;&gt;Phrase&lt;/label&gt; &lt;input type=&#34;text&#34; name=&#34;phrase&#34; value=&#34;ChangeMe&#34; id=&#34;phrase&#34; /&gt;
+    &lt;input type=&#34;submit&#34; id=&#34;send&#34; name=&#34;send&#34; value=&#34;Submit&#34; /&gt;
+&lt;/form&gt;&lt;script&gt;
+
+/*
+MD5 code from here
+https://github.com/blueimp/JavaScript-MD5
+*/
+
+!function(n){&#34;use strict&#34;;function t(n,t){var r=(65535&amp;n)+(65535&amp;t);return(n&gt;&gt;16)+(t&gt;&gt;16)+(r&gt;&gt;16)&lt;&lt;16|65535&amp;r}function r(n,t){return n&lt;&lt;t|n&gt;&gt;&gt;32-t}function e(n,e,o,u,c,f){return t(r(t(t(e,n),t(u,f)),c),o)}function o(n,t,r,o,u,c,f){return e(t&amp;r|~t&amp;o,n,t,u,c,f)}function u(n,t,r,o,u,c,f){return e(t&amp;o|r&amp;~o,n,t,u,c,f)}function c(n,t,r,o,u,c,f){return e(t^r^o,n,t,u,c,f)}function f(n,t,r,o,u,c,f){return e(r^(t|~o),n,t,u,c,f)}function i(n,r){n[r&gt;&gt;5]|=128&lt;&lt;r%32,n[14+(r+64&gt;&gt;&gt;9&lt;&lt;4)]=r;var e,i,a,d,h,l=1732584193,g=-271733879,v=-1732584194,m=271733878;for(e=0;e&lt;n.length;e+=16)i=l,a=g,d=v,h=m,g=f(g=f(g=f(g=f(g=c(g=c(g=c(g=c(g=u(g=u(g=u(g=u(g=o(g=o(g=o(g=o(g,v=o(v,m=o(m,l=o(l,g,v,m,n[e],7,-680876936),g,v,n[e+1],12,-389564586),l,g,n[e+2],17,606105819),m,l,n[e+3],22,-1044525330),v=o(v,m=o(m,l=o(l,g,v,m,n[e+4],7,-176418897),g,v,n[e+5],12,1200080426),l,g,n[e+6],17,-1473231341),m,l,n[e+7],22,-45705983),v=o(v,m=o(m,l=o(l,g,v,m,n[e+8],7,1770035416),g,v,n[e+9],12,-1958414417),l,g,n[e+10],17,-42063),m,l,n[e+11],22,-1990404162),v=o(v,m=o(m,l=o(l,g,v,m,n[e+12],7,1804603682),g,v,n[e+13],12,-40341101),l,g,n[e+14],17,-1502002290),m,l,n[e+15],22,1236535329),v=u(v,m=u(m,l=u(l,g,v,m,n[e+1],5,-165796510),g,v,n[e+6],9,-1069501632),l,g,n[e+11],14,643717713),m,l,n[e],20,-373897302),v=u(v,m=u(m,l=u(l,g,v,m,n[e+5],5,-701558691),g,v,n[e+10],9,38016083),l,g,n[e+15],14,-660478335),m,l,n[e+4],20,-405537848),v=u(v,m=u(m,l=u(l,g,v,m,n[e+9],5,568446438),g,v,n[e+14],9,-1019803690),l,g,n[e+3],14,-187363961),m,l,n[e+8],20,1163531501),v=u(v,m=u(m,l=u(l,g,v,m,n[e+13],5,-1444681467),g,v,n[e+2],9,-51403784),l,g,n[e+7],14,1735328473),m,l,n[e+12],20,-1926607734),v=c(v,m=c(m,l=c(l,g,v,m,n[e+5],4,-378558),g,v,n[e+8],11,-2022574463),l,g,n[e+11],16,1839030562),m,l,n[e+14],23,-35309556),v=c(v,m=c(m,l=c(l,g,v,m,n[e+1],4,-1530992060),g,v,n[e+4],11,1272893353),l,g,n[e+7],16,-155497632),m,l,n[e+10],23,-1094730640),v=c(v,m=c(m,l=c(l,g,v,m,n[e+13],4,681279174),g,v,n[e],11,-358537222),l,g,n[e+3],16,-722521979),m,l,n[e+6],23,76029189),v=c(v,m=c(m,l=c(l,g,v,m,n[e+9],4,-640364487),g,v,n[e+12],11,-421815835),l,g,n[e+15],16,530742520),m,l,n[e+2],23,-995338651),v=f(v,m=f(m,l=f(l,g,v,m,n[e],6,-198630844),g,v,n[e+7],10,1126891415),l,g,n[e+14],15,-1416354905),m,l,n[e+5],21,-57434055),v=f(v,m=f(m,l=f(l,g,v,m,n[e+12],6,1700485571),g,v,n[e+3],10,-1894986606),l,g,n[e+10],15,-1051523),m,l,n[e+1],21,-2054922799),v=f(v,m=f(m,l=f(l,g,v,m,n[e+8],6,1873313359),g,v,n[e+15],10,-30611744),l,g,n[e+6],15,-1560198380),m,l,n[e+13],21,1309151649),v=f(v,m=f(m,l=f(l,g,v,m,n[e+4],6,-145523070),g,v,n[e+11],10,-1120210379),l,g,n[e+2],15,718787259),m,l,n[e+9],21,-343485551),l=t(l,i),g=t(g,a),v=t(v,d),m=t(m,h);return[l,g,v,m]}function a(n){var t,r=&#34;&#34;,e=32*n.length;for(t=0;t&lt;e;t+=8)r+=String.fromCharCode(n[t&gt;&gt;5]&gt;&gt;&gt;t%32&amp;255);return r}function d(n){var t,r=[];for(r[(n.length&gt;&gt;2)-1]=void 0,t=0;t&lt;r.length;t+=1)r[t]=0;var e=8*n.length;for(t=0;t&lt;e;t+=8)r[t&gt;&gt;5]|=(255&amp;n.charCodeAt(t/8))&lt;&lt;t%32;return r}function h(n){return a(i(d(n),8*n.length))}function l(n,t){var r,e,o=d(n),u=[],c=[];for(u[15]=c[15]=void 0,o.length&gt;16&amp;&amp;(o=i(o,8*n.length)),r=0;r&lt;16;r+=1)u[r]=909522486^o[r],c[r]=1549556828^o[r];return e=i(u.concat(d(t)),512+8*t.length),a(i(c.concat(e),640))}function g(n){var t,r,e=&#34;&#34;;for(r=0;r&lt;n.length;r+=1)t=n.charCodeAt(r),e+=&#34;0123456789abcdef&#34;.charAt(t&gt;&gt;&gt;4&amp;15)+&#34;0123456789abcdef&#34;.charAt(15&amp;t);return e}function v(n){return unescape(encodeURIComponent(n))}function m(n){return h(v(n))}function p(n){return g(m(n))}function s(n,t){return l(v(n),v(t))}function C(n,t){return g(s(n,t))}function A(n,t,r){return t?r?s(t,n):C(t,n):r?m(n):p(n)}&#34;function&#34;==typeof define&amp;&amp;define.amd?define(function(){return A}):&#34;object&#34;==typeof module&amp;&amp;module.exports?module.exports=A:n.md5=A}(this);
+
+    function rot13(inp) {
+        return inp.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c&lt;=&#34;Z&#34;?90:122)&gt;=(c=c.charCodeAt(0)+13)?c:c-26);});
+    }
+
+    function generate_token() {
+        var phrase = document.getElementById(&#34;phrase&#34;).value;
+        document.getElementById(&#34;token&#34;).value = md5(rot13(phrase));
+    }
+
+    generate_token();
+&lt;/script&gt;	&lt;/div&gt;
+</code></pre></li>
+</ol>
+<ul>
+<li>
+<p>Observation 2</p>
+<ul>
+<li>captured packet when &ldquo;ChangeMe&rdquo; is passed:
+<img src="captured-ChangeMe.png" alt="token-ChangeMe"></li>
+<li>the accompanied token should be calculated by: md5(rot13(&ldquo;ChangeMe&rdquo;))</li>
+<li>check if that&rsquo;s true (with CyberChef); look at the value of the token
+<img src="dvwa-cyberchef.png" alt="cyberchef"></li>
+</ul>
+</li>
+<li>
+<p>Solution,</p>
+<ul>
+<li>pass the new string, &ldquo;sucess&rdquo; with a token calculated by <code>md5(rot13(&quot;success&quot;))</code></li>
+<li>that is 38581812b435834ebf84ebcc2c6424d6</li>
+<li>How to pass it?
+<ul>
+<li>run mitmproxy</li>
+<li>intercept packets by <code>set intercept '~u /dvwa &amp; ~q'</code></li>
+<li>press the &lsquo;Submit&rsquo; button from the DVWA page</li>
+<li>modify the request by pressing <code>e</code> and
+<ul>
+<li><code>a</code> : request-body</li>
+<li>edit the body to be <code>token=38581812b435834ebf84ebcc2c6424d6&amp;phrase=success&amp;send=Submit</code></li>
+</ul>
+</li>
+<li>resume by <code>a</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/dvwa/">dvwa</a>
+			<a class="entry__tag btn" href="/tags/proxy/">proxy</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

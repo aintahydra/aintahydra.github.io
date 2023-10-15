@@ -53,6 +53,39 @@ or find . -type f -print | xargs grep -i &quot;search_string&quot; /dev/null or 
 					</div>
 					<div class="card card--2col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/proxy-mitmproxy/">DVWA Walkthrough</a></h1>
+	<div class="entry__content">===========
+Tip: common to burp suite, mitmproxy, and proxify When a DVWM instance is running on a local machine and accessed by 127.0.0.1:PORT, local proxy cannot intercept HTTP request correctly. After a series of trial and error, the solution found was accessing the instance using a name, like:
+add a line to the hosts file: 127.0.0.1 DVWA visit DVWA:PORT instead of 127.0.0.1:PORT =================
+mitmproxy install KALI: mitmproxy is already installed on Kali.</div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/proxy/" rel="tag">proxy</a>
+	</span>
+</div>
+	</div>
+</article>
+					</div>
+					<div class="card card--2col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/dvwa-walkthrough/">DVWA Walkthrough</a></h1>
+	<div class="entry__content">DVWA Walkthrough (Low level) Low: XSS (DOM) Vulnerablility URL: http://127.0.0.1:42001/vulnerabilities/xss_d/
+How to test: https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/11-Client_Side_Testing/01-Testing_for_DOM-based_Cross_Site_Scripting.html
+Observation 1
+Pick any language from the dropdown list, then press the Select button. If the selected language is &ldquo;English&rdquo; then, the address will be changed to http://127.0.0.1:42001/vulnerabilities/xss_d/?default=English Modify the address to http://127.0.0.1:42001/vulnerabilities/xss_d/?default=Assyrian , then Assyrian will be appeared in the dropdown list. page source &lt;div class=&#34;vulnerable_code_area&#34;&gt; &lt;p&gt;Please choose a language:&lt;/p&gt; &lt;form name=&#34;XSS&#34; method=&#34;GET&#34;&gt; &lt;select name=&#34;default&#34;&gt; &lt;script&gt; if (document.</div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/dvwa/" rel="tag">dvwa</a>, 
+		<a class="meta-tags__link" href="/tags/proxy/" rel="tag">proxy</a>
+	</span>
+</div>
+	</div>
+</article>
+					</div>
+					<div class="card card--2col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/openvas_gvm/">Install OpenVAS(GVM) on Kali</a></h1>
 	<div class="entry__content">GVM? (or OpenVAS?) Greenbone Vulnerability Manager(GVM, a.k.a OpenVAS). OpenVAS is a fork of Nessus. Install GVM How to install OpenVAS on Kali: sudo apt install openvas
 tried gvm-setup, but Error occured:
@@ -112,8 +145,10 @@ $ psql --version psql (PostgreSQL) 16.</div>
 					</div>
 					<div class="card card--2col">
 					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/dvwa-kali-m2/">Run DVWA on a Kali VM on the apple silicon(M2)</a></h1>
-	<div class="entry__content">Installing VMs Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion Installing VMWare-Tools $ sudo apt install open-vm-tools when shared folder doesn&rsquo;t work even after the vmware-tools are installed $ sudo umount /mnt/hgfs $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other Install Kali (.iso) on VMWare Fusion on Apple silicon(M2) Download Kali .iso for Apple silicon: https://cdimage.kali.org/kali-2023.2/kali-linux-2023.2a-installer-arm64.iso Install how-to: https://geekflare.com/kali-linux-installation-guide-vmware/ Installation method: &ldquo;Install from disc or image&rdquo;. Create a new VM with the downloaded kali*.</div>
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/dvwa-kali-m2/">Run DVWA on a Kali VM</a></h1>
+	<div class="entry__content">===========
+CAUTION - DO NOT be bothered by manually installing DVWA (Hightly possibly, it will fail). ===========
+Installing VMs Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion Installing VMWare-Tools $ sudo apt install open-vm-tools when shared folder doesn&rsquo;t work even after the vmware-tools are installed $ sudo umount /mnt/hgfs $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other Install Kali (.iso) on VMWare Fusion on Apple silicon(M2) Download Kali .iso for Apple silicon: https://cdimage.</div>
 	<div class="entry__meta meta mt tar">
 <div class="entry__meta-tags meta-tags">
 	<span class="meta-tags__list">Tags:
@@ -136,39 +171,6 @@ $ psql --version psql (PostgreSQL) 16.</div>
 <div class="entry__meta-tags meta-tags">
 	<span class="meta-tags__list">Tags:
 		<a class="meta-tags__link" href="/tags/virtualbox/" rel="tag">virtualbox</a>
-	</span>
-</div>
-	</div>
-</article>
-					</div>
-					<div class="card card--2col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/reversing/simple-xor-decoding-with-ghidra/">Simple XOR Decoding With Ghidra</a></h1>
-	<div class="entry__content">References Talks by Dr. Josh Stroschein, &ldquo;Using Ghidra to Statically XOR Obfuscated Shellcode&rdquo; (https://www.youtube.com/watch?v=DgaPPixn9k4) The author&rsquo;s blog: https://0xevilc0de.com/ &ldquo;Repository that provides sample codes mimicking real malware&rdquo; (https://github.com/jstrosch/learning-malware-analysis ) Steps Create a new project Import a shellcode (shellcode.bin provided by the author) Tell Language: x86 (visual studio) The analyzed result shows up Go to the first offset (00000000) (at this moment, the codes seem to be a series of random bytes) &lsquo;D&rsquo; or &lsquo;Disassemble&rsquo; (now, the unpacking codes will show up) Codes The first jump (at 00000000) goes to 00000016 CALL FUN_00000002 Looking at the codes from 00000002, there is function that works as a XOR decoder: 0x186 and 0x97 seem to be the size of the packed code and the encoding key from the code above, 00000009 XOR byte ptr DS:[EAX + ECX*1],0x97 0000000e TEST ECX,ECX 00000010 JNZ LAB_00000008 EAX is a location (of the encoded shell codes).</div>
-	<div class="entry__meta meta mt tar">
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/ghidra/" rel="tag">ghidra</a>, 
-		<a class="meta-tags__link" href="/tags/reversing/" rel="tag">reversing</a>, 
-		<a class="meta-tags__link" href="/tags/xor/" rel="tag">XOR</a>, 
-		<a class="meta-tags__link" href="/tags/obfuscation/" rel="tag">obfuscation</a>, 
-		<a class="meta-tags__link" href="/tags/encoding/" rel="tag">encoding</a>, 
-		<a class="meta-tags__link" href="/tags/decoding/" rel="tag">decoding</a>
-	</span>
-</div>
-	</div>
-</article>
-					</div>
-					<div class="card card--2col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/create-github-pages-with-hugo/">Create Github Pages With Hugo</a></h1>
-	<div class="entry__content">Create a static github page with Hugo Install Hugo on Ubuntu 22.04 apt install hugo Create github repositories Login to github.com; Create two repositories:
-[PAGE_SRC_REPO] contains sources; a regular github repo. [GITHUB_IO_REPO] contains rendered pages Tts name should be_USER_NAME_.github.io, and needs to be public Move to the newly created repository -&gt; &lsquo;Settings&rsquo; -&gt; &lsquo;Pages&rsquo;, then set Source: Deploy from a branch Branch: master / root Create a hugo site mkdir ~/webpages; cd ~/webpages hugo new site hugo_pages Install a theme (as a submodule) Visit https://themes.</div>
-	<div class="entry__meta meta mt tar">
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/hugo/" rel="tag">hugo</a>, 
-		<a class="meta-tags__link" href="/tags/github/" rel="tag">github</a>
 	</span>
 </div>
 	</div>
