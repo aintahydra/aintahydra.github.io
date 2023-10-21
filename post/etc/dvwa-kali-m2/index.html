@@ -77,7 +77,27 @@ $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
 </li>
 <li>Optional, Set Network &ldquo;Bridged&rdquo; (?)</li>
 </ul>
-<h3 id="install-dvwa-on-the-kali-vm-run-it">Install DVWA on the Kali VM; Run it.</h3>
+<p>Install Docker on Kali</p>
+<ul>
+<li>ref: <a href="https://www.kali.org/docs/containers/installing-docker-on-kali/">https://www.kali.org/docs/containers/installing-docker-on-kali/</a></li>
+</ul>
+<pre tabindex="0"><code>$ sudo apt update
+$ sudo apt install -y docker.io
+$ sudo systemctl enable docker --now 
+
+#add the current user to the docker group
+$ sudo usermod -aG docker $USER
+$ cat /etc/group | grep docker 
+
+# (... after LOGOUT, and re-LOGIN)
+$ id 
+... there should be docker GID in the printed GID list
+
+#test
+$ docker images
+</code></pre><p>===========</p>
+<h1 id="install-dvwa-manual-and-dockerized-versions">Install DVWA (manual and dockerized versions)</h1>
+<h2 id="manual-install-a-dvwa-linux-package-on-the-kali-vm">(Manual) Install a DVWA linux package on the Kali VM</h2>
 <ul>
 <li>
 <p>Simple: <code>sudo apt install dvwa</code></p>
@@ -86,7 +106,7 @@ $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
 <p>then just <code>$ dvwa start</code> or <code>$ dvwa stop</code></p>
 </li>
 <li>
-<p>The follwoings may not be needed:</p>
+<p>The followings may not be needed:</p>
 <ul>
 <li>If needed, <code>sudo apt -y install apache2 mariadb-server php php-mysqli php-gd libapache2-mod-php</code></li>
 <li>Check the <code>config.inc.php.dist</code> file
@@ -108,7 +128,7 @@ $_DVWA[ &#39;db_port&#39;] = &#39;3306&#39;;
 </code></pre></li>
 <li>Check if apache is running and run it if not.
 <pre tabindex="0"><code>$ sudo service apache2 status
-$ sudo service apache2 start 
+$ sudo service apache2 start
 </code></pre></li>
 </ul>
 </li>
@@ -142,12 +162,26 @@ allow_url_include = On
 </ul>
 </li>
 </ul>
-<h3 id="strike-install-docker-ized-dvwa-on-the-kali-vm-strike-not-working-for-apple-silicons"><!-- raw HTML omitted --> Install (Docker-ized) DVWA on the Kali VM <!-- raw HTML omitted --> (not working for Apple silicons)</h3>
+<h2 id="dockerized-install-dockerized-dvwa-amd64">(Dockerized) Install dockerized-DVWA (amd64)</h2>
+<ul>
+<li>ref: <a href="https://hub.docker.com/r/vulnerables/web-dvwa">https://hub.docker.com/r/vulnerables/web-dvwa</a></li>
+</ul>
+<pre tabindex="0"><code># possibly omit the following
+($ docker pull vulnerables/web-dvwa)
+...
+
+$ docker run --rm -it -p 42001:80 vulnerables/web-dvwa 
+
+$ docker ps    
+
+$ docker stop XXXXXX(vulnerables/web-dvwa)
+
+$ docker images
+</code></pre><h2 id="strike-install-docker-ized-dvwa-on-the-kali-vm-for-apple-silicons-m2-strike-not-working"><!-- raw HTML omitted --> Install (Docker-ized) DVWA on the Kali VM for apple silicons (M2) <!-- raw HTML omitted --> (not working)</h2>
 <ul>
 <li>
 <p>Install and execute the Docker Desktop</p>
 <ul>
-<li>ref: <a href="https://hub.docker.com/r/vulnerables/web-dvwa">https://hub.docker.com/r/vulnerables/web-dvwa</a></li>
 <li>ref: <a href="https://docs.docker.com/desktop/install/mac-install/">https://docs.docker.com/desktop/install/mac-install/</a></li>
 </ul>
 </li>
@@ -159,12 +193,12 @@ allow_url_include = On
 </li>
 <li>
 <p>Run a DVWA container (with 42001 port)</p>
-<pre tabindex="0"><code>$ docker images                   
+<pre tabindex="0"><code>$ docker images                  
 REPOSITORY             TAG       IMAGE ID       CREATED       SIZE
 vulnerables/web-dvwa   latest    ab0d83586b6e   4 years ago   712MB
 
-$ docker run --rm -it -p 42001:80 ab0d   
-# or 
+$ docker run --rm -it -p 42001:80 ab0d  
+# or
 $ docker run --rm -it -p 42001:80 vulnerables/web-dvwa
 </code></pre></li>
 <li>

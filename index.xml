@@ -28,11 +28,11 @@ or find . -type f -print | xargs grep -i &amp;quot;search_string&amp;quot; /dev/
     </item>
     
     <item>
-      <title>DVWA Walkthrough</title>
-      <link>https://aintahydra.github.io/post/etc/proxy-mitmproxy/</link>
+      <title>Web Proxies</title>
+      <link>https://aintahydra.github.io/post/etc/web-proxies/</link>
       <pubDate>Sun, 12 Mar 2023 09:19:43 +0900</pubDate>
       
-      <guid>https://aintahydra.github.io/post/etc/proxy-mitmproxy/</guid>
+      <guid>https://aintahydra.github.io/post/etc/web-proxies/</guid>
       <description>===========
 Tip: common to burp suite, mitmproxy, and proxify When a DVWM instance is running on a local machine and accessed by 127.0.0.1:PORT, local proxy cannot intercept HTTP request correctly. After a series of trial and error, the solution found was accessing the instance using a name, like:
 add a line to the hosts file: 127.0.0.1 DVWA visit DVWA:PORT instead of 127.0.0.1:PORT =================

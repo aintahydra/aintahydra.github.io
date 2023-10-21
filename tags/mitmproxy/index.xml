@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mitmproxy on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/mitmproxy/</link>
+    <description>Recent content in mitmproxy on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Mar 2023 09:19:43 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/mitmproxy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Proxies</title>
+      <link>https://aintahydra.github.io/post/etc/web-proxies/</link>
+      <pubDate>Sun, 12 Mar 2023 09:19:43 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/web-proxies/</guid>
+      <description>===========
+Tip: common to burp suite, mitmproxy, and proxify When a DVWM instance is running on a local machine and accessed by 127.0.0.1:PORT, local proxy cannot intercept HTTP request correctly. After a series of trial and error, the solution found was accessing the instance using a name, like:
+add a line to the hosts file: 127.0.0.1 DVWA visit DVWA:PORT instead of 127.0.0.1:PORT =================
+mitmproxy install KALI: mitmproxy is already installed on Kali.</description>
+    </item>
+    
+  </channel>
+</rss>

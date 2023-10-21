@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Web Proxies | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Web Proxies</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/proxy/" rel="tag">proxy</a>, 
+		<a class="meta-tags__link" href="/tags/web_proxy/" rel="tag">web_proxy</a>, 
+		<a class="meta-tags__link" href="/tags/burp/" rel="tag">burp</a>, 
+		<a class="meta-tags__link" href="/tags/mitmproxy/" rel="tag">mitmproxy</a>, 
+		<a class="meta-tags__link" href="/tags/zed/" rel="tag">zed</a>, 
+		<a class="meta-tags__link" href="/tags/proxify/" rel="tag">proxify</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Web Proxies</h1>
+				<div class="entry__content"><p>===========</p>
+<h3 id="tip-common-to-burp-suite-mitmproxy-and-proxify">Tip: common to burp suite, mitmproxy, and proxify</h3>
+<p>When a DVWM instance is running on a local machine and accessed by 127.0.0.1:PORT,
+local proxy cannot intercept HTTP request correctly.
+After a series of trial and error, the solution found was accessing the instance using a name, like:</p>
+<ul>
+<li>add a line to the hosts file: 127.0.0.1 DVWA</li>
+<li>visit DVWA:PORT instead of 127.0.0.1:PORT</li>
+</ul>
+<p>=================</p>
+<h1 id="mitmproxy">mitmproxy</h1>
+<h3 id="install">install</h3>
+<ul>
+<li>KALI: mitmproxy is already installed on Kali.</li>
+<li>OSX: <code>brew install mitmproxy</code></li>
+</ul>
+<p>Ref:</p>
+<ul>
+<li><a href="https://mitmproxy.org/">https://mitmproxy.org/</a></li>
+<li><a href="https://docs.mitmproxy.org/stable/mitmproxytutorial-userinterface/">https://docs.mitmproxy.org/stable/mitmproxytutorial-userinterface/</a></li>
+</ul>
+<p>=================</p>
+<h3 id="how-to-use">how-to-use</h3>
+<p>Type <code>$ mitmproxy</code>, that&rsquo;s all.</p>
+<p>Test with curl: <code>$ curl --proxy http://127.0.0.1:8080 &quot;http://wttr.in/salzburg&quot;</code>
+(In case of Firefox, add HTTP Proxy:127.0.0.1, Port:8080.)</p>
+<p>Keys</p>
+<ul>
+<li>&ldquo;UP&rdquo; and &ldquo;Down&rdquo; : move the cursor &ldquo;&raquo;&rdquo;</li>
+<li>&ldquo;ENTER&rdquo; : view the details of a flow</li>
+<li>&ldquo;LEFT&rdquo; and &ldquo;RIGHT&rdquo; : switch between flow details panes</li>
+<li>&ldquo;q&rdquo; : exit the current view</li>
+<li>&ldquo;?&rdquo; : list shorcuts</li>
+<li>&ldquo;:&rdquo; : open the command prompt</li>
+</ul>
+<p>Commands</p>
+<ul>
+<li>ex) <code>console.view.flow @focus</code>
+<ul>
+<li><code>console.view.flow</code> : opens the details view for a flow</li>
+<li><code>@focus</code> : define the target flow</li>
+</ul>
+</li>
+</ul>
+<p>=================</p>
+<h3 id="intercept-requests">Intercept requests</h3>
+<ul>
+<li>the shortcut, <code>i</code> or the command <code>set intercept</code></li>
+</ul>
+<p>Flow filter expression</p>
+<ul>
+<li>the first argument to <code>set intercept</code></li>
+<li><code>~u &lt;regex&gt;</code> : intercept specific URLs (<code>&lt;regex&gt;</code>)</li>
+<li><code>~q</code> : intercept Requests only</li>
+<li><code>&amp;</code> : combine flow filters</li>
+<li>ex) <code>set intercept '~u /wttr.in &amp; ~q'</code></li>
+<li>test in the other terminal,
+<ul>
+<li><code>curl --proxy http://127.0.0.1:8080 &quot;www.google.com&quot;</code></li>
+<li>and then <code>curl --proxy http://127.0.0.1:8080 &quot;http://wttr.in/lagos&quot;</code></li>
+</ul>
+</li>
+<li><code>a</code> : resume the intercepted flow</li>
+<li><code>X</code> : discard the flow</li>
+</ul>
+<p>=================</p>
+<h3 id="modify-requests">Modify requests</h3>
+<ul>
+<li><code>e</code> : edit the intercepted flow
+<ul>
+<li>&ldquo;arrow key&rdquo; to select <code>path</code>, then ENTER</li>
+<li>modify &ldquo;salzburg&rdquo; to &ldquo;munc&rdquo;</li>
+<li>press ESC to confirm the change</li>
+<li><code>q</code> to go back</li>
+<li><code>a</code> to resume the intercepted flow</li>
+</ul>
+</li>
+</ul>
+<p>=================</p>
+<h3 id="replay-requests-client-side-replay">Replay requests (Client-side replay)</h3>
+<ul>
+<li>
+<p>Client-side replay : replays previous client requests (sends the same request to the server again)</p>
+</li>
+<li>
+<p>Server-side replay : replays server responses for requests that match an earlier recorded request (<a href="https://docs.mitmproxy.org/stable/overview-features/#server-side-replay">https://docs.mitmproxy.org/stable/overview-features/#server-side-replay</a>)</p>
+</li>
+<li>
+<p>generate a request to replay (by <code>curl --proxy http://127.0.0.1:8080 &quot;http://wttr.in/salzburg?0</code>)</p>
+</li>
+<li>
+<p>after a request is generated, put the &ldquo;&raquo;&rdquo; cursor on the request, press <code>r</code></p>
+</li>
+<li>
+<p>(the flow can be edited as well)</p>
+</li>
+<li>
+<p>after the request is replayed, no new flow is recorded, BUT the old one is UPDATED</p>
+</li>
+</ul>
+<p>=================</p>
+<h1 id="other-proxies">Other proxies</h1>
+<hr>
+<h2 id="zed-attack-proxy-zap">Zed Attack Proxy (ZAP)</h2>
+<p>REF:
+- <a href="https://www.kali.org/tools/zaproxy/">https://www.kali.org/tools/zaproxy/</a></p>
+<h3 id="install-1">Install</h3>
+<ul>
+<li>apt install zaproxy</li>
+</ul>
+<hr>
+<h2 id="strike-proxify-strike"><!-- raw HTML omitted --> Proxify <!-- raw HTML omitted --></h2>
+<p>REF:</p>
+<ul>
+<li>install:
+<ul>
+<li><a href="https://www.kitploit.com/2020/12/proxify-swiss-army-knife-proxy-tool-for.html">https://www.kitploit.com/2020/12/proxify-swiss-army-knife-proxy-tool-for.html</a></li>
+<li><!-- raw HTML omitted --> <a href="https://www.kali.org/tools/proxify/">https://www.kali.org/tools/proxify/</a> <!-- raw HTML omitted --></li>
+</ul>
+</li>
+<li>usage: <a href="https://gitlab.com/kalilinux/packages/proxify">https://gitlab.com/kalilinux/packages/proxify</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="install-binary-manually">install binary manually</h3>
+<ul>
+<li>download a binary from <a href="https://github.com/projectdiscovery/proxify/releases/">https://github.com/projectdiscovery/proxify/releases/</a></li>
+<li>create a directory for proxify binaries: <code>mkdir -p ~/local/proxify</code></li>
+<li>move the downloaded file to the directory and unzip: <code>mv proxify_0.0.12_linux_amd64.zip ~/local/proxify; cd ~/local/proxify; unzip proxify*.zip</code></li>
+<li>run: &ldquo;~/local/proxify/proxify&rdquo;</li>
+</ul>
+<h3 id="lab">lab</h3>
+<ul>
+<li>captured packets to dockered-dvwa</li>
+</ul>
+<pre tabindex="0"><code>$ cd ~/local/proxify
+$ ./proxify -http-addr &#34;127.0.0.1:80&#34; 
+
+                       _ ___    
+   ___  _______ __ __ (_) _/_ __
+  / _ \/ __/ _ \\ \ // / _/ // /
+ / .__/_/  \___/_\_\/_/_/ \_, / 
+/_/                      /___/
+
+                projectdiscovery.io
+
+[INF] Current proxify version v0.0.12 (latest)
+[INF] HTTP Proxy Listening on 127.0.0.1:80
+[INF] Socks5 Proxy Listening on 127.0.0.1:10080
+[INF] Saving proxify traffic to logs
+</code></pre><ul>
+<li>
+<p>on Firefox, (with network onnections - proxy is set to 127.0.0.1:8888), accessed: 127.0.0.1:80</p>
+</li>
+<li>
+<p>then,</p>
+</li>
+</ul>
+<pre tabindex="0"><code>$ cd ~/local/proxify/logs
+
+$ tail -f 127.0.0.1-ab2c790481173eab.txt 
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0
+
+token=8b479aefbd90795395b3e7089ae0dc09&amp;phrase=ChangeMe&amp;send=Submit
+HTTP/1.1 502 Bad Gateway
+Content-Length: 0
+Warning: 199 &#34;martian&#34; &#34;[:RUNTIME] ztls fallback failed &lt;- dial tcp 127.0.0.1:443: connect: connection refused&#34; &#34;Wed, 11 Oct 2023 03:50:38 GMT&#34;
+</code></pre></div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/proxy/">proxy</a>
+			<a class="entry__tag btn" href="/tags/web_proxy/">web_proxy</a>
+			<a class="entry__tag btn" href="/tags/burp/">burp</a>
+			<a class="entry__tag btn" href="/tags/mitmproxy/">mitmproxy</a>
+			<a class="entry__tag btn" href="/tags/zed/">zed</a>
+			<a class="entry__tag btn" href="/tags/proxify/">proxify</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2023 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>
