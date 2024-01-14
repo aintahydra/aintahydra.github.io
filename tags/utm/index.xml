@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UTM on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/utm/</link>
+    <description>Recent content in UTM on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Jan 2023 07:26:12 +0000</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/utm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Run the REMnux VMs on a Apple Silicon (M2) Macbook</title>
+      <link>https://aintahydra.github.io/post/etc/runremnuxonutmonm2macbook/</link>
+      <pubDate>Thu, 05 Jan 2023 07:26:12 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/runremnuxonutmonm2macbook/</guid>
+      <description>References https://www.technomancer.com/archives/568 https://www.youtube.com/watch?v=krGvTMq29gA Convert the format of the REMNux disk image $ qemu-img convert -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx * (According to [1], the REMnux VMWare disk image (.vmdk) is converted to the VHDX format whereas [2] changes the image to the QCOM2 format; qemu-img convert -p -O qcom2 Remnux-disk1.vmdk Remnux.qcom2)
+Import the converted disk image run UTM on the Welcome windows, choose &amp;ldquo;Create a New Virtual Machine&amp;rdquo; on the Start window, choose the slow :( &amp;ldquo;Emulate&amp;rdquo; (not &amp;ldquo;Virtualize&amp;rdquo;) on the Operating System window, choose &amp;ldquo;Other&amp;rdquo; (not &amp;ldquo;Windows&amp;rdquo; nor &amp;ldquo;Linux&amp;rdquo;) on the Other window, uncheck &amp;ldquo;Skip ISO boot&amp;rdquo; press the &amp;ldquo;Browse&amp;rdquo; button, choose the converted image as the Boot ISO Image on the &amp;ldquo;Hardware&amp;rdquo;, leave the options like below Architecture: x86_64, System: Standard PC(Q35 + ICH9, 2009) (alias of pc-q35-6.</description>
+    </item>
+    
+  </channel>
+</rss>

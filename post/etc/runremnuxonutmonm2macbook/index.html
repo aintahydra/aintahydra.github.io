@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Run the REMnux VMs on a Apple Silicon (M2) Macbook | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Run the REMnux VMs on a Apple Silicon (M2) Macbook</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/remnux/" rel="tag">remnux</a>, 
+		<a class="meta-tags__link" href="/tags/apple/" rel="tag">apple</a>, 
+		<a class="meta-tags__link" href="/tags/osx/" rel="tag">OSX</a>, 
+		<a class="meta-tags__link" href="/tags/m2/" rel="tag">M2</a>, 
+		<a class="meta-tags__link" href="/tags/utm/" rel="tag">UTM</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Run the REMnux VMs on a Apple Silicon (M2) Macbook</h1>
+				<div class="entry__content"><h1 id="references">References</h1>
+<ol>
+<li><a href="https://www.technomancer.com/archives/568">https://www.technomancer.com/archives/568</a></li>
+<li><a href="https://www.youtube.com/watch?v=krGvTMq29gA">https://www.youtube.com/watch?v=krGvTMq29gA</a></li>
+</ol>
+<h2 id="convert-the-format-of-the-remnux-disk-image">Convert the format of the REMNux disk image</h2>
+<p><code>$ qemu-img convert -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx</code>
+* (According to [1], the REMnux VMWare disk image (.vmdk) is converted to the VHDX format whereas [2] changes the image to the QCOM2 format; <code>qemu-img convert -p -O qcom2 Remnux-disk1.vmdk Remnux.qcom2</code>)</p>
+<h2 id="import-the-converted-disk-image">Import the converted disk image</h2>
+<ol>
+<li>run UTM</li>
+<li>on the Welcome windows, choose &ldquo;Create a New Virtual Machine&rdquo;</li>
+<li>on the Start window, choose the slow <code>:(</code> &ldquo;Emulate&rdquo; (not &ldquo;Virtualize&rdquo;)</li>
+<li>on the Operating System window, choose &ldquo;Other&rdquo; (not &ldquo;Windows&rdquo; nor &ldquo;Linux&rdquo;)</li>
+<li>on the Other window,
+<ul>
+<li>uncheck &ldquo;Skip ISO boot&rdquo;</li>
+<li>press the &ldquo;Browse&rdquo; button, choose the converted image as the Boot ISO Image</li>
+</ul>
+</li>
+<li>on the &ldquo;Hardware&rdquo;, leave the options like below
+<ul>
+<li>Architecture: x86_64,</li>
+<li>System: Standard PC(Q35 + ICH9, 2009) (alias of pc-q35-6.2) q35</li>
+<li>Memory: 4G</li>
+<li>CPU Cores: Default</li>
+</ul>
+</li>
+<li></li>
+</ol>
+<ul>
+<li>Emulate</li>
+<li>Windows</li>
+<li>Check, &ldquo;Import VHDX Image&rdquo;, Choose Boot Image as &ldquo;REMnuxVM.vmx&rdquo;, and Continue</li>
+<li>on &ldquo;Hardware&rdquo; Window, Just continue (Architecture: &ldquo;x86_64&rdquo;, System: Standard PC(q35), Mem 4G, CPU Default)</li>
+<li>and Wait for a while (in my case 50mins)</li>
+</ul>
+<p>UTM - create - Emulate</p>
+<p>Windows / Linux / Other 중, Other 선택
+옵션:
+(v) Skip ISO boot
+(Next)</p>
+<p>(Next)</p>
+<p>Strorage 1GB???</p>
+<p>Shared Directory(nothing)</p>
+<p>((After a VM is created))</p>
+<p>Option -&gt; QEMU</p>
+<ul>
+<li>uncheck UEFI boot</li>
+<li>(ring device 만 체크됨)</li>
+</ul>
+<p>Option -&gt; IDE Drive
+-&gt; 빨간거 누름
+-&gt; 왼쪽 아래 New Device 선택
+-&gt; IDE Drive 가 선택되어 있는 상태에서 &ldquo;Import&rdquo;
+-&gt; Remnux.qcow2 (아까 만든 HDD 이미지)
+-&gt; 한참 작업하다가 마지막엔 Devices 목록에 IDE Drive 생성됨</p>
+<p>해당 IDE Drive를 선택하고 &ldquo;Save&rdquo;</p>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/remnux/">remnux</a>
+			<a class="entry__tag btn" href="/tags/apple/">apple</a>
+			<a class="entry__tag btn" href="/tags/osx/">OSX</a>
+			<a class="entry__tag btn" href="/tags/m2/">m2</a>
+			<a class="entry__tag btn" href="/tags/utm/">UTM</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wadering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2024 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>
