@@ -62,8 +62,9 @@
 <li><a href="https://www.youtube.com/watch?v=krGvTMq29gA">https://www.youtube.com/watch?v=krGvTMq29gA</a></li>
 </ol>
 <h2 id="convert-the-format-of-the-remnux-disk-image">Convert the format of the REMNux disk image</h2>
-<p><code>$ qemu-img convert -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx</code>
-* (According to [1], the REMnux VMWare disk image (.vmdk) is converted to the VHDX format whereas [2] changes the image to the QCOM2 format; <code>qemu-img convert -p -O qcom2 Remnux-disk1.vmdk Remnux.qcom2</code>)</p>
+<p><code>$ qemu-img convert -p -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx</code>
+* <code>-p</code>: indicates the conversion progress.
+* <code>-f</code>: indicates the source image format.</p>
 <h2 id="import-the-converted-disk-image">Import the converted disk image</h2>
 <ol>
 <li>run UTM</li>
@@ -72,16 +73,15 @@
 <li>on the Operating System window, choose &ldquo;Other&rdquo; (not &ldquo;Windows&rdquo; nor &ldquo;Linux&rdquo;)</li>
 <li>on the Other window,
 <ul>
-<li>uncheck &ldquo;Skip ISO boot&rdquo;</li>
-<li>press the &ldquo;Browse&rdquo; button, choose the converted image as the Boot ISO Image</li>
+<li>check &ldquo;Skip ISO boot&rdquo;</li>
 </ul>
 </li>
-<li>on the &ldquo;Hardware&rdquo;, leave the options like below
+<li>on the &ldquo;Hardware&rdquo;, leave the default options (must be like below:
 <ul>
 <li>Architecture: x86_64,</li>
 <li>System: Standard PC(Q35 + ICH9, 2009) (alias of pc-q35-7.2) q35</li>
 <li>Memory: 4G</li>
-<li>CPU Cores: Default</li>
+<li>CPU Cores: Default)</li>
 </ul>
 </li>
 <li>on the &ldquo;Storage&rdquo; window, specify the size as &ldquo;1GB&rdquo;</li>
@@ -143,7 +143,7 @@
 			<div class="author__name">
 				aintahydra
 			</div>
-			<div class="author__bio">Wadering around insecure worlds...</div>
+			<div class="author__bio">Wandering around insecure worlds...</div>
 		</div>
 	</div>
 </div>
