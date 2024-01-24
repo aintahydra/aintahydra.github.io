@@ -64,7 +64,8 @@
 <h2 id="convert-the-format-of-the-remnux-disk-image">Convert the format of the REMNux disk image</h2>
 <p><code>$ qemu-img convert -p -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx</code>
 * <code>-p</code>: indicates the conversion progress.
-* <code>-f</code>: indicates the source image format.</p>
+* <code>-f</code>: indicates the source image format.
+* <code>$ qemu-img convert -p -f vmdk -O qcow2 REMnuxVM.vmdk REMnuxVM.qcow2</code> works as well.</p>
 <h2 id="import-the-converted-disk-image">Import the converted disk image</h2>
 <ol>
 <li>run UTM</li>
@@ -97,25 +98,27 @@
 <li>QEMU
 <ul>
 <li>Uncheck &ldquo;UEFI Boot&rdquo;</li>
+<li>Uncheck &ldquo;RNG Device&rdquo; (especially, in case of Linux VM)</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>There are two IDE Drives displayed on the left menu
 <ul>
-<li>Leave the CD/DVD one (the first IDE Drive, in my case)</li>
-<li>Choose the Disk Image one (The second IDE Drive, in my case), and &ldquo;Delete&rdquo;</li>
-<li>Then, create a &ldquo;New&hellip;&rdquo; drive
+<li>You can leave the CD/DVD drive if exists</li>
+<li>Select the IDE Disk Image drive, and &ldquo;Delete&rdquo;</li>
+<li>Create a &ldquo;New&hellip;&rdquo; drive
 <ul>
 <li>Interface: IDE</li>
-<li>Press &ldquo;Import&rdquo; and choose the converted &ldquo;.vhdx&rdquo; disk image</li>
+<li>Press &ldquo;Import&rdquo; and choose the converted &ldquo;.vhdx&rdquo; (or .qcow2) disk image</li>
 </ul>
 </li>
 <li>&ldquo;Save&rdquo; all the changes</li>
 </ul>
 </li>
+<li>Wait for a while.
+The emulated VM will work but must be very slow. Be patient.</li>
 </ol>
-<p>The emulated VM will work but must be very slow. Be patient.</p>
 </div>
 				
 				<footer class="entry__footer">

@@ -18,5 +18,15 @@ CAUTION - DO NOT be bothered by manually installing DVWA (Hightly possibly, it w
 Installing VMs Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion Installing VMWare-Tools $ sudo apt install open-vm-tools when shared folder doesn&amp;rsquo;t work even after the vmware-tools are installed $ sudo umount /mnt/hgfs $ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other Install Kali (.iso) on VMWare Fusion on Apple silicon(M2) Download Kali .iso for Apple silicon: https://cdimage.</description>
     </item>
     
+    <item>
+      <title>Setup Kali VM on a Apple Silicon (M2) Macbook</title>
+      <link>https://aintahydra.github.io/post/etc/setup-kali-applesilicon/</link>
+      <pubDate>Wed, 04 Jan 2023 11:07:05 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/setup-kali-applesilicon/</guid>
+      <description>Ref: https://www.kali.org/docs/virtualization/install-vmware-guest-tools/
+Install VMWare-Tools $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Share Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&amp;rsquo;t work restart the Tools $ sudo restart-vm-tools </description>
+    </item>
+    
   </channel>
 </rss>

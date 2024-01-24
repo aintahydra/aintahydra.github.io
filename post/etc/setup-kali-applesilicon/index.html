@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Setup Kali VM on a Apple Silicon (M2) Macbook | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Setup Kali VM on a Apple Silicon (M2) Macbook</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/kali/" rel="tag">Kali</a>, 
+		<a class="meta-tags__link" href="/tags/vmware/" rel="tag">VMWare</a>, 
+		<a class="meta-tags__link" href="/tags/fusion/" rel="tag">Fusion</a>, 
+		<a class="meta-tags__link" href="/tags/m2/" rel="tag">M2</a>, 
+		<a class="meta-tags__link" href="/tags/apple/" rel="tag">Apple</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Setup Kali VM on a Apple Silicon (M2) Macbook</h1>
+				<div class="entry__content"><p>Ref: <a href="https://www.kali.org/docs/virtualization/install-vmware-guest-tools/">https://www.kali.org/docs/virtualization/install-vmware-guest-tools/</a></p>
+<h1 id="install-vmware-tools">Install VMWare-Tools</h1>
+<pre tabindex="0"><code>$ sudo apt update
+$ sudo apt install -y --reinstall open-vm-tools-desktop fuse
+$ sudo reboot -f
+</code></pre><h1 id="use-share-folders">Use Share Folders</h1>
+<ul>
+<li>Run Kali-tweaks
+<pre tabindex="0"><code>kali@kali:~$ kali-tweaks
+</code></pre></li>
+<li>Select Virtualization</li>
+<li>Mount the shared folder</li>
+</ul>
+<pre tabindex="0"><code>$ sudo mount-shared-folders
+</code></pre><ul>
+<li>If it doesn&rsquo;t work restart the Tools</li>
+</ul>
+<pre tabindex="0"><code>$ sudo restart-vm-tools
+</code></pre></div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/kali/">kali</a>
+			<a class="entry__tag btn" href="/tags/vmware/">vmware</a>
+			<a class="entry__tag btn" href="/tags/fusion/">fusion</a>
+			<a class="entry__tag btn" href="/tags/m2/">m2</a>
+			<a class="entry__tag btn" href="/tags/apple/">apple</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wandering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2024 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

@@ -25,8 +25,17 @@ Installing VMs Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion Installing 
       
       <guid>https://aintahydra.github.io/post/etc/runremnuxonutmonm2macbook/</guid>
       <description>I tried to run REMnux VM with the following settings:
-Macbook pro (M2) Mac OSX Sonoma UTM 4.4.5 (brew installed; brew install --cask utm) Downloaded the REMNux VM (from https://remnux.org/#distro) References https://www.technomancer.com/archives/568 https://www.youtube.com/watch?v=krGvTMq29gA Convert the format of the REMNux disk image $ qemu-img convert -p -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx * -p: indicates the conversion progress. * -f: indicates the source image format.
-Import the converted disk image run UTM on the Welcome windows, choose &amp;ldquo;Create a New Virtual Machine&amp;rdquo; on the Start window, choose the slow &amp;ldquo;Emulate&amp;rdquo; (not &amp;ldquo;Virtualize&amp;rdquo;) on the Operating System window, choose &amp;ldquo;Other&amp;rdquo; (not &amp;ldquo;Windows&amp;rdquo; nor &amp;ldquo;Linux&amp;rdquo;) on the Other window, check &amp;ldquo;Skip ISO boot&amp;rdquo; on the &amp;ldquo;Hardware&amp;rdquo;, leave the default options (must be like below: Architecture: x86_64, System: Standard PC(Q35 + ICH9, 2009) (alias of pc-q35-7.</description>
+Macbook pro (M2) Mac OSX Sonoma UTM 4.4.5 (brew installed; brew install --cask utm) Downloaded the REMNux VM (from https://remnux.org/#distro) References https://www.technomancer.com/archives/568 https://www.youtube.com/watch?v=krGvTMq29gA Convert the format of the REMNux disk image $ qemu-img convert -p -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx * -p: indicates the conversion progress. * -f: indicates the source image format. * $ qemu-img convert -p -f vmdk -O qcow2 REMnuxVM.</description>
+    </item>
+    
+    <item>
+      <title>Setup Kali VM on a Apple Silicon (M2) Macbook</title>
+      <link>https://aintahydra.github.io/post/etc/setup-kali-applesilicon/</link>
+      <pubDate>Wed, 04 Jan 2023 11:07:05 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/setup-kali-applesilicon/</guid>
+      <description>Ref: https://www.kali.org/docs/virtualization/install-vmware-guest-tools/
+Install VMWare-Tools $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Share Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&amp;rsquo;t work restart the Tools $ sudo restart-vm-tools </description>
     </item>
     
   </channel>

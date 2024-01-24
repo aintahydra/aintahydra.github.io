@@ -92,8 +92,7 @@
 					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/runremnuxonutmonm2macbook/">Run the REMnux VMs on a Apple Silicon (M2) Macbook</a></h1>
 	<div class="entry__content">I tried to run REMnux VM with the following settings:
-Macbook pro (M2) Mac OSX Sonoma UTM 4.4.5 (brew installed; brew install --cask utm) Downloaded the REMNux VM (from https://remnux.org/#distro) References https://www.technomancer.com/archives/568 https://www.youtube.com/watch?v=krGvTMq29gA Convert the format of the REMNux disk image $ qemu-img convert -p -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx * -p: indicates the conversion progress. * -f: indicates the source image format.
-Import the converted disk image run UTM on the Welcome windows, choose &ldquo;Create a New Virtual Machine&rdquo; on the Start window, choose the slow &ldquo;Emulate&rdquo; (not &ldquo;Virtualize&rdquo;) on the Operating System window, choose &ldquo;Other&rdquo; (not &ldquo;Windows&rdquo; nor &ldquo;Linux&rdquo;) on the Other window, check &ldquo;Skip ISO boot&rdquo; on the &ldquo;Hardware&rdquo;, leave the default options (must be like below: Architecture: x86_64, System: Standard PC(Q35 + ICH9, 2009) (alias of pc-q35-7.</div>
+Macbook pro (M2) Mac OSX Sonoma UTM 4.4.5 (brew installed; brew install --cask utm) Downloaded the REMNux VM (from https://remnux.org/#distro) References https://www.technomancer.com/archives/568 https://www.youtube.com/watch?v=krGvTMq29gA Convert the format of the REMNux disk image $ qemu-img convert -p -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx * -p: indicates the conversion progress. * -f: indicates the source image format. * $ qemu-img convert -p -f vmdk -O qcow2 REMnuxVM.</div>
 	<div class="entry__meta meta mt tar">
 <div class="entry__meta-tags meta-tags">
 	<span class="meta-tags__list">Tags:
@@ -104,6 +103,33 @@ Import the converted disk image run UTM on the Welcome windows, choose &ldquo;Cr
 		<a class="meta-tags__link" href="/tags/utm/" rel="tag">UTM</a>
 	</span>
 </div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/setup-kali-applesilicon/">Setup Kali VM on a Apple Silicon (M2) Macbook</a></h1>
+	<div class="entry__content">Ref: https://www.kali.org/docs/virtualization/install-vmware-guest-tools/
+Install VMWare-Tools $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Share Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&rsquo;t work restart the Tools $ sudo restart-vm-tools </div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/kali/" rel="tag">Kali</a>, 
+		<a class="meta-tags__link" href="/tags/vmware/" rel="tag">VMWare</a>, 
+		<a class="meta-tags__link" href="/tags/fusion/" rel="tag">Fusion</a>, 
+		<a class="meta-tags__link" href="/tags/m2/" rel="tag">M2</a>, 
+		<a class="meta-tags__link" href="/tags/apple/" rel="tag">Apple</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/anjungsoo/"></a></h1>
+	<div class="entry__meta meta mt tar">
 	</div>
 </article>
 				</div>
