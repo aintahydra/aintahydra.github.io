@@ -41,6 +41,20 @@
 			
 				<div class="card card--2col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/virtualbox-networking-modes/">Virtualbox Networking Modes</a></h1>
+	<div class="entry__content">References https://www.virtualbox.org/manual/ch06.html https://www.nakivo.com/blog/virtualbox-network-setting-guide/ ViratualBox Network Modes Not attached (No connection) NAT NAT Network Bridged Adapter Internal networking Host-only Generic (shared with the host) NAT Sufficient in most cases Internet-enabled: from Internal network to Internet access is possible Guests on internel network CANNOT talk each other (from www.nakivo.com) Enabling NAT for a VM with VBoxManage: VBoxManage modifyvm VM_name --nic1 nat VM_name: name of a virtual machine nic1: number of virtual machine adapter NAT Network Similar to NAT, but guest CAN talk each other basically,, CANNOT access guest machines either from the host or from external network However, &ldquo;Port forwarding&rdquo; enables the host or the machines of the host network to access guests A built-in VBox NAT router uses Network address and name can be changed: (Global preference) File &gt; Preferences &gt; Network &gt; Edit the settings(icon): Default address 10.</div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/virtualbox/" rel="tag">virtualbox</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/reversing/simple-xor-decoding-with-ghidra/">Simple XOR Decoding With Ghidra</a></h1>
 	<div class="entry__content">References Talks by Dr. Josh Stroschein, &ldquo;Using Ghidra to Statically XOR Obfuscated Shellcode&rdquo; (https://www.youtube.com/watch?v=DgaPPixn9k4) The author&rsquo;s blog: https://0xevilc0de.com/ &ldquo;Repository that provides sample codes mimicking real malware&rdquo; (https://github.com/jstrosch/learning-malware-analysis ) Steps Create a new project Import a shellcode (shellcode.bin provided by the author) Tell Language: x86 (visual studio) The analyzed result shows up Go to the first offset (00000000) (at this moment, the codes seem to be a series of random bytes) &lsquo;D&rsquo; or &lsquo;Disassemble&rsquo; (now, the unpacking codes will show up) Codes The first jump (at 00000000) goes to 00000016 CALL FUN_00000002 Looking at the codes from 00000002, there is function that works as a XOR decoder: 0x186 and 0x97 seem to be the size of the packed code and the encoding key from the code above, 00000009 XOR byte ptr DS:[EAX + ECX*1],0x97 0000000e TEST ECX,ECX 00000010 JNZ LAB_00000008 EAX is a location (of the encoded shell codes).</div>
 	<div class="entry__meta meta mt tar">
@@ -109,15 +123,15 @@ Macbook pro (M2) Mac OSX Sonoma UTM 4.4.5 (brew installed; brew install --cask u
 			
 				<div class="card card--2col">
 					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/setup-kali-applesilicon/">Setup Kali VM on a Apple Silicon (M2) Macbook</a></h1>
-	<div class="entry__content">Ref: https://www.kali.org/docs/virtualization/install-vmware-guest-tools/
-Install VMWare-Tools $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Share Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&rsquo;t work restart the Tools $ sudo restart-vm-tools </div>
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/setup-ubuntu-utm-applesilicon/">Run Ubuntu(amd64) with UTM on a Apple Silicon (M2) Macbook</a></h1>
+	<div class="entry__content">Install Install a Ubuntu Server version(I installed the minimal Ubuntu 22.04 Server).
+Use the Shared Folder Ref: https://docs.getutm.app/guest-support/linux/#virtfs
+on the UTM Menu, &ldquo;Edit&rdquo; the configuration of the Ubuntu VM and set up a shared directory with the &ldquo;VirtFS&rdquo; (not SPECI WebDAV) create a local directory on the guest $ sudo mkdir /media/share mount $ sudo mount -t 9p -o trans=virtio share /media/share -oversion=9p2000.L </div>
 	<div class="entry__meta meta mt tar">
 <div class="entry__meta-tags meta-tags">
 	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/kali/" rel="tag">Kali</a>, 
-		<a class="meta-tags__link" href="/tags/vmware/" rel="tag">VMWare</a>, 
-		<a class="meta-tags__link" href="/tags/fusion/" rel="tag">Fusion</a>, 
+		<a class="meta-tags__link" href="/tags/ubuntu/" rel="tag">Ubuntu</a>, 
+		<a class="meta-tags__link" href="/tags/utm/" rel="tag">UTM</a>, 
 		<a class="meta-tags__link" href="/tags/m2/" rel="tag">M2</a>, 
 		<a class="meta-tags__link" href="/tags/apple/" rel="tag">Apple</a>
 	</span>
@@ -128,8 +142,19 @@ Install VMWare-Tools $ sudo apt update $ sudo apt install -y --reinstall open-vm
 			
 				<div class="card card--2col">
 					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/anjungsoo/"></a></h1>
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/setup-kali-applesilicon/">Setup Kali VM on a Apple Silicon (M2) Macbook</a></h1>
+	<div class="entry__content">Ref: https://www.kali.org/docs/virtualization/install-vmware-guest-tools/
+Install VMWare-Tools (not only on Kali, but on Ubuntu also) $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Shared Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&rsquo;t work restart the Tools $ sudo restart-vm-tools </div>
 	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/kali/" rel="tag">Kali</a>, 
+		<a class="meta-tags__link" href="/tags/vmware/" rel="tag">VMWare</a>, 
+		<a class="meta-tags__link" href="/tags/fusion/" rel="tag">Fusion</a>, 
+		<a class="meta-tags__link" href="/tags/m2/" rel="tag">M2</a>, 
+		<a class="meta-tags__link" href="/tags/apple/" rel="tag">Apple</a>
+	</span>
+</div>
 	</div>
 </article>
 				</div>

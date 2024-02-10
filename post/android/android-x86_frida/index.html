@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Android-x86 and Frida with VirtualBox on Linux(amd64) | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Android-x86 and Frida with VirtualBox on Linux(amd64)</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/android/" rel="tag">android</a>, 
+		<a class="meta-tags__link" href="/tags/android-x86/" rel="tag">android-x86</a>, 
+		<a class="meta-tags__link" href="/tags/virtualbox/" rel="tag">virtualbox</a>, 
+		<a class="meta-tags__link" href="/tags/frida/" rel="tag">frida</a>, 
+		<a class="meta-tags__link" href="/tags/ubuntu/" rel="tag">ubuntu</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Android-x86 and Frida with VirtualBox on Linux(amd64)</h1>
+				<div class="entry__content"><h1 id="install-android-x86-with-virtualbox-on-ubuntu-2204">Install Android-x86 with VirtualBox on Ubuntu 22.04</h1>
+<p>References:</p>
+<ul>
+<li><a href="https://www.android-x86.org/documentation/virtualbox.html">https://www.android-x86.org/documentation/virtualbox.html</a></li>
+</ul>
+<ol>
+<li>Download an ISO image (<a href="https://sourceforge.net/projects/android-x86/files/Release%209.0/">https://sourceforge.net/projects/android-x86/files/Release%209.0/</a> )
+<ul>
+<li><code>android-x86_64-9.0-r2.iso</code> , in my case.</li>
+</ul>
+</li>
+<li>Create a new VirtualBox VM
+<ul>
+<li>Type: Linux, Version: Linux 2.6/3.x/4.x/5.x (64-bit)</li>
+<li>Hardware: Assign 4GB RAM</li>
+<li>Hard Disk:
+<ul>
+<li>Create a Virtual Hard Disk Now</li>
+<li>Give 8GB HDD</li>
+<li>VDI (do not check Pre-allocate Full Size)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Run VM and Boot with the downloaded .iso file
+<ul>
+<li>from the Boot menu, Choose &ldquo;Installation&rdquo;</li>
+</ul>
+</li>
+<li>Install
+<ul>
+<li>Select &ldquo;Create/Modify partitions&rdquo; by pressing &lsquo;C&rsquo;</li>
+<li>Decline GPT</li>
+<li>Create a New, Primary partition that uses the entire space
+<ul>
+<li>Choose New, Choose Primary</li>
+<li>Leave it (the maximum space Size is displayed)</li>
+<li>Set it Bootable (The Flags are marked as &lsquo;Boot&rsquo;)</li>
+<li>Write (yes)</li>
+<li>Quit</li>
+</ul>
+</li>
+<li>Choose the just created partition</li>
+<li>format &rsquo;ext4&rsquo; (for sure)</li>
+<li>Install GRUB</li>
+<li>Yes to install /system directory read-write</li>
+<li>Run Android-x86</li>
+</ul>
+</li>
+<li>Remove the .iso image and reboot</li>
+<li>it will boot with GRUB &lsquo;Android-x86 9.0-r2&quot; is being chosen</li>
+<li>It might boot without GUI, then
+<ul>
+<li>Poweroff the VM</li>
+<li>&ldquo;Settings - Display - Graphics Controller&rdquo; needs to be &lsquo;VBoxVGA&rsquo;</li>
+</ul>
+</li>
+<li>ETC
+<ul>
+<li>Wifi will be available as VirtWifi</li>
+<li>ALT-F1 goes to  the text shell, ALT-F7 comes back to GUI</li>
+<li>When the screen is off due to the power saving supports, the &ldquo;Power&rdquo; button brings the screen back. The &ldquo;ACPI Shutdown(HOST + H)&rdquo; from the main menu corresponsds to the power button.</li>
+</ul>
+</li>
+</ol>
+<h2 id="adb">ADB</h2>
+<ul>
+<li>Power off the machine. Create a &ldquo;Host-Only Network&rdquo; poweroff. Uncheck(disable) NAT.</li>
+<li>After the system is booted, figure out the IP (you can go to the text mode by ALT-F1).</li>
+<li>Install ADB on the host: <code>sudo apt install adb</code></li>
+<li>Connect/Disconnect
+<ul>
+<li><code>adb connect 192.168.56.102:5555</code></li>
+<li><code>adb disconnect</code></li>
+</ul>
+</li>
+<li>Shell access: <code>adb shell</code></li>
+<li>File push:
+<ul>
+<li><code>adb shell &quot;cd /data/local &amp;&amp; mkdir tmp&quot;</code></li>
+<li><code>$ adb push ***.apk /data/local/tmp</code></li>
+</ul>
+</li>
+</ul>
+<p>=================================================================</p>
+<h1 id="install-frida-server-to-the-android-x86-vm">Install Frida-server to the Android-x86 VM</h1>
+<p>Referenes:
+- <a href="https://hacklido.com/blog/338-getting-started-with-frida-setting-up-on-an-emulator">https://hacklido.com/blog/338-getting-started-with-frida-setting-up-on-an-emulator</a></p>
+<ul>
+<li>Confirm the architecture spec. of the Android VM
+<pre tabindex="0"><code>$ adb shell getprop ro.product.cpu.abi
+x86_64
+</code></pre></li>
+</ul>
+<h3 id="download-install-and-execute-frida">Download, install, and execute Frida</h3>
+<ul>
+<li>
+<p>Download a server (referring the above architecture spec.) at <a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></p>
+<pre tabindex="0"><code>$ wget https://github.com/frida/frida/releases/download/16.1.11/frida-server-16.1.11-linux-x86_64.xz
+$ mkdir frida-server
+$ mv ./frida-server-16.1.11-android-x86_64.xz ./frida-server
+$ xz -d -v ./frida-server/frida-server-16.1.11-android-x86_64.xz
+</code></pre></li>
+<li>
+<p>Upload the downloaded Frida-server to the VM; Set its permission bit properly</p>
+<pre tabindex="0"><code>$ adb push ./frida-server/frida-server-16.1.11-android-x86_64 /data/local/tmp/frida-server
+$ adb shell &#34;chmod 755 /data/local/tmp/frida-server&#34;
+</code></pre></li>
+<li>
+<p>Execute the Frida server</p>
+<pre tabindex="0"><code>$ adb shell
+$ su
+:/ # /data/local/tmp/frida-server &amp;                                            
+[1] 3704
+</code></pre></li>
+<li>
+<p>Troubleshooting</p>
+<ul>
+<li><code>not executable: magic FD37</code> : decompress .xz</li>
+<li><code>Unable to save SELinux policy to the kernel: Permission denied</code> : disable SELinux</li>
+</ul>
+<pre tabindex="0"><code>$ adb shell
+x86_64:/ $ su
+:/ # setenforce 0
+</code></pre><ul>
+<li><code>Unable to start: Error binding to address 127.0.0.1:27042: Address already in use</code> : kill existing processes and re-run the Frida server</li>
+</ul>
+</li>
+</ul>
+<p>=================================================================</p>
+<h1 id="frida-client">Frida-client</h1>
+<h3 id="download-install-and-connect">Download, install, and connect</h3>
+<ul>
+<li><code>pip install frida-tools</code></li>
+<li><code>pip install frida</code></li>
+<li>Test
+<pre tabindex="0"><code> frida-ps -U
+PID  Name
+----  ----------------------------------------------
+1695  Google App                                    
+2734  Google Play Store                             
+3546  Settings                                      
+2334  Taskbar                                       
+1099  adbd                                
+</code></pre></li>
+</ul>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/android/">android</a>
+			<a class="entry__tag btn" href="/tags/android-x86/">android-x86</a>
+			<a class="entry__tag btn" href="/tags/virtualbox/">virtualbox</a>
+			<a class="entry__tag btn" href="/tags/frida/">frida</a>
+			<a class="entry__tag btn" href="/tags/ubuntu/">ubuntu</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wandering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2024 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

@@ -84,9 +84,28 @@ Macbook pro (M2) Mac OSX Sonoma UTM 4.4.5 (brew installed; brew install --cask u
 			
 				<div class="card card--2col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/setup-ubuntu-utm-applesilicon/">Run Ubuntu(amd64) with UTM on a Apple Silicon (M2) Macbook</a></h1>
+	<div class="entry__content">Install Install a Ubuntu Server version(I installed the minimal Ubuntu 22.04 Server).
+Use the Shared Folder Ref: https://docs.getutm.app/guest-support/linux/#virtfs
+on the UTM Menu, &ldquo;Edit&rdquo; the configuration of the Ubuntu VM and set up a shared directory with the &ldquo;VirtFS&rdquo; (not SPECI WebDAV) create a local directory on the guest $ sudo mkdir /media/share mount $ sudo mount -t 9p -o trans=virtio share /media/share -oversion=9p2000.L </div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/ubuntu/" rel="tag">Ubuntu</a>, 
+		<a class="meta-tags__link" href="/tags/utm/" rel="tag">UTM</a>, 
+		<a class="meta-tags__link" href="/tags/m2/" rel="tag">M2</a>, 
+		<a class="meta-tags__link" href="/tags/apple/" rel="tag">Apple</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/setup-kali-applesilicon/">Setup Kali VM on a Apple Silicon (M2) Macbook</a></h1>
 	<div class="entry__content">Ref: https://www.kali.org/docs/virtualization/install-vmware-guest-tools/
-Install VMWare-Tools $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Share Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&rsquo;t work restart the Tools $ sudo restart-vm-tools </div>
+Install VMWare-Tools (not only on Kali, but on Ubuntu also) $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Shared Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&rsquo;t work restart the Tools $ sudo restart-vm-tools </div>
 	<div class="entry__meta meta mt tar">
 <div class="entry__meta-tags meta-tags">
 	<span class="meta-tags__list">Tags:

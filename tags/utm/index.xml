@@ -17,5 +17,16 @@
 Macbook pro (M2) Mac OSX Sonoma UTM 4.4.5 (brew installed; brew install --cask utm) Downloaded the REMNux VM (from https://remnux.org/#distro) References https://www.technomancer.com/archives/568 https://www.youtube.com/watch?v=krGvTMq29gA Convert the format of the REMNux disk image $ qemu-img convert -p -f vmdk -O vhdx REMnuxVM.vmdk REMnuxVM.vhdx * -p: indicates the conversion progress. * -f: indicates the source image format. * $ qemu-img convert -p -f vmdk -O qcow2 REMnuxVM.</description>
     </item>
     
+    <item>
+      <title>Run Ubuntu(amd64) with UTM on a Apple Silicon (M2) Macbook</title>
+      <link>https://aintahydra.github.io/post/etc/setup-ubuntu-utm-applesilicon/</link>
+      <pubDate>Wed, 04 Jan 2023 15:08:24 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/setup-ubuntu-utm-applesilicon/</guid>
+      <description>Install Install a Ubuntu Server version(I installed the minimal Ubuntu 22.04 Server).
+Use the Shared Folder Ref: https://docs.getutm.app/guest-support/linux/#virtfs
+on the UTM Menu, &amp;ldquo;Edit&amp;rdquo; the configuration of the Ubuntu VM and set up a shared directory with the &amp;ldquo;VirtFS&amp;rdquo; (not SPECI WebDAV) create a local directory on the guest $ sudo mkdir /media/share mount $ sudo mount -t 9p -o trans=virtio share /media/share -oversion=9p2000.L </description>
+    </item>
+    
   </channel>
 </rss>

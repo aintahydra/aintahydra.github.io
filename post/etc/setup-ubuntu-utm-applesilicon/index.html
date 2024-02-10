@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#1b1b1b">
-	<title>Setup Kali VM on a Apple Silicon (M2) Macbook | Ain&#39;t a creature shitting out of mouth</title>
+	<title>Run Ubuntu(amd64) with UTM on a Apple Silicon (M2) Macbook | Ain&#39;t a creature shitting out of mouth</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="/css/bundle.css">
@@ -32,7 +32,7 @@
 		<li class="breadcrumb__item">
 			<a class="breadcrumbs__link" href="/post/">Posts</a>
 		</li>
-		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Setup Kali VM on a Apple Silicon (M2) Macbook</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Run Ubuntu(amd64) with UTM on a Apple Silicon (M2) Macbook</li>
 	</ol>
 </nav>
 		<div class="single block">
@@ -40,41 +40,32 @@
 	<div class="entry__meta meta mb">
 <div class="entry__meta-tags meta-tags">
 	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/kali/" rel="tag">Kali</a>, 
-		<a class="meta-tags__link" href="/tags/vmware/" rel="tag">VMWare</a>, 
-		<a class="meta-tags__link" href="/tags/fusion/" rel="tag">Fusion</a>, 
+		<a class="meta-tags__link" href="/tags/ubuntu/" rel="tag">Ubuntu</a>, 
+		<a class="meta-tags__link" href="/tags/utm/" rel="tag">UTM</a>, 
 		<a class="meta-tags__link" href="/tags/m2/" rel="tag">M2</a>, 
 		<a class="meta-tags__link" href="/tags/apple/" rel="tag">Apple</a>
 	</span>
 </div>
 	</div>
-				<h1 class="entry__title">Setup Kali VM on a Apple Silicon (M2) Macbook</h1>
-				<div class="entry__content"><p>Ref: <a href="https://www.kali.org/docs/virtualization/install-vmware-guest-tools/">https://www.kali.org/docs/virtualization/install-vmware-guest-tools/</a></p>
-<h1 id="install-vmware-tools-not-only-on-kali-but-on-ubuntu-also">Install VMWare-Tools (not only on Kali, but on Ubuntu also)</h1>
-<pre tabindex="0"><code>$ sudo apt update
-$ sudo apt install -y --reinstall open-vm-tools-desktop fuse
-$ sudo reboot -f
-</code></pre><h1 id="use-shared-folders">Use Shared Folders</h1>
-<ul>
-<li>Run Kali-tweaks
-<pre tabindex="0"><code>kali@kali:~$ kali-tweaks
-</code></pre></li>
-<li>Select Virtualization</li>
-<li>Mount the shared folder</li>
-</ul>
-<pre tabindex="0"><code>$ sudo mount-shared-folders
-</code></pre><ul>
-<li>If it doesn&rsquo;t work restart the Tools</li>
-</ul>
-<pre tabindex="0"><code>$ sudo restart-vm-tools
-</code></pre></div>
+				<h1 class="entry__title">Run Ubuntu(amd64) with UTM on a Apple Silicon (M2) Macbook</h1>
+				<div class="entry__content"><h3 id="install">Install</h3>
+<p>Install a Ubuntu Server version(I installed the minimal Ubuntu 22.04 Server).</p>
+<h3 id="use-the-shared-folder">Use the Shared Folder</h3>
+<p>Ref: <a href="https://docs.getutm.app/guest-support/linux/#virtfs">https://docs.getutm.app/guest-support/linux/#virtfs</a></p>
+<ol>
+<li>on the UTM Menu, &ldquo;Edit&rdquo; the configuration of the Ubuntu VM and set up a shared directory with the &ldquo;VirtFS&rdquo; (not SPECI WebDAV)</li>
+<li>create a local directory on the guest
+<code>$ sudo mkdir /media/share</code></li>
+<li>mount
+<code>$ sudo mount -t 9p -o trans=virtio share /media/share -oversion=9p2000.L</code></li>
+</ol>
+</div>
 				
 				<footer class="entry__footer">
 					
 <div class="entry__tags">
-			<a class="entry__tag btn" href="/tags/kali/">kali</a>
-			<a class="entry__tag btn" href="/tags/vmware/">vmware</a>
-			<a class="entry__tag btn" href="/tags/fusion/">fusion</a>
+			<a class="entry__tag btn" href="/tags/ubuntu/">ubuntu</a>
+			<a class="entry__tag btn" href="/tags/utm/">UTM</a>
 			<a class="entry__tag btn" href="/tags/m2/">m2</a>
 			<a class="entry__tag btn" href="/tags/apple/">apple</a>
 </div>

@@ -29,13 +29,24 @@ Macbook pro (M2) Mac OSX Sonoma UTM 4.4.5 (brew installed; brew install --cask u
     </item>
     
     <item>
+      <title>Run Ubuntu(amd64) with UTM on a Apple Silicon (M2) Macbook</title>
+      <link>https://aintahydra.github.io/post/etc/setup-ubuntu-utm-applesilicon/</link>
+      <pubDate>Wed, 04 Jan 2023 15:08:24 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/setup-ubuntu-utm-applesilicon/</guid>
+      <description>Install Install a Ubuntu Server version(I installed the minimal Ubuntu 22.04 Server).
+Use the Shared Folder Ref: https://docs.getutm.app/guest-support/linux/#virtfs
+on the UTM Menu, &amp;ldquo;Edit&amp;rdquo; the configuration of the Ubuntu VM and set up a shared directory with the &amp;ldquo;VirtFS&amp;rdquo; (not SPECI WebDAV) create a local directory on the guest $ sudo mkdir /media/share mount $ sudo mount -t 9p -o trans=virtio share /media/share -oversion=9p2000.L </description>
+    </item>
+    
+    <item>
       <title>Setup Kali VM on a Apple Silicon (M2) Macbook</title>
       <link>https://aintahydra.github.io/post/etc/setup-kali-applesilicon/</link>
       <pubDate>Wed, 04 Jan 2023 11:07:05 +0000</pubDate>
       
       <guid>https://aintahydra.github.io/post/etc/setup-kali-applesilicon/</guid>
       <description>Ref: https://www.kali.org/docs/virtualization/install-vmware-guest-tools/
-Install VMWare-Tools $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Share Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&amp;rsquo;t work restart the Tools $ sudo restart-vm-tools </description>
+Install VMWare-Tools (not only on Kali, but on Ubuntu also) $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Shared Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&amp;rsquo;t work restart the Tools $ sudo restart-vm-tools </description>
     </item>
     
   </channel>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ubuntu on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 31 Jan 2024 11:02:34 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android-x86 and Frida with VirtualBox on Linux(amd64)</title>
+      <link>https://aintahydra.github.io/post/android/android-x86_frida/</link>
+      <pubDate>Wed, 31 Jan 2024 11:02:34 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/android/android-x86_frida/</guid>
+      <description>Install Android-x86 with VirtualBox on Ubuntu 22.04 References:
+https://www.android-x86.org/documentation/virtualbox.html Download an ISO image (https://sourceforge.net/projects/android-x86/files/Release%209.0/ ) android-x86_64-9.0-r2.iso , in my case. Create a new VirtualBox VM Type: Linux, Version: Linux 2.6/3.x/4.x/5.x (64-bit) Hardware: Assign 4GB RAM Hard Disk: Create a Virtual Hard Disk Now Give 8GB HDD VDI (do not check Pre-allocate Full Size) Run VM and Boot with the downloaded .iso file from the Boot menu, Choose &amp;ldquo;Installation&amp;rdquo; Install Select &amp;ldquo;Create/Modify partitions&amp;rdquo; by pressing &amp;lsquo;C&amp;rsquo; Decline GPT Create a New, Primary partition that uses the entire space Choose New, Choose Primary Leave it (the maximum space Size is displayed) Set it Bootable (The Flags are marked as &amp;lsquo;Boot&amp;rsquo;) Write (yes) Quit Choose the just created partition format &amp;rsquo;ext4&amp;rsquo; (for sure) Install GRUB Yes to install /system directory read-write Run Android-x86 Remove the .</description>
+    </item>
+    
+    <item>
+      <title>Run Ubuntu(amd64) with UTM on a Apple Silicon (M2) Macbook</title>
+      <link>https://aintahydra.github.io/post/etc/setup-ubuntu-utm-applesilicon/</link>
+      <pubDate>Wed, 04 Jan 2023 15:08:24 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/etc/setup-ubuntu-utm-applesilicon/</guid>
+      <description>Install Install a Ubuntu Server version(I installed the minimal Ubuntu 22.04 Server).
+Use the Shared Folder Ref: https://docs.getutm.app/guest-support/linux/#virtfs
+on the UTM Menu, &amp;ldquo;Edit&amp;rdquo; the configuration of the Ubuntu VM and set up a shared directory with the &amp;ldquo;VirtFS&amp;rdquo; (not SPECI WebDAV) create a local directory on the guest $ sudo mkdir /media/share mount $ sudo mount -t 9p -o trans=virtio share /media/share -oversion=9p2000.L </description>
+    </item>
+    
+  </channel>
+</rss>

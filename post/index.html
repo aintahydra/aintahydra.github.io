@@ -41,6 +41,25 @@
 			
 				<div class="card card--2col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/android/android-x86_frida/">Android-x86 and Frida with VirtualBox on Linux(amd64)</a></h1>
+	<div class="entry__content">Install Android-x86 with VirtualBox on Ubuntu 22.04 References:
+https://www.android-x86.org/documentation/virtualbox.html Download an ISO image (https://sourceforge.net/projects/android-x86/files/Release%209.0/ ) android-x86_64-9.0-r2.iso , in my case. Create a new VirtualBox VM Type: Linux, Version: Linux 2.6/3.x/4.x/5.x (64-bit) Hardware: Assign 4GB RAM Hard Disk: Create a Virtual Hard Disk Now Give 8GB HDD VDI (do not check Pre-allocate Full Size) Run VM and Boot with the downloaded .iso file from the Boot menu, Choose &ldquo;Installation&rdquo; Install Select &ldquo;Create/Modify partitions&rdquo; by pressing &lsquo;C&rsquo; Decline GPT Create a New, Primary partition that uses the entire space Choose New, Choose Primary Leave it (the maximum space Size is displayed) Set it Bootable (The Flags are marked as &lsquo;Boot&rsquo;) Write (yes) Quit Choose the just created partition format &rsquo;ext4&rsquo; (for sure) Install GRUB Yes to install /system directory read-write Run Android-x86 Remove the .</div>
+	<div class="entry__meta meta mt tar">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/android/" rel="tag">android</a>, 
+		<a class="meta-tags__link" href="/tags/android-x86/" rel="tag">android-x86</a>, 
+		<a class="meta-tags__link" href="/tags/virtualbox/" rel="tag">virtualbox</a>, 
+		<a class="meta-tags__link" href="/tags/frida/" rel="tag">frida</a>, 
+		<a class="meta-tags__link" href="/tags/ubuntu/" rel="tag">ubuntu</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--2col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/forensics/cheatsheet/">Cheatsheet</a></h1>
 	<div class="entry__content">A forensic cheet sheet get hash from a file - Windows `PS&gt; get-filehash -algorithm sha1 &lt;filename&gt;` - Linux `md5sum|sha256sum &lt;filename&gt;` - Malware hashes - https://virustotal.com/ - https://hash.cymru.com/ Search search a file name: find &lt;DIR&gt; -name &lt;filename&gt;
 search a string: grep -r &lt;search_string&gt; &lt;targetFILES&gt; ([--include '*.conf']
@@ -185,20 +204,6 @@ Installing VMs Tip: VMWare-Tools for Ubuntu/Kali VM on VMWare Fusion Installing 
 		<a class="meta-tags__link" href="/tags/fusion/" rel="tag">fusion</a>, 
 		<a class="meta-tags__link" href="/tags/apple/" rel="tag">apple</a>, 
 		<a class="meta-tags__link" href="/tags/m2/" rel="tag">m2</a>
-	</span>
-</div>
-	</div>
-</article>
-				</div>
-			
-				<div class="card card--2col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/etc/virtualbox-networking-modes/">Virtualbox Networking Modes</a></h1>
-	<div class="entry__content">References https://www.virtualbox.org/manual/ch06.html https://www.nakivo.com/blog/virtualbox-network-setting-guide/ ViratualBox Network Modes Not attached (No connection) NAT NAT Network Bridged Adapter Internal networking Host-only Generic (shared with the host) NAT Sufficient in most cases Internet-enabled: from Internal network to Internet access is possible Guests on internel network CANNOT talk each other (from www.nakivo.com) Enabling NAT for a VM with VBoxManage: VBoxManage modifyvm VM_name --nic1 nat VM_name: name of a virtual machine nic1: number of virtual machine adapter NAT Network Similar to NAT, but guest CAN talk each other basically,, CANNOT access guest machines either from the host or from external network However, &ldquo;Port forwarding&rdquo; enables the host or the machines of the host network to access guests A built-in VBox NAT router uses Network address and name can be changed: (Global preference) File &gt; Preferences &gt; Network &gt; Edit the settings(icon): Default address 10.</div>
-	<div class="entry__meta meta mt tar">
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/virtualbox/" rel="tag">virtualbox</a>
 	</span>
 </div>
 	</div>

@@ -6,7 +6,17 @@
     <description>Recent content in virtualbox on Ain&#39;t a creature shitting out of mouth</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Feb 2023 05:58:55 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 31 Jan 2024 11:02:34 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android-x86 and Frida with VirtualBox on Linux(amd64)</title>
+      <link>https://aintahydra.github.io/post/android/android-x86_frida/</link>
+      <pubDate>Wed, 31 Jan 2024 11:02:34 +0900</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/android/android-x86_frida/</guid>
+      <description>Install Android-x86 with VirtualBox on Ubuntu 22.04 References:
+https://www.android-x86.org/documentation/virtualbox.html Download an ISO image (https://sourceforge.net/projects/android-x86/files/Release%209.0/ ) android-x86_64-9.0-r2.iso , in my case. Create a new VirtualBox VM Type: Linux, Version: Linux 2.6/3.x/4.x/5.x (64-bit) Hardware: Assign 4GB RAM Hard Disk: Create a Virtual Hard Disk Now Give 8GB HDD VDI (do not check Pre-allocate Full Size) Run VM and Boot with the downloaded .iso file from the Boot menu, Choose &amp;ldquo;Installation&amp;rdquo; Install Select &amp;ldquo;Create/Modify partitions&amp;rdquo; by pressing &amp;lsquo;C&amp;rsquo; Decline GPT Create a New, Primary partition that uses the entire space Choose New, Choose Primary Leave it (the maximum space Size is displayed) Set it Bootable (The Flags are marked as &amp;lsquo;Boot&amp;rsquo;) Write (yes) Quit Choose the just created partition format &amp;rsquo;ext4&amp;rsquo; (for sure) Install GRUB Yes to install /system directory read-write Run Android-x86 Remove the .</description>
+    </item>
+    
     <item>
       <title>Virtualbox Networking Modes</title>
       <link>https://aintahydra.github.io/post/etc/virtualbox-networking-modes/</link>
