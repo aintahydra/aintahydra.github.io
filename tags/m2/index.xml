@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>m2 on Ain&#39;t a creature shitting out of mouth</title>
+    <title>M2 on Ain&#39;t a creature shitting out of mouth</title>
     <link>https://aintahydra.github.io/tags/m2/</link>
-    <description>Recent content in m2 on Ain&#39;t a creature shitting out of mouth</description>
+    <description>Recent content in M2 on Ain&#39;t a creature shitting out of mouth</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 21 Feb 2023 06:45:51 +0900</lastBuildDate><atom:link href="https://aintahydra.github.io/tags/m2/index.xml" rel="self" type="application/rss+xml" />
@@ -47,6 +47,15 @@ on the UTM Menu, &amp;ldquo;Edit&amp;rdquo; the configuration of the Ubuntu VM a
       <guid>https://aintahydra.github.io/post/etc/setup-kali-applesilicon/</guid>
       <description>Ref: https://www.kali.org/docs/virtualization/install-vmware-guest-tools/
 Install VMWare-Tools (not only on Kali, but on Ubuntu also) $ sudo apt update $ sudo apt install -y --reinstall open-vm-tools-desktop fuse $ sudo reboot -f Use Shared Folders Run Kali-tweaks kali@kali:~$ kali-tweaks Select Virtualization Mount the shared folder $ sudo mount-shared-folders If it doesn&amp;rsquo;t work restart the Tools $ sudo restart-vm-tools </description>
+    </item>
+    
+    <item>
+      <title>Android studio and Frida on Apple silicon M2</title>
+      <link>https://aintahydra.github.io/post/android/androidstudio_frida/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/android/androidstudio_frida/</guid>
+      <description>Install Android Studio and run an AVD on MacbookPro(M2) install with brew: $ brew install --cask android-studio search and run Android Studio from Spotlight choose, &amp;ldquo;More Actions&amp;rdquo; from the main popup, then &amp;ldquo;Virtual Device Manager&amp;rdquo; Install Android SDK Platform-Tools for Mac Download the platform tools (https://developer.android.com/tools/releases/platform-tools?hl=en) Unzip the downloaded file(ex, platform-tools_rXX.X.X-darwin.zip) Move the unzipped folder somewhere and create a symbolic link to it $ sudo ln -s /Users/XXX/local/platform-tools/adb /usr/local/bin/adb Run a virtual device Device ((added a Pixel 6 device with Release S - API 31, ABI arm64-v8a, Android 12.</description>
     </item>
     
   </channel>

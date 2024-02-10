@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>silicon on Ain&#39;t a creature shitting out of mouth</title>
+    <link>https://aintahydra.github.io/tags/silicon/</link>
+    <description>Recent content in silicon on Ain&#39;t a creature shitting out of mouth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://aintahydra.github.io/tags/silicon/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android studio and Frida on Apple silicon M2</title>
+      <link>https://aintahydra.github.io/post/android/androidstudio_frida/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/android/androidstudio_frida/</guid>
+      <description>Install Android Studio and run an AVD on MacbookPro(M2) install with brew: $ brew install --cask android-studio search and run Android Studio from Spotlight choose, &amp;ldquo;More Actions&amp;rdquo; from the main popup, then &amp;ldquo;Virtual Device Manager&amp;rdquo; Install Android SDK Platform-Tools for Mac Download the platform tools (https://developer.android.com/tools/releases/platform-tools?hl=en) Unzip the downloaded file(ex, platform-tools_rXX.X.X-darwin.zip) Move the unzipped folder somewhere and create a symbolic link to it $ sudo ln -s /Users/XXX/local/platform-tools/adb /usr/local/bin/adb Run a virtual device Device ((added a Pixel 6 device with Release S - API 31, ABI arm64-v8a, Android 12.</description>
+    </item>
+    
+  </channel>
+</rss>

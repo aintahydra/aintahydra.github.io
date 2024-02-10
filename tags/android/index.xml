@@ -17,5 +17,14 @@
 https://www.android-x86.org/documentation/virtualbox.html Download an ISO image (https://sourceforge.net/projects/android-x86/files/Release%209.0/ ) android-x86_64-9.0-r2.iso , in my case. Create a new VirtualBox VM Type: Linux, Version: Linux 2.6/3.x/4.x/5.x (64-bit) Hardware: Assign 4GB RAM Hard Disk: Create a Virtual Hard Disk Now Give 8GB HDD VDI (do not check Pre-allocate Full Size) Run VM and Boot with the downloaded .iso file from the Boot menu, Choose &amp;ldquo;Installation&amp;rdquo; Install Select &amp;ldquo;Create/Modify partitions&amp;rdquo; by pressing &amp;lsquo;C&amp;rsquo; Decline GPT Create a New, Primary partition that uses the entire space Choose New, Choose Primary Leave it (the maximum space Size is displayed) Set it Bootable (The Flags are marked as &amp;lsquo;Boot&amp;rsquo;) Write (yes) Quit Choose the just created partition format &amp;rsquo;ext4&amp;rsquo; (for sure) Install GRUB Yes to install /system directory read-write Run Android-x86 Remove the .</description>
     </item>
     
+    <item>
+      <title>Android studio and Frida on Apple silicon M2</title>
+      <link>https://aintahydra.github.io/post/android/androidstudio_frida/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://aintahydra.github.io/post/android/androidstudio_frida/</guid>
+      <description>Install Android Studio and run an AVD on MacbookPro(M2) install with brew: $ brew install --cask android-studio search and run Android Studio from Spotlight choose, &amp;ldquo;More Actions&amp;rdquo; from the main popup, then &amp;ldquo;Virtual Device Manager&amp;rdquo; Install Android SDK Platform-Tools for Mac Download the platform tools (https://developer.android.com/tools/releases/platform-tools?hl=en) Unzip the downloaded file(ex, platform-tools_rXX.X.X-darwin.zip) Move the unzipped folder somewhere and create a symbolic link to it $ sudo ln -s /Users/XXX/local/platform-tools/adb /usr/local/bin/adb Run a virtual device Device ((added a Pixel 6 device with Release S - API 31, ABI arm64-v8a, Android 12.</description>
+    </item>
+    
   </channel>
 </rss>

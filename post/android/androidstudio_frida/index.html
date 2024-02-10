@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Android studio and Frida on Apple silicon M2 | Ain&#39;t a creature shitting out of mouth</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="stylesheet" href="/css/themes/dark-blue.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Ain&#39;t a creature shitting out of mouth</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+<nav class="breadcrumb block" aria-label="breadcrumb">
+	<ol class="breadcrumb__list">
+		
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/">ROOT</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumbs__link" href="/post/">Posts</a>
+		</li>
+		<li class="breadcrumbs__item breadcrumb__item--active" aria-current="page">Android studio and Frida on Apple silicon M2</li>
+	</ol>
+</nav>
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/android/" rel="tag">android</a>, 
+		<a class="meta-tags__link" href="/tags/androidstudio/" rel="tag">androidstudio</a>, 
+		<a class="meta-tags__link" href="/tags/frida/" rel="tag">frida</a>, 
+		<a class="meta-tags__link" href="/tags/appple/" rel="tag">appple</a>, 
+		<a class="meta-tags__link" href="/tags/silicon/" rel="tag">silicon</a>, 
+		<a class="meta-tags__link" href="/tags/m2/" rel="tag">M2</a>, 
+		<a class="meta-tags__link" href="/tags/mac/" rel="tag">Mac</a>, 
+		<a class="meta-tags__link" href="/tags/osx/" rel="tag">OSX</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Android studio and Frida on Apple silicon M2</h1>
+				<div class="entry__content"><h1 id="install-android-studio-and-run-an-avd-on-macbookprom2">Install Android Studio and run an AVD on MacbookPro(M2)</h1>
+<ul>
+<li>install with brew: <code>$ brew install --cask android-studio</code></li>
+<li>search and run Android Studio from Spotlight</li>
+<li>choose, &ldquo;More Actions&rdquo; from the main popup, then &ldquo;Virtual Device Manager&rdquo;</li>
+</ul>
+<h1 id="install-android-sdk-platform-tools-for-mac">Install Android SDK Platform-Tools for Mac</h1>
+<ul>
+<li>Download the platform tools (<a href="https://developer.android.com/tools/releases/platform-tools?hl=en">https://developer.android.com/tools/releases/platform-tools?hl=en</a>)</li>
+<li>Unzip the downloaded file(ex, platform-tools_rXX.X.X-darwin.zip)</li>
+<li>Move the unzipped folder somewhere and create a symbolic link to it
+<pre tabindex="0"><code>$ sudo ln -s /Users/XXX/local/platform-tools/adb /usr/local/bin/adb
+</code></pre></li>
+</ul>
+<h1 id="run-a-virtual-device">Run a virtual device</h1>
+<ul>
+<li>Device
+<ul>
+<li>((added a Pixel 6 device with Release S - API 31, ABI arm64-v8a, Android 12.0, Default System Image(Non-Google API))</li>
+<li>lauch the added device</li>
+</ul>
+</li>
+</ul>
+<h1 id="install-frida">Install Frida</h1>
+<ul>
+<li>
+<p>Confirm the arch spec. of the emulator:</p>
+<pre tabindex="0"><code>adb shell getprop ro.product.cpu.abi
+arm64-v8a
+</code></pre></li>
+<li>
+<p>Download a Frida-server from <a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></p>
+<ul>
+<li>ex) frida-server-16.1.11-android-arm64.xz</li>
+</ul>
+</li>
+<li>
+<p>Decompress the server and install it on the emulator</p>
+<pre tabindex="0"><code>$ adb shell &#34;mkdir -p /data/local/tmp&#34;
+$ adb push ~/Downloads/frida-server-16.1.11-android-arm64 /data/local/tmp/frida-server
+$ adb shell &#34;chmod 755 /data/local/tmp/frida-server&#34;
+$ 
+</code></pre></li>
+<li>
+<p>Launch the server</p>
+<pre tabindex="0"><code>$ adb shell
+emulator64_arm64:/ $ su
+emulator64_arm64:/ # /data/local/tmp/frida-server &amp;
+[1] 2607
+</code></pre></li>
+</ul>
+<h1 id="install-frida-client">Install Frida client</h1>
+<ul>
+<li>install tools with pip
+<pre tabindex="0"><code>$ pip install frida
+$ pip install frida-tools
+</code></pre></li>
+</ul>
+<h1 id="test-the-frida-client-against-the-frida-server-on-avd">Test the Frida client against the Frida-server on AVD</h1>
+<pre tabindex="0"><code>$ frida-ps -U
+ PID  Name
+----  -----------------------------------------------------------------
+1551   Phone
+1002   SIM Toolkit
+2276   Settings
+ 439      adbd
+</code></pre><ul>
+<li>If the system asks for &ldquo;allowing Terminal-Initiated Display&rdquo;, say &ldquo;Yes&rdquo;</li>
+</ul>
+</div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/android/">android</a>
+			<a class="entry__tag btn" href="/tags/androidstudio/">androidstudio</a>
+			<a class="entry__tag btn" href="/tags/frida/">frida</a>
+			<a class="entry__tag btn" href="/tags/appple/">appple</a>
+			<a class="entry__tag btn" href="/tags/silicon/">silicon</a>
+			<a class="entry__tag btn" href="/tags/m2/">M2</a>
+			<a class="entry__tag btn" href="/tags/mac/">Mac</a>
+			<a class="entry__tag btn" href="/tags/osx/">OSX</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+<div class="authorbox block">
+	<div class="author">
+		<figure class="author__avatar">
+			<img class="author__img" alt="aintahydra avatar" src="/img/avatar.png" height="90" width="90">
+		</figure>
+		<div class="author__body">
+			<div class="author__name">
+				aintahydra
+			</div>
+			<div class="author__bio">Wandering around insecure worlds...</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+	<div class="footer__copyright">© 2024 Ain&#39;t a creature shitting out of mouth. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>
